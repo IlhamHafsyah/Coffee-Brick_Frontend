@@ -1,0 +1,33 @@
+.Product .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.Product .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.Product .menu a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.Product .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.Product .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.Product .user-menu ul li a img {
+  border-radius: 50%;
+}

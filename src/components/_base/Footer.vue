@@ -1,25 +1,26 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col class="desc">
+      <b-col cols="8" class="desc">
         <div class="logo">
-          <img src="/image/logo.png" />
-          <a href="">Coffee Shop</a>
+          <img src="../../assets/logo copy.png" />
+          <a href="">Coffee Brick</a>
         </div>
+        <br />
         <p>
           Coffee Shop is a store that sells some good<br />meals, and especially
           coffee. We provide<br />high quality beans
         </p>
-        <div class="socmed">
-          <img src="/image/fb-logo.png" />
-          <img src="/image/tw-logo.png" />
-          <img src="/image/ig-logo.png" />
+        <div cols="2" class="socmed">
+          <img src="../../assets/fb-logo.png" />
+          <img src="../../assets/tw-logo.png" />
+          <img src="../../assets/ig-logo.png" />
         </div>
         <div class="cr">
           <p>&copy;2020CoffeeStore</p>
         </div>
       </b-col>
-      <b-col class="product">
+      <b-col cols="2" class="product">
         <h4>Product</h4>
         <ul>
           <li><a href="">Dashboard</a></li>

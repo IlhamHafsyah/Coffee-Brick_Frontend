@@ -1,0 +1,357 @@
+.cart .Header {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.cart .logo {
+  justify-content: space-between;
+}
+
+.cart .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.cart .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.cart .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.cart .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.cart .user-menu {
+  text-align: right;
+}
+
+.cart .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.cart .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.cart .user-menu ul li a img {
+  border-radius: 50%;
+}
+
+.cart .user-menu ul input {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.cart .jumbotron {
+  background-image: url(../assets/jumbotron.png);
+  background-size: cover;
+  background-position: 0;
+  height: 1200px;
+}
+
+.cart .jumbotron h2 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  color: aliceblue;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.cart .jumbotron .sum {
+  width: 487px;
+  height: 700px;
+  background: #ffffff;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+}
+
+.cart .jumbotron .sum .card {
+  border-color: rgba(240, 248, 255, 0);
+  width: 455px;
+  background-color: rgba(165, 42, 42, 0);
+}
+
+.cart .jumbotron .sum .card h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  color: #362115;
+  text-align: center;
+  padding-top: 35px;
+}
+
+.cart .jumbotron .sum .product-sum {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  padding-top: 60px;
+  padding-left: 30px;
+}
+
+.cart .jumbotron .sum .product-sum img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+.cart .jumbotron .sum .count {
+  padding-top: 70px;
+  width: 450px;
+}
+
+.cart .jumbotron .sum .count .count-text {
+  padding-left: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.cart .jumbotron .sum .count .count-numb {
+  padding-left: 130px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.cart .jumbotron .sum .count .total-text {
+  padding-left: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 25px;
+}
+
+.cart .jumbotron .sum .count .total-numb {
+  padding-left: 130px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 30px;
+  font-size: 25px;
+}
+
+.cart .address {
+  padding-left: 100px;
+}
+
+.cart .address h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  color: aliceblue;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.cart .address input {
+  border-radius: 20px;
+  width: 520px;
+  height: 150px;
+  border-color: #89553700;
+}
+
+.cart .payment h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  color: aliceblue;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.cart .payment {
+  padding-left: 100px;
+}
+
+.cart .payment .card {
+  padding-left: 30px;
+  padding-top: 30px;
+  line-height: 60px;
+  width: 520px;
+  height: 250px;
+  border-radius: 20px;
+}
+
+.cart .payment .card .pmet {
+  position: absolute;
+  width: 454px;
+  height: 259px;
+  left: 20px;
+  top: -5px;
+
+  background: #ffffff00;
+  border-radius: 20px;
+}
+
+.cart .payment .card .pmet .card {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 80px;
+  top: 50px;
+
+  background: #f47b0a;
+  border-radius: 10px;
+}
+
+.cart .payment .card .pmet .card img {
+  position: absolute;
+  width: 20px;
+  left: 8px;
+  top: 8px;
+}
+
+.cart .payment .card .pmet .card p {
+  position: absolute;
+  left: 60px;
+  top: 4px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.cart .payment .card .pmet .bank {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 80px;
+  top: 110px;
+
+  background: linear-gradient(0deg, #895537, #895537),
+    linear-gradient(0deg, #c4c4c4, #c4c4c4);
+  border-radius: 10px;
+}
+
+.cart .payment .card .pmet .bank img {
+  position: absolute;
+  width: 20px;
+  left: 10px;
+  top: 10px;
+}
+
+.cart .payment .card .pmet p {
+  position: absolute;
+  left: 140px;
+  top: 115px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.cart .payment .card .pmet h4 {
+  position: absolute;
+  left: 140px;
+  top: 175px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.cart .payment .card .pmet .cod img {
+  position: absolute;
+  width: 20px;
+  left: 10px;
+  top: 10px;
+}
+
+.cart .payment .card .pmet .cod p {
+  position: absolute;
+  left: 60px;
+  top: 4px;
+
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
+}
+
+.cart .payment .card .pmet .cod {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 80px;
+  top: 170px;
+
+  background: linear-gradient(0deg, #ffba33, #ffba33),
+    linear-gradient(0deg, #c4c4c4, #c4c4c4);
+  border-radius: 10px;
+}
+
+.cart .button {
+  padding-left: 100px;
+}
+
+.cart button {
+  color: white;
+  background: #362115;
+  width: 520px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 40px;
+  border-radius: 20px;
+  border-color: #89553700;
+}
+
+.cart .desc {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cart .desc a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.cart .desc .socmed img {
+  width: 33px;
+  height: 33px;
+}
+
+.cart .desc .cr {
+  color: #afb5c0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.cart .product ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.cart .product ul a {
+  color: #0b132a;
+}
+
+.cart .engage ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.cart .engage ul a {
+  color: #0b132a;
+}

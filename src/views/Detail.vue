@@ -229,6 +229,7 @@ export default {
     addToCart() {
       console.log(this.cart)
       const setCart = {
+        product_name: this.products.product_name,
         product_id: this.products.product_id,
         qty: this.cart.qty,
         size: this.cart.size,

@@ -15,6 +15,7 @@
               type="text"
               v-model="searchData"
               v-on:keyup.enter="search()"
+              placeholder="  search"
             />
             <li><img src="../../assets/search-icon.png" /></li>
             <li><img src="../../assets/chat-icon.png" /></li>

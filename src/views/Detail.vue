@@ -1,63 +1,162 @@
 <template>
   <div class="detail">
     <Header />
-    <hr />
-    <b-container class="bv-example-row">
-      <b-row>
-        <b-col cols="5">
-          <img src="../assets/cb.png" alt="" />
-          <b-card>
-            <b-form-group
-              label="Button style radios"
-              v-slot="{ ariaDescribedby }"
-            >
-              <b-form-radio-group
-                id="btn-radios-1"
-                v-model="selected"
-                :options="option"
-                :aria-describedby="ariaDescribedby"
-                name="radios-btn-default"
-                buttons
-              ></b-form-radio-group>
-            </b-form-group>
-            <b-form-group
-              label="Button style radios"
-              v-slot="{ ariaDescribed }"
-            >
-              <b-form-radio-group
-                id="btn-radios-2"
-                v-model="selecteds"
-                :options="options"
-                :aria-describedby="ariaDescribed"
-                name="radios-btn-default"
-                buttons
-              ></b-form-radio-group> </b-form-group
-          ></b-card>
-        </b-col>
-        <b-col cols="7">
-          <b-card>{{ products.product_name }}</b-card>
-          <b-card>{{ products.product_desc }}</b-card>
-          <b-row>
-            <b-col cols="6">
-              <template>
-                <div>
-                  <b-form-spinbutton
-                    id="sb-wrap"
-                    wrap
-                    min="1"
-                    max="25"
-                    placeholder="--"
-                  ></b-form-spinbutton>
+    <div class="content">
+      <hr />
+      <b-container class="bv-example-row">
+        <br />
+        <b-row>
+          <b-col cols="5">
+            <div class="img">
+              <img src="../assets/cb.png" alt="" />
+            </div>
+            <br />
+            <br />
+            <div class="deliv">
+              <b-card>
+                <h4>Delivery and Time</h4>
+                <br />
+                <b-form-group>
+                  <div class="btn1">
+                    <b-form-radio-group
+                      v-model="selected"
+                      :options="option"
+                      buttons
+                    ></b-form-radio-group>
+                  </div>
+                  <!-- <span>yang dipilih : {{ selected }}</span> -->
+                </b-form-group>
+                <br />
+                <div class="now">
+                  <b-row>
+                    <b-col cols="6">Now</b-col>
+                    <b-col cols="6"
+                      ><b-form-group>
+                        <b-form-radio-group
+                          id="btn-radios-2"
+                          v-model="selecteds"
+                          :options="options"
+                          name="radios-btn"
+                          buttons
+                        ></b-form-radio-group>
+                        <!-- <span>pilihan {{ selecteds }}</span> -->
+                      </b-form-group></b-col
+                    >
+                  </b-row>
                 </div>
-              </template>
-            </b-col>
-            <b-col cols="6">IDR {{ products.product_price }}</b-col>
-          </b-row>
-          <b-button>add to cart</b-button><br />
-          <b-button>ask a staff</b-button>
-        </b-col>
-      </b-row>
-    </b-container>
+                <br />
+                <div class="time">
+                  <b-row>
+                    <b-col cols="6">Set time</b-col>
+                    <b-col cols="6"
+                      ><input
+                        type="text"
+                        v-model="time"
+                        placeholder="Enter time for reservation"
+                        v-on:keyup.enter="search()"
+                      />
+                      <!-- <p>time : {{ time }}</p> -->
+                    </b-col>
+                  </b-row>
+                </div>
+              </b-card>
+            </div>
+          </b-col>
+          <b-col cols="7">
+            <div class="name">
+              <b-card>{{ products.product_name }}</b-card>
+            </div>
+            <div class="desc">
+              <b-card>{{ products.product_desc }}</b-card>
+            </div>
+            <br />
+            <p>
+              Delivery only on <b>Monday to</b><br /><b>friday</b> at
+              <b>1 - 7 pm</b>
+            </p>
+            <b-row>
+              <b-col cols="6">
+                <template>
+                  <div>
+                    <br />
+                    <div class="spin">
+                      <b-form-spinbutton
+                        v-model="cart.qty"
+                        id="sb-wrap"
+                        wrap
+                        min="0"
+                        max="25"
+                        placeholder="-"
+                      ></b-form-spinbutton>
+                      <br />
+                      <br />
+                    </div>
+                  </div>
+                </template>
+              </b-col>
+              <div class="price">
+                <b-col cols="6">IDR.{{ products.product_price }}</b-col>
+              </div>
+            </b-row>
+            <div class="cart">
+              <b-button @click="addToCart()">Add to Cart</b-button><br />
+            </div>
+            <br />
+            <div class="staff"><b-button>Ask a Staff</b-button></div>
+          </b-col>
+        </b-row>
+        <br />
+        <br />
+        <br />
+        <b-row>
+          <b-col cols="4">
+            <div class="sizeOpt">
+              <b-card>
+                <p>Choose a size</p>
+                <b-form-group>
+                  <b-form-radio-group
+                    id="btn-radios-3"
+                    v-model="cart.size"
+                    :options="sizeOption"
+                    name="radios-btn"
+                    buttons
+                  >
+                  </b-form-radio-group>
+                  <br
+                /></b-form-group>
+              </b-card>
+            </div>
+          </b-col>
+          <b-col cols="8">
+            <div class="direct">
+              <b-card>
+                <b-row>
+                  <b-col cols="2"><img src="../assets/cb.png" alt=""/></b-col>
+                  <b-col cols="3"
+                    ><ul>
+                      <li>
+                        {{ products.product_name }}
+                      </li>
+                      <li>{{ cart.qty }}x ({{ cart.size }})</li>
+                    </ul></b-col
+                  >
+                  <b-col cols="7">
+                    <div class="checkout">
+                      <b-row>
+                        <b-col cols="9"><p>Checkout</p></b-col>
+                        <b-col cols="3"><b-button>-></b-button></b-col>
+                      </b-row>
+                    </div></b-col
+                  >
+                </b-row>
+              </b-card>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
+    <hr />
+    <br /><br />
     <Footer />
   </div>
 </template>
@@ -76,17 +175,35 @@ export default {
   data() {
     return {
       products: [],
+      cart: [],
+      // detailHistory: [
+      //   {
+      //     product_id: '',
+      //     qty: '',
+      //     size: '',
+      //     subtotal: '',
+      //     history_id: 1
+      //   }
+      // ],
       id: '',
-      selected: 'radio1',
+      time: '',
+      selected: '',
+      selecteds: '',
+      selectedSize: '',
+      qty: '',
       option: [
-        { text: 'Radio 1', value: 'radio1' },
-        { text: 'Radio 2', value: 'radio2' },
-        { text: 'Radio 3', value: 'radio3' }
+        { text: 'Dine in', value: 'Dine in' },
+        { text: 'Door Delivery', value: 'Door Delivery' },
+        { text: 'Pick up', value: 'Pick up' }
       ],
-      selecteds: 'radio2',
       options: [
-        { text: 'Radio 1', value: 'radio1' },
-        { text: 'Radio 2', value: 'radio2' }
+        { text: 'Yes', value: 'Yes' },
+        { text: 'No', value: 'No' }
+      ],
+      sizeOption: [
+        { text: 'R', value: 'Reguler' },
+        { text: 'L', value: 'Large' },
+        { text: 'XL', value: 'X-Large' }
       ]
     }
   },
@@ -102,11 +219,40 @@ export default {
         .then(response => {
           console.log(response)
           this.products = response.data.data[0]
+          this.cart.product_id = response.data.data[0].product_id
+          this.cart.subtotal = response.data.data[0].product_price
         })
         .catch(error => {
           console.log(error)
         })
+    },
+    addToCart() {
+      console.log(this.cart)
+      const setCart = {
+        product_id: this.products.product_id,
+        qty: this.cart.qty,
+        size: this.cart.size,
+        subtotal: this.products.product_price,
+        history_id: 1
+      }
+      this.cart = [...this.cart, setCart]
+      localStorage.setItem('cart', JSON.stringify(this.cart))
     }
+    // postDetailHistory() {
+    //   console.log(this.detailHistory)
+    //   axios
+    //     .post('http://localhost:4000/history/detail', this.detailHistory)
+    //     .then(response => {
+    //       console.log(response)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // }
   }
 }
 </script>
+
+<style>
+@import '../assets/detail.css';
+</style>

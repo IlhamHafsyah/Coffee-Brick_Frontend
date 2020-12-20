@@ -4,11 +4,11 @@
       <ul>
         <li><a href="http://localhost:8080/product">All Product</a></li>
         <li>
-          <a @click="getCategoryById(1)">Coffee</a>
+          <a @click="getProduct(1)">Coffee</a>
         </li>
-        <li><a @click="getCategoryById(2)">Non Coffee</a></li>
-        <li><a @click="getCategoryById(3)">Foods</a></li>
-        <li><a @click="getCategoryById(4)">Add-on</a></li>
+        <li><a @click="getProduct(2)">Non Coffee</a></li>
+        <li><a @click="getProduct(3)">Foods</a></li>
+        <li><a @click="getProduct(4)">Add-on</a></li>
       </ul>
     </div>
     <b-row>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       products: [],
-      productsByCategory: [],
+      // productsByCategory: [],
       alert: false,
       isMsg: '',
       product_id: '',
@@ -71,37 +71,41 @@ export default {
     }
   },
   created() {
-    this.getProduct()
-    this.getCategoryById(this.id)
+    this.getProduct(this.id)
+    // this.getCategoryById(this.id)
   },
   methods: {
-    getProduct() {
+    getProduct(id) {
       axios
         .get(
-          `http://localhost:4000/product?page=${this.page}&limit=${this.limit}&search&sort`
+          `http://localhost:4000/product?page=${this.page}&limit=${this.limit}&search=${this.id}&sort`
         )
         .then(response => {
           console.log(response)
+          console.log(id)
           this.totalRows = response.data.pagination.totalData
           this.products = response.data.data
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    getCategoryById(id) {
-      axios
-        .get(`http://localhost:4000/category/${id}`)
-        .then(response => {
-          console.log(response)
+          console.log(this.totalRows)
           this.id = id
-          this.totalRows = response.data.pagination.totalData
-          this.productsByCategory = response.data.data
+          console.log(this.id)
         })
         .catch(error => {
           console.log(error)
         })
     },
+    // getCategoryById(id) {
+    //   axios
+    //     .get(`http://localhost:4000/category/${id}`)
+    //     .then(response => {
+    //       console.log(response)
+    //       this.id = id
+    //       this.totalRows = response.data.pagination.totalData
+    //       this.productsByCategory = response.data.data
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // },
     handlePageChange(numberPage) {
       console.log(numberPage)
       this.page = numberPage

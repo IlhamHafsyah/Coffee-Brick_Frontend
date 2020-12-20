@@ -1,0 +1,272 @@
+.detail .Header {
+  padding-top: 30px;
+}
+
+.detail .logo {
+  justify-content: space-between;
+}
+
+.detail .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.detail .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.detail .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.detail .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.detail .user-menu {
+  text-align: right;
+}
+
+.detail .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.detail .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.detail .user-menu ul li a img {
+  border-radius: 50%;
+}
+
+.detail .user-menu ul input {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.detail .content {
+  text-align: center;
+}
+
+.detail .content .img img {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+}
+
+.detail .deliv .card {
+  width: 420px;
+  height: 300px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.detail .deliv .card .now {
+  justify-content: space-between;
+  padding-right: 120px;
+}
+
+.detail .deliv .card .time {
+  justify-content: space-between;
+  padding-right: 70px;
+}
+
+.detail .deliv .card .time input {
+  border-radius: 10px;
+}
+
+.detail .content .spin {
+  padding-left: 20px;
+  border-radius: 20px;
+  width: 130px;
+}
+
+.detail .content .price {
+  padding-left: 150px;
+  text-align: right;
+  font-size: 23px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.detail .content .card {
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.detail .content .name {
+  font-size: 65px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  line-height: 75px;
+}
+
+.detail .content .desc {
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #6a4029;
+  text-align: left;
+}
+
+.detail .content p {
+  font-family: 'Poppins', sans-serif;
+  color: #6a4029;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.detail .card h4 {
+  font-family: 'Poppins', sans-serif;
+  color: #000000;
+  font-size: 25px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.detail .content .cart button {
+  background: #6a4029;
+  border-radius: 20px;
+  width: 585px;
+  height: 60px;
+  font-size: 25px;
+  line-height: 45px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border-color: rgba(0, 128, 128, 0);
+}
+
+.detail .content .staff button {
+  background: #ffba33;
+  border-radius: 20px;
+  width: 585px;
+  height: 60px;
+  font-size: 25px;
+  line-height: 45px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border-color: rgba(0, 128, 128, 0);
+}
+
+.detail .content .sizeOpt .card {
+  border-color: rgba(0, 128, 128, 0);
+  height: 140px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.detail .content .sizeOpt p {
+  text-align: center;
+  padding-left: 0px;
+}
+
+.detail .content .direct .card {
+  border-color: rgba(0, 128, 128, 0);
+  text-align: left;
+  height: 140px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.detail .content .direct .card ul {
+  padding-top: 10px;
+}
+
+.detail .content .direct .card .checkout {
+  text-align: right;
+  padding-top: 30px;
+}
+
+.detail .content .direct .card .checkout button {
+  background: #ffba33;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border-color: rgba(0, 128, 128, 0);
+  color: #6a4029;
+}
+
+.detail .content .direct .card .checkout p {
+  text-align: right;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  line-height: 40px;
+  font-size: 20px;
+  color: #000000;
+}
+
+.detail .content img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.detail .content ul li {
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  font-weight: 800;
+  list-style: none;
+  font-size: 15px;
+}
+
+.detail .content .size-opt p {
+  text-align: center;
+  padding-left: 0px;
+}
+
+.detail .desc {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.detail .desc a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.detail .desc .socmed img {
+  width: 33px;
+  height: 33px;
+}
+
+.detail .desc .cr {
+  color: #afb5c0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.detail .product ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.detail .product ul a {
+  color: #0b132a;
+}
+
+.detail .engage ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.detail .engage ul a {
+  color: #0b132a;
+}

@@ -23,7 +23,7 @@
         <div class="product-card">
           <b-card
             :title="item.product_name"
-            img-src="https://s3-alpha-sig.figma.com/img/05d2/2dde/db32c62ddc3bb93b3bd487e381aa3644?Expires=1609113600&Signature=IjXyGNKA4fp-bZuib7HdSw-R0oh6pEelwBZq7Xiaj9gLGLtel09Cq6antnu7tp9Cb707fzf6p7mXfFgI2vs0nyeC~RCilAs9U7jpUUudup-cdyzewA1PyfRMMne4QeIkpiJYytTW5diQLwEzkhXmJcD~OC124L953UnA-zAoOFKBKVYoU92JSkFRaCdgVq9JPl5ZTf037wMvcYeDKIwSCQy5fAmvkp3S8WS4s7eICZ1s3dbSQ3ZcIdhp6WhMtMR0UcQqLx-bIyj3uzDA0ECQYVmHrtpbQtuwfh1Lc-8ApgFVrdaabZWiOPFdTqXTNnopi-ZDCQaL8SM68dy-CY~wvQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+            img-src="https://kopicoffindo.files.wordpress.com/2016/11/mengenal-sejarah-cappucino.jpeg?w=2000"
             img-alt="Image"
             img-top
             tag="article"

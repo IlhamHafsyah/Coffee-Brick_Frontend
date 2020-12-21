@@ -112,7 +112,7 @@
             </div>
             <br /><br /><br />
             <div class="button">
-              <b-button>Confirm and Pay</b-button>
+              <b-button @click="removeItem()">Confirm and Pay</b-button>
             </div></b-col
           >
         </b-row>
@@ -141,7 +141,6 @@ export default {
       total: '',
       address: '',
       paymentMethod: '',
-      selected: 'first',
       method: [
         { text: '', value: 'Card' },
         { text: '', value: 'bank account' },
@@ -165,9 +164,13 @@ export default {
     //   subtotal = getCart[i].subtotal * getCart[i].qty
     // }
     // console.log(subtotal)
-    let subtotal =
+    let subtotal = ''
+    if (getCart[1] === undefined) {
+      subtotal = getCart[0].subtotal * getCart[0].qty
+    } else {
       getCart[0].subtotal * getCart[0].qty +
-      getCart[1].subtotal * getCart[1].qty
+        getCart[1].subtotal * getCart[1].qty
+    }
     this.subtotal = subtotal
 
     let tax = 0.1 * this.subtotal
@@ -175,6 +178,11 @@ export default {
 
     let total = this.subtotal + this.tax + this.shipping
     this.total = total
+  },
+  methods: {
+    removeItem() {
+      localStorage.removeItem('cart')
+    }
   }
 }
 </script>

@@ -1,0 +1,239 @@
+.profile .Header {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.profile .logo {
+  justify-content: space-between;
+}
+
+.profile .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.profile .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.profile .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.profile .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.profile .user-menu {
+  text-align: right;
+}
+
+.profile .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.profile .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.profile .user-menu ul li a img {
+  border-radius: 50%;
+}
+
+.profile .user-menu ul input {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.profile .jumbotron {
+  background-image: url(../assets/jt-profile.png);
+  background-size: cover;
+  background-position: 0;
+  height: 1050px;
+}
+
+.profile .jumbotron .card {
+  border-radius: 10px;
+  height: 800px;
+}
+
+.profile .jumbotron h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  color: aliceblue;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+  padding-left: 20px;
+}
+
+.profile .jumbotron .edit {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.profile .jumbotron .edit img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+}
+
+.profile .jumbotron .form .card {
+  padding-top: 20px;
+  padding-left: 30px;
+  height: 750px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.profile .jumbotron .form h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #4f5665;
+}
+
+.profile .jumbotron .form .gender {
+  padding-left: 190px;
+}
+
+.profile .edit h4 {
+  padding-top: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.profile .edit h5 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.profile .edit .photo .btn1 button {
+  background: #ffba33;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgba(255, 99, 71, 0);
+  color: #6a4029;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit .photo .btn2 button {
+  background: #6a4029;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgba(255, 99, 71, 0);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit .pass button {
+  background: #ffffff;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgb(59, 54, 53);
+  color: #6a4029;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit .pass button {
+  background: #ffffff;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgb(59, 54, 53);
+  color: #6a4029;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #6a4029;
+  padding-top: 10px;
+}
+
+.profile .edit .change .btn1 button {
+  background: #6a4029;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgba(255, 99, 71, 0);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit .change .btn2 button {
+  background: #ffba33;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgba(255, 99, 71, 0);
+  color: #6a4029;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .edit .logout button {
+  background: #ffffff;
+  width: 200px;
+  border-radius: 10px;
+  border-color: rgb(59, 54, 53);
+  color: #6a4029;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+.profile .desc {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.profile .desc a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.profile .desc .socmed img {
+  width: 33px;
+  height: 33px;
+}
+
+.profile .desc .cr {
+  color: #afb5c0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.profile .product ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.profile .product ul a {
+  color: #0b132a;
+}
+
+.profile .engage ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.profile .engage ul a {
+  color: #0b132a;
+}

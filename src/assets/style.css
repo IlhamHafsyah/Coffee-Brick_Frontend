@@ -1,277 +1,117 @@
-.Product .Header {
+.home .Header {
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
-.Product .logo {
+.home .logo {
   justify-content: space-between;
 }
 
-.Product .logo img {
+.home .logo img {
   width: 30px;
   height: 33px;
 }
 
-.Product .logo a {
+.home .logo a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
   font-size: 20px;
 }
 
-.Product .menu .link ul {
+.home .menu .link ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
   padding: 0px 0px;
 }
 
-.Product .menu .link a {
+.home .menu .link a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   text-align: center;
   font-weight: 400;
 }
 
-.Product .user-menu {
+.home .user-menu {
   text-align: right;
 }
 
-.Product .user-menu ul li {
+.home .user-menu ul li {
   list-style: none;
   display: inline;
   padding: 0px 10px;
 }
 
-.Product .user-menu ul li img {
+.home .user-menu ul li img {
   width: 25px;
   height: 25px;
 }
 
-.Product .user-menu ul li a img {
+.home .user-menu ul li a img {
   border-radius: 50%;
 }
 
-.Product .user-menu ul input {
+.home .user-menu ul input {
   width: 120px;
   border-radius: 20px;
 }
 
-.Product .category ul {
-  list-style: none;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-around;
-  padding: 0px 0px;
+.home .jumbotron {
+  text-align: center;
+  background-image: url(../assets/jt-history.png);
+  background-size: cover;
+  background-position: 0;
+  height: 800px;
 }
 
-.Product .category ul li a {
-  color: #6a4029;
+.home .jumbotron h2 {
+  color: white;
   font-family: 'Rubik', sans-serif;
-  font-size: 20px;
   font-weight: 400;
+  font-size: 70px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
 }
 
-.Product .listproduct .product-card .card {
-  width: 175px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 22px;
-  text-align: center;
-  border-radius: 30px;
-  box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
-  border-color: white;
-}
-
-.Product .listproduct .product-card .card .title {
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.Product .listproduct .product-card .card .price {
-  font-family: 'Poppins', sans-serif;
-  color: #6a4029;
-  font-weight: bold;
-}
-
-.Product .listproduct .product-card img {
-  border-radius: 50%;
-}
-
-.Product .coupon {
-  text-align: center;
-}
-
-.Product .coupon h4 {
-  font-family: 'Rubik', sans-serif;
-  color: #6a4029;
-  font-weight: bold;
-  font-size: 25px;
-  padding-top: 30px;
-}
-
-.Product .coupon p {
-  font-family: 'Poppins', sans-serif;
-  color: #000000;
-  padding-top: 30px;
-}
-
-.Product .coupon .overflow {
-  overflow: auto;
-  background-color: white;
-  width: 320px;
-  height: 550px;
-  border: none;
-  padding-left: 40px;
-}
-
-.Product .coupon .overflow .listpromocode {
-  text-align: center;
-}
-
-.Product .coupon .overflow .listpromocode .card {
-  width: 260px;
-  border-radius: 30px;
-  box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
-  border-color: white;
-  background-color: #ffcb65;
-}
-
-.Product .coupon .overflow .listpromocode .card img {
-  width: 150px;
-  border-radius: 50%;
-}
-
-.Product .coupon .overflow .listpromocode .card .percent p {
-  font-family: 'Poppins', sans-serif;
-  color: #000000;
-  font-weight: bolder;
-  font-size: 22px;
-}
-
-.Product .coupon .overflow .listpromocode .card .term p {
-  font-family: 'Poppins', sans-serif;
-  color: #000000;
-  font-size: 15px;
-}
-
-.Product .coupon .overflow .listpromocode .card p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-}
-
-.Product .coupon .overflow .listpromocode .card .code p {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bolder;
-  font-size: 30px;
-}
-
-.Product .coupon .overflow .listpromocode .card .valid-until p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 12px;
-}
-
-.Product .desc {
+.home .desc {
   line-height: 30px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.Product .desc a {
+.home .desc a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   font-weight: bold;
   font-size: 20px;
 }
 
-.Product .desc .socmed img {
+.home .desc .socmed img {
   width: 33px;
   height: 33px;
 }
 
-.Product .desc .cr {
+.home .desc .cr {
   color: #afb5c0;
   font-family: 'Rubik', sans-serif;
 }
 
-.Product .product ul {
+.home .product ul {
   list-style: none;
   padding-left: 0px;
   line-height: 30px;
 }
 
-.Product .product ul a {
+.home .product ul a {
   color: #0b132a;
 }
 
-.Product .engage ul {
+.home .engage ul {
   list-style: none;
   padding-left: 0px;
   line-height: 30px;
 }
 
-.Product .engage ul a {
+.home .engage ul a {
   color: #0b132a;
 }
-/* .Product .coupon #rec1 {
-  position: relative;
-  width: 284px;
-  height: 472px;
-  background-color: #ffcb65;
-  border-radius: 20px;
-  border-color: rgba(255, 255, 255, 0);
-  z-index: 0;
-  left: 32px;
-}
-
-.Product .coupon .content {
-  position: relative;
-  padding-top: 50px;
-  z-index: 1;
-  top: -470px;
-}
-
-.Product .coupon .content img {
-  border-radius: 50%;
-}
-
-.Product .coupon .content h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: #000000;
-  font-size: 22px;
-  padding-top: 15px;
-}
-
-.Product .coupon .content h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  color: #000000;
-  font-size: 14px;
-  padding-top: 10px;
-}
-
-.Product .coupon .content hr {
-  border: none;
-  border-top: 2px dotted black;
-  padding-top: 20px;
-  height: 1px;
-  width: 80%;
-}
-
-.Product .coupon .content .cc {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  padding-top: -30px;
-}
-
-.Product .coupon .content .code {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 33px;
-}
-
-.Product .coupon .content .valid {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-} */

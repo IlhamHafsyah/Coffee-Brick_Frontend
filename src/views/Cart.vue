@@ -164,13 +164,15 @@ export default {
     //   subtotal = getCart[i].subtotal * getCart[i].qty
     // }
     // console.log(subtotal)
-    let subtotal = ''
-    if (getCart[1] === undefined) {
-      subtotal = getCart[0].subtotal * getCart[0].qty
-    } else {
+    let subtotal =
       getCart[0].subtotal * getCart[0].qty +
-        getCart[1].subtotal * getCart[1].qty
-    }
+      getCart[1].subtotal * getCart[1].qty
+    // if (getCart[1] === undefined) {
+    //   subtotal = getCart[0].subtotal * getCart[0].qty
+    // } else {
+    //   getCart[0].subtotal * getCart[0].qty +
+    //     getCart[1].subtotal * getCart[1].qty
+    // }
     this.subtotal = subtotal
 
     let tax = 0.1 * this.subtotal

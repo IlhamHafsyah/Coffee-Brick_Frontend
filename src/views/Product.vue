@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style>
-@import '../assets/style.css';
+@import '../assets/product.css';
 /* font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');

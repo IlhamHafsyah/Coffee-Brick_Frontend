@@ -6,6 +6,7 @@ import Lifecycle from '../views/Lifecycle.vue'
 import Detail from '../views/Detail.vue'
 import Cart from '../views/Cart.vue'
 import Profile from '../views/Profile.vue'
+import History from '../views/History.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/history',
+    name: 'History',
+    component: History
   }
 ]
 

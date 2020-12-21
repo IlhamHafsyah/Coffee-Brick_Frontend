@@ -1,0 +1,125 @@
+.history .Header {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.history .logo {
+  justify-content: space-between;
+}
+
+.history .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.history .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.history .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.history .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.history .user-menu {
+  text-align: right;
+}
+
+.history .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.history .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.history .user-menu ul li a img {
+  border-radius: 50%;
+}
+
+.history .user-menu ul input {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.history .jumbotron {
+  text-align: center;
+  background-image: url(../assets/jt-history.png);
+  background-size: cover;
+  background-position: 0;
+  height: 800px;
+}
+
+.history .jumbotron h2 {
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.history .jumbotron p {
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.history .desc {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.history .desc a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.history .desc .socmed img {
+  width: 33px;
+  height: 33px;
+}
+
+.history .desc .cr {
+  color: #afb5c0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.history .product ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.history .product ul a {
+  color: #0b132a;
+}
+
+.history .engage ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.history .engage ul a {
+  color: #0b132a;
+}

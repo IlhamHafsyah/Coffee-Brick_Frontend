@@ -67,7 +67,7 @@ export default {
   methods: {
     getPromocode() {
       axios
-        .get('http://localhost:4000/promocode')
+        .get('http://localhost:4001/promocode')
         .then(response => {
           console.log(response)
           this.promocode = response.data.data

@@ -11,6 +11,14 @@
         <li><a @click="getProduct(4)">Add-on</a></li>
       </ul>
     </div>
+    <div class="search">
+      <input
+        type="text"
+        v-model="search"
+        v-on:keyup.enter="getProduct(id)"
+        placeholder="search"
+      />
+    </div>
     <b-row>
       <b-col
         xl="3"
@@ -59,7 +67,6 @@ export default {
   data() {
     return {
       products: [],
-      // productsByCategory: [],
       alert: false,
       isMsg: '',
       product_id: '',
@@ -67,45 +74,30 @@ export default {
       totalRows: null,
       limit: 12,
       page: 1,
-      id: ''
+      id: '',
+      search: '',
+      sort: ''
     }
   },
   created() {
     this.getProduct(this.id)
-    // this.getCategoryById(this.id)
   },
   methods: {
     getProduct(id) {
       axios
         .get(
-          `http://localhost:4000/product?page=${this.page}&limit=${this.limit}&search=${this.id}&sort`
+          `http://localhost:4001/product?id=${this.id}&page=${this.page}&limit=${this.limit}&search=${this.search}&sort=${this.sort}`
         )
         .then(response => {
-          console.log(response)
-          console.log(id)
           this.totalRows = response.data.pagination.totalData
           this.products = response.data.data
-          console.log(this.totalRows)
           this.id = id
-          console.log(this.id)
+          console.log(this.sort)
         })
         .catch(error => {
           console.log(error)
         })
     },
-    // getCategoryById(id) {
-    //   axios
-    //     .get(`http://localhost:4000/category/${id}`)
-    //     .then(response => {
-    //       console.log(response)
-    //       this.id = id
-    //       this.totalRows = response.data.pagination.totalData
-    //       this.productsByCategory = response.data.data
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // },
     handlePageChange(numberPage) {
       console.log(numberPage)
       this.page = numberPage

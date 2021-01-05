@@ -1,0 +1,132 @@
+.dashboard .Header {
+  padding-top: 30px;
+}
+
+.dashboard .logo {
+  justify-content: space-between;
+}
+
+.dashboard .logo img {
+  width: 30px;
+  height: 33px;
+}
+
+.dashboard .logo a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.dashboard .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.dashboard .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.dashboard .user-menu {
+  text-align: right;
+}
+
+.dashboard .user-menu ul li {
+  list-style: none;
+  display: inline;
+  padding: 0px 10px;
+}
+
+.dashboard .user-menu ul li img {
+  width: 25px;
+  height: 25px;
+}
+
+.dashboard .user-menu ul li a img {
+  border-radius: 50%;
+}
+
+.dashboard .user-menu ul input {
+  width: 120px;
+  border-radius: 20px;
+}
+
+.dashboard .ti .card {
+  height: 150px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.dashboard .opw .card {
+  height: 150px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.dashboard .yi .card {
+  height: 150px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.dashboard .chart .card {
+  height: 450px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.24);
+}
+
+.dashboard .desc {
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dashboard .desc a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.dashboard .desc .socmed img {
+  width: 33px;
+  height: 33px;
+}
+
+.dashboard .desc .cr {
+  color: #afb5c0;
+  font-family: 'Rubik', sans-serif;
+}
+
+.dashboard .product ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.dashboard .product ul a {
+  color: #0b132a;
+}
+
+.dashboard .engage ul {
+  list-style: none;
+  padding-left: 0px;
+  line-height: 30px;
+}
+
+.dashboard .engage ul a {
+  color: #0b132a;
+}

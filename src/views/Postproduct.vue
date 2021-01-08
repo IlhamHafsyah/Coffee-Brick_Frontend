@@ -34,6 +34,7 @@
         <br />
         <button type="button" @click="postProduct()">Save</button>
         <button type="button" @click="patchProduct()">Update</button>
+        <h5>{{ form }}</h5>
       </form>
       <hr />
       <b-container class="bv-example-row">
@@ -129,7 +130,8 @@ export default {
     getProduct() {
       axios
         .get(
-          `http://localhost:4001/product?page=${this.page}&limit=${this.limit}`
+          `http://localhost:4001/product?id=&page=${this.page}&limit=${this.limit}&search=&sort=`
+          // `http://localhost:4001/product?page=${this.page}&limit=${this.limit}`
         )
         .then(response => {
           console.log(response)
@@ -154,22 +156,22 @@ export default {
       data.append('product_price', product_price)
       data.append('product_status', product_status)
       data.append('category_id', category_id)
-      data.append('product_image', product_image)
+      data.append('product_image', product_image.name)
       for (var pair of data.entries()) {
         console.log(pair[0] + ', ' + pair[1])
       }
 
-      //   axios
-      //     .post('http://localhost:3000/product', this.form)
-      //     .then(response => {
-      //       console.log(response)
-      //       this.alert = true
-      //       this.isMsg = response.data.msg
-      //       this.getProduct()
-      //     })
-      //     .catch(error => {
-      //       console.log(error.response)
-      //     })
+      axios
+        .post('http://localhost:4001/product', data)
+        .then(response => {
+          console.log(response)
+          this.alert = true
+          this.isMsg = response.data.msg
+          this.getProduct()
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
     },
     setProduct(data) {
       console.log(data)

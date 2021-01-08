@@ -13,6 +13,9 @@ import Newproduct from '../views/Newproduct.vue'
 import Newpromo from '../views/Newpromo.vue'
 import Register from '../views/Register.vue'
 import store from '../store'
+import Postproduct from '../views/Postproduct.vue'
+import Updateproduct from '../views/Updateproduct.vue'
+import Deleteproduct from '../views/Deleteproduct.vue'
 
 Vue.use(VueRouter)
 
@@ -87,6 +90,24 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: { requiresVisitor: true }
+  },
+  {
+    path: '/post',
+    name: 'Post',
+    component: Postproduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/updateproduct/:id',
+    name: 'Updateproduct',
+    component: Updateproduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/deleteproduct/:id',
+    name: 'Deleteproduct',
+    component: Deleteproduct,
+    meta: { requiresAuth: true }
   }
 ]
 

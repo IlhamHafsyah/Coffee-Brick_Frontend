@@ -209,13 +209,13 @@ export default {
   },
   created() {
     this.getProductById(this.$route.params.id)
-    console.log(this.$route.params.id)
+    console.log('ini apaan =' + this.$route.params.id)
   },
   methods: {
     getProductById(id) {
       console.log(id)
       axios
-        .get(`http://localhost:4000/product/${id}`)
+        .get(`http://localhost:4001/product/${id}`)
         .then(response => {
           console.log(response)
           this.products = response.data.data[0]

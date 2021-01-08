@@ -89,7 +89,6 @@
                                 <b-form-radio-group
                                   v-model="selected"
                                   :options="options"
-                                  :aria-describedby="ariaDescribedby"
                                   name="radio-inline"
                                 ></b-form-radio-group> </b-form-group
                             ></b-col>

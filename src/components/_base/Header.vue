@@ -11,7 +11,16 @@
         </b-col>
         <b-col class="user-menu">
           <ul>
-            <li><img src="../../assets/search-icon.png" /></li>
+            <li>
+              <div class="search">
+                <input
+                  type="text"
+                  v-model="char"
+                  v-on:keyup.enter="searchingProduct(char)"
+                  placeholder="search"
+                />
+              </div>
+            </li>
             <li><img src="../../assets/chat-icon.png" /></li>
             <li>
               <a href="http://localhost:8080/profile"
@@ -27,20 +36,30 @@
 
 <script>
 import Navbar from './Navbar'
+import { mapMutations, mapActions } from 'vuex'
+
 export default {
   name: 'Header',
   data() {
     return {
-      searchData: ''
+      char: ''
     }
   },
   components: {
     Navbar
   },
   methods: {
-    search() {
-      console.log('Proccess Search !')
-      console.log(this.searchData)
+    // search() {
+    //   console.log('Proccess Search !')
+    //   console.log(this.searchData)
+    // },
+    ...mapActions(['getProducts']),
+    ...mapMutations(['searchProduct']),
+
+    searchingProduct(char) {
+      console.log(char)
+      this.searchProduct(char)
+      this.getProducts()
     }
   }
 }

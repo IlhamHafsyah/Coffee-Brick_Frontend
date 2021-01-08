@@ -7,7 +7,8 @@
         <b-col cols="4">
           <div class="ti">
             <b-card>
-              {{ today_income }}
+              Today Income
+              <h4>Rp. {{ today_income }}</h4>
             </b-card>
           </div>
         </b-col>
@@ -15,6 +16,7 @@
           <div class="opw">
             <b-card>
               Order per Week
+              <h4>{{ total_order }} Orders</h4>
             </b-card>
           </div>
         </b-col>
@@ -22,6 +24,7 @@
           <div class="yi">
             <b-card>
               Year Income
+              <h4>Rp. {{ this_year_income }}</h4>
             </b-card>
           </div>
         </b-col>
@@ -55,7 +58,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
@@ -69,13 +72,23 @@ export default {
   data() {
     return {}
   },
+  created() {
+    this.todayIncome()
+    this.weeklyOrder()
+    this.yearIncome()
+  },
   computed: {
     // ...mapState(['today_income']),
     // ...mapState(['name']),
-    ...mapGetters({ today_income: 'setTodayIncome' })
+    // ...mapMutations(['setTodayIncome']),
+    ...mapGetters({ today_income: 'getTodayIncome' }),
+    ...mapGetters({ total_order: 'getOrderPerWeek' }),
+    ...mapGetters({ this_year_income: 'getYearIncome' })
   },
   methods: {
-    // ...mapActions(['todayIncome'])
+    ...mapActions(['todayIncome']),
+    ...mapActions(['weeklyOrder']),
+    ...mapActions(['yearIncome'])
   }
 }
 </script>

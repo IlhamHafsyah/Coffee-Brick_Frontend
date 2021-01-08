@@ -150,7 +150,7 @@
                 <b-button>Home Delivery</b-button><br /><b></b>
               </div>
               <br /><br />
-              <b-button @click="postProduct()">Save Product</b-button
+              <b-button @click="updateProduct()">Update Product</b-button
               ><br /><br />
               <b-button>Cancel</b-button>
             </b-card>
@@ -164,8 +164,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-// import axios from 'axios'
+import { mapActions, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 
@@ -198,15 +197,21 @@ export default {
         product_created_at: new Date(),
         product_status: '1'
       }
+      //   id: ''
     }
   },
+  created() {
+    this.update(this.$route.params.id)
+    console.log('ini id router' + this.$route.params.id)
+  },
   methods: {
-    ...mapActions(['postProducts']),
+    ...mapActions(['updateProducts']),
+    ...mapMutations(['update']),
     handleFile(event) {
       console.log(event)
       this.form.product_image = event.target.files[0]
     },
-    postProduct() {
+    updateProduct() {
       console.log(this.form)
       const {
         category_id,
@@ -247,15 +252,16 @@ export default {
       data.append('start_hour', start_hour)
       data.append('end_hour', end_hour)
       data.append('product_status', product_status)
-
-      this.postProducts(data)
+      this.update(this.$route.params.id)
+      this.updateProducts(data)
         .then(result => {
           console.log(result)
-          alert('Success Post Product')
+          alert('Success Update Product')
         })
         .catch(error => {
           alert(error)
         })
+      this.$router.push('/product')
     }
   }
 }

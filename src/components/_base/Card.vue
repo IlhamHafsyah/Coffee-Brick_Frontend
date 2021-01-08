@@ -4,20 +4,30 @@
       <ul>
         <li><a href="http://localhost:8080/product">All Product</a></li>
         <li>
-          <a @click="getProduct(1)">Coffee</a>
+          <a @click="getProducts(1)">Coffee</a>
         </li>
-        <li><a @click="getProduct(2)">Non Coffee</a></li>
+        <li><a @click="getProducts(2)">Non Coffee</a></li>
         <li><a @click="getProduct(3)">Foods</a></li>
         <li><a @click="getProduct(4)">Add-on</a></li>
       </ul>
-    </div>
-    <div class="search">
-      <input
-        type="text"
-        v-model="search"
-        v-on:keyup.enter="getProduct(id)"
-        placeholder="search"
-      />
+      <div class="filter">
+        <b-dropdown
+          id="dropdown-1"
+          text="Filter"
+          variant="default"
+          class="m-md-2"
+        >
+          <b-dropdown-item @click="byName(pn)">Name (A-Z)</b-dropdown-item>
+          <b-dropdown-item @click="byPrice(pp)">Price</b-dropdown-item>
+          <b-dropdown-item @click="byDate(pc)">Date</b-dropdown-item>
+        </b-dropdown>
+      </div>
+      <!-- <div class="select">
+        <select v-model="pn">
+          <option @click="byName(pn)">product_name</option>
+          <option>product_price</option>
+        </select>
+      </div> -->
     </div>
     <b-row>
       <b-col
@@ -42,6 +52,8 @@
               <b-card-text> IDR {{ item.product_price }} </b-card-text>
             </div>
           </b-card>
+          <button @click="updateProduct(item.product_id)">update</button>
+          <button @click="deleteProduct(item.product_id)">delete</button>
         </div>
       </b-col>
     </b-row>
@@ -55,53 +67,95 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Card',
   computed: {
-    rows() {
-      return this.totalRows
-    }
+    // rows() {
+    //   return this.totalRows
+    // },
+    ...mapGetters({ products: 'getDataProduct' }),
+    ...mapGetters({ limit: 'getLimitProduct' }),
+    ...mapGetters({ rows: 'getTotalRowsProduct' }),
+    // ...mapGetters({ search: 'getSearchProduct' }),
+    ...mapGetters({ id: 'getIdProduct' })
+    // ...mapGetters({ sort: 'getSortProduct' })
+    // ...mapGetters({ page: 'getPageProduct' })
   },
   data() {
     return {
-      products: [],
+      // products: [],
       alert: false,
       isMsg: '',
       product_id: '',
       currentPage: 1,
-      totalRows: null,
-      limit: 12,
-      page: 1,
-      id: '',
-      search: '',
-      sort: ''
+      pn: 'product_name',
+      pp: 'product_price',
+      pc: 'product_created_at'
+      // char: ''
+      // totalRows: null,
+      // limit: 12,
+      // page: 1,
+      // id: '',
+      // search: ''
+      // sort: ''
     }
   },
   created() {
-    this.getProduct(this.id)
+    this.getProducts()
   },
   methods: {
-    getProduct(id) {
-      axios
-        .get(
-          `http://localhost:4001/product?id=${this.id}&page=${this.page}&limit=${this.limit}&search=${this.search}&sort=${this.sort}`
-        )
-        .then(response => {
-          this.totalRows = response.data.pagination.totalData
-          this.products = response.data.data
-          this.id = id
-          console.log(this.sort)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
+    ...mapActions(['getProducts']),
+    //2
+    ...mapMutations(['changePage']),
+    ...mapMutations(['sortProduct']),
+    // ...mapMutations(['searchProduct']),
+    // getProduct(id) {
+    //   axios
+    //     .get(
+    //       `http://localhost:4001/product?id=${this.id}&page=${this.page}&limit=${this.limit}&search=${this.search}&sort=${this.sort}`
+    //     )
+    //     .then(response => {
+    //       this.totalRows = response.data.pagination.totalData
+    //       this.products = response.data.data
+    //       this.id = id
+    //       console.log(this.sort)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // },
+    //3
     handlePageChange(numberPage) {
       console.log(numberPage)
-      this.page = numberPage
-      this.getProduct(this.id)
+      // this.page = numberPage
+      this.changePage(numberPage)
+      this.getProducts()
+    },
+    byName(pn) {
+      this.sortProduct(pn)
+      this.getProducts()
+    },
+    byPrice(pp) {
+      this.sortProduct(pp)
+      this.getProducts()
+    },
+    byDate(pc) {
+      this.sortProduct(pc)
+      this.getProducts()
+    },
+    // searchingProduct(char) {
+    //   console.log(char)
+    //   this.searchProduct(char)
+    //   this.getProducts()
+    // },
+    updateProduct(product_id) {
+      this.$router.push({ name: 'Updateproduct', params: { id: product_id } })
+    },
+    deleteProduct(product_id) {
+      this.$router.push({ name: 'Deleteproduct', params: { id: product_id } })
     },
     detailProduct(product_id) {
       this.$router.push({ name: 'Detail', params: { id: product_id } })

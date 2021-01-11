@@ -1,6 +1,6 @@
 .home .Header {
   padding-top: 30px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .home .logo {
@@ -8,16 +8,17 @@
 }
 
 .home .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
-.home .logo a {
+/* .home .logo a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
   font-size: 20px;
-}
+} */
 
 .home .menu .link ul {
   list-style: none;

@@ -4,12 +4,12 @@
       <b-col cols="8" class="desc">
         <div class="logo">
           <img src="../../assets/logo copy.png" />
-          <a href="">Coffee Brick</a>
+          <!-- <a href="">Coffee Brick</a> -->
         </div>
         <br />
         <p>
-          Coffee Shop is a store that sells some good<br />meals, and especially
-          coffee. We provide<br />high quality beans
+          Coffee brick is a store that sells some good<br />meals, and
+          especially coffee. We provide<br />high quality beans
         </p>
         <div cols="2" class="socmed">
           <img src="../../assets/fb-logo.png" />

@@ -2,13 +2,13 @@
   <div class="listproduct">
     <div class="category">
       <ul>
-        <li><a href="http://localhost:8080/product">All Product</a></li>
+        <li><a @click="getProductCategory(allProduct)">All Product</a></li>
         <li>
-          <a @click="getProducts(1)">Coffee</a>
+          <a @click="getProductCategory(1)">Coffee</a>
         </li>
-        <li><a @click="getProducts(2)">Non Coffee</a></li>
-        <li><a @click="getProduct(3)">Foods</a></li>
-        <li><a @click="getProduct(4)">Add-on</a></li>
+        <li><a @click="getProductCategory(2)">Non Coffee</a></li>
+        <li><a @click="getProductCategory(3)">Foods</a></li>
+        <li><a @click="getProductCategory(4)">Add-on</a></li>
       </ul>
       <div class="filter">
         <b-dropdown
@@ -52,7 +52,7 @@
               <b-card-text> IDR {{ item.product_price }} </b-card-text>
             </div>
           </b-card>
-          <button @click="updateProduct(item.product_id)">update</button>
+          <button @click="updateProduct(item)">update</button>
           <button @click="deleteProduct(item.product_id)">delete</button>
         </div>
       </b-col>
@@ -80,7 +80,8 @@ export default {
     ...mapGetters({ limit: 'getLimitProduct' }),
     ...mapGetters({ rows: 'getTotalRowsProduct' }),
     // ...mapGetters({ search: 'getSearchProduct' }),
-    ...mapGetters({ id: 'getIdProduct' })
+    ...mapGetters({ id: 'getIdProduct' }),
+    ...mapGetters({ productsDetail: 'getProductDetail' })
     // ...mapGetters({ sort: 'getSortProduct' })
     // ...mapGetters({ page: 'getPageProduct' })
   },
@@ -93,7 +94,8 @@ export default {
       currentPage: 1,
       pn: 'product_name',
       pp: 'product_price',
-      pc: 'product_created_at'
+      pc: 'product_created_at',
+      allProduct: ''
       // char: ''
       // totalRows: null,
       // limit: 12,
@@ -111,6 +113,8 @@ export default {
     //2
     ...mapMutations(['changePage']),
     ...mapMutations(['sortProduct']),
+    ...mapMutations(['setId']),
+    ...mapMutations(['setProductsDetail']),
     // ...mapMutations(['searchProduct']),
     // getProduct(id) {
     //   axios
@@ -151,8 +155,16 @@ export default {
     //   this.searchProduct(char)
     //   this.getProducts()
     // },
-    updateProduct(product_id) {
-      this.$router.push({ name: 'Updateproduct', params: { id: product_id } })
+    getProductCategory(id) {
+      this.setId(id)
+      this.getProducts()
+    },
+    updateProduct(item) {
+      this.setProductsDetail(item)
+      this.$router.push({
+        name: 'Updateproduct',
+        params: { id: item.product_id }
+      })
     },
     deleteProduct(product_id) {
       this.$router.push({ name: 'Deleteproduct', params: { id: product_id } })

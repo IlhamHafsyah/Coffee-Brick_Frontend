@@ -32,7 +32,9 @@
                       <br />
                       <div class="change">
                         <div class="btn1">
-                          <b-button>Save Change</b-button><br /><br />
+                          <b-button @click="editProfileData()"
+                            >Save Change</b-button
+                          ><br /><br />
                         </div>
                         <div class="btn2">
                           <b-button>cancel</b-button>
@@ -52,14 +54,17 @@
                         <b-row>
                           <b-col cols="6">
                             <p>Email address :</p>
-                            <input type="text" />
+                            <input v-model="data.users_email" type="text" />
                             <br /><br />
                             <p>Delivery address :</p>
-                            <input type="text" />
+                            <input
+                              v-model="data.delivery_address"
+                              type="text"
+                            />
                           </b-col>
                           <b-col cols="6"
                             ><p>Mobile number :</p>
-                            <input type="text"
+                            <input v-model="data.users_phone" type="text"
                           /></b-col>
                         </b-row>
                         <br /><br /><br />
@@ -67,14 +72,14 @@
                         <br />
                         <b-row>
                           <b-col cols="6">
-                            <p>Email address :</p>
-                            <input type="text" />
+                            <p>Display name :</p>
+                            <input v-model="data.users_name" type="text" />
                             <br /><br />
-                            <p>Delivery address :</p>
-                            <input type="text" />
+                            <p>First name :</p>
+                            <input v-model="data.first_name" type="text" />
                             <br /><br />
-                            <p>Delivery address :</p>
-                            <input type="text" />
+                            <p>Last name :</p>
+                            <input v-model="data.last_name" type="text" />
                           </b-col>
                           <b-col cols="6"
                             ><p>DD/MM/YY :</p>
@@ -109,6 +114,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 export default {
@@ -124,6 +130,52 @@ export default {
         { text: 'Male', value: 'first' },
         { text: 'Female', value: 'second' }
       ]
+    }
+  },
+  computed: {
+    ...mapGetters({ users: 'setUsers' }),
+    ...mapGetters({ data: 'datas' })
+  },
+  methods: {
+    ...mapActions(['editProfile']),
+    ...mapMutations(['setData']),
+    editProfileData() {
+      const {
+        users_name,
+        users_email,
+        users_password,
+        users_phone,
+        delivery_address,
+        display_name,
+        first_name,
+        last_name,
+        date_of_birth,
+        users_gender,
+        users_role,
+        status
+      } = this.data
+      const newData = new FormData()
+      newData.append('users_name', users_name)
+      newData.append('users_email', users_email)
+      newData.append('users_password', users_password)
+      newData.append('users_phone', users_phone)
+      newData.append('delivery_address', delivery_address)
+      newData.append('display_name', display_name)
+      newData.append('first_name', first_name)
+      newData.append('last_name', last_name)
+      newData.append('date_of_birth', date_of_birth)
+      newData.append('users_gender', users_gender)
+      newData.append('users_role', users_role)
+      newData.append('status', status)
+      this.setData(newData)
+      this.editProfile(newData)
+        .then(result => {
+          console.log(result)
+          alert('Success Update Profile')
+        })
+        .catch(error => {
+          alert(error)
+        })
     }
   }
 }

@@ -15,7 +15,7 @@
             </b-col>
             <b-col cols="6">
               <div class="login">
-                <b-button>Log In</b-button>
+                <b-button @click="toLogin()">Log In</b-button>
               </div>
             </b-col>
           </b-row>
@@ -44,7 +44,7 @@
           </div>
           <br /><br /><br />
           <div class="su">
-            <b-button>Sign Up</b-button>
+            <b-button @click="regis()">Sign Up</b-button>
           </div>
           <br /><br />
           <div class="google">
@@ -78,6 +78,7 @@
 
 <script>
 import Footer from '../components/_base/Footer'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Register',
@@ -87,10 +88,67 @@ export default {
   data() {
     return {
       form: {
+        users_name: 'Username',
         users_email: '',
-        users_password: '',
-        users_phone: ''
+        profile_picture: '',
+        delivery_address: 'Your Address',
+        users_role: '',
+        users_phone: '',
+        display_name: 'Display Name',
+        first_name: 'First Name',
+        last_name: 'Last Name',
+        date_of_birth: '0000-00-00',
+        users_gender: '0',
+        status: 1,
+        users_password: ''
       }
+    }
+  },
+  methods: {
+    ...mapActions(['register']),
+    ...mapMutations(['setUsers']),
+    ...mapMutations(['setData']),
+    toLogin() {
+      this.$router.push('/login')
+    },
+    regis() {
+      this.setUsers(this.form)
+      this.setData(this.form)
+      this.register(this.form)
+        .then(result => {
+          console.log(result)
+          alert('Success Register')
+        })
+        .catch(error => {
+          alert(error)
+        })
+      this.$router.push('/login')
+      // const {
+      //   users_name,
+      //   users_email,
+      //   profile_picture,
+      //   users_role,
+      //   users_phone,
+      //   display_name,
+      //   first_name,
+      //   last_name,
+      //   date_of_birth,
+      //   users_gender,
+      //   status,
+      //   users_password
+      // } = this.form
+      // const data = new FormData()
+      // data.append('users_name', users_name)
+      // data.append('users_email', users_email)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
+      // data.append('category_id', category_id)
     }
   }
 }

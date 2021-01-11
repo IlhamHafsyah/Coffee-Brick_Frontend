@@ -4,6 +4,8 @@ import router from '../../router'
 export default {
   state: {
     users: {},
+    data: {},
+    profileid: '',
     token: localStorage.getItem('token') || null
   },
   mutations: {
@@ -17,9 +19,22 @@ export default {
       // console.log(state.users)
       // console.log(state.token)
     },
+    setData(state, payload) {
+      // console.log('proses mutation setUsers')
+      console.log(payload)
+      state.data = payload
+      // state.token = payload.token
+      // console.log('proses mutation setUsers')
+      // //cek kesimpen apa engga
+      // console.log(state.users)
+      // console.log(state.token)
+    },
     delUsers(state) {
       state.users = {}
       state.token = null
+    },
+    getid(state, payload) {
+      state.profileid = payload
     }
   },
   actions: {
@@ -44,6 +59,50 @@ export default {
       localStorage.removeItem('cart')
       context.commit('delUsers')
       router.push('/login')
+    },
+    getUsers(context) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`http://localhost:4001/users/${context.state.profileid}`)
+          .then(result => {
+            context.commit('setData', result.data.data[0])
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    },
+    register(context, payload) {
+      return new Promise((resolve, reject) => {
+        console.log(payload)
+        axios
+          .post('http://localhost:4001/users/register', payload)
+          .then(result => {
+            context.commit('setData', result.data.data)
+            console.log(result)
+            resolve(result)
+          })
+          .catch(error => {
+            console.log(error)
+            reject(error)
+          })
+      })
+    },
+    editProfile(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://localhost:4001/users/${context.state.profileid}`,
+            payload
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     },
     interceptorRequest(context) {
       console.log('Interceptor request works !')
@@ -88,6 +147,9 @@ export default {
   getters: {
     setUsers(state) {
       return state.users
+    },
+    datas(state) {
+      return state.data
     },
     isLogin(state) {
       return state.token !== null

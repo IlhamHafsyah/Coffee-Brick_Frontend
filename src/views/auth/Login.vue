@@ -15,7 +15,7 @@
             </b-col>
             <b-col cols="6">
               <div class="signup">
-                <b-button>Sign Up</b-button>
+                <b-button @click="toRegister()">Sign Up</b-button>
               </div>
             </b-col>
           </b-row>
@@ -112,7 +112,11 @@ export default {
   },
   methods: {
     // mapAction dan mapMutations
+    // ...mapMutations(['setUsers']),
     ...mapActions(['login']),
+    toRegister() {
+      this.$router.push('/register')
+    },
     onSubmit() {
       this.login(this.form)
         .then(result => {

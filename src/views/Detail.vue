@@ -19,7 +19,7 @@
                 <b-form-group>
                   <div class="btn1">
                     <b-form-radio-group
-                      v-model="selected"
+                      v-model="delivery_method"
                       :options="option"
                       buttons
                     ></b-form-radio-group>
@@ -81,10 +81,10 @@
                     <br />
                     <div class="spin">
                       <b-form-spinbutton
-                        v-model="cart.qty"
+                        v-model="qty"
                         id="sb-wrap"
                         wrap
-                        min="0"
+                        min="1"
                         max="25"
                         placeholder="-"
                       ></b-form-spinbutton>
@@ -116,7 +116,7 @@
                 <b-form-group>
                   <b-form-radio-group
                     id="btn-radios-3"
-                    v-model="cart.size"
+                    v-model="size"
                     :options="sizeOption"
                     name="radios-btn"
                     buttons
@@ -137,7 +137,7 @@
                       <li>
                         {{ products.product_name }}
                       </li>
-                      <li>{{ cart.qty }}x ({{ cart.size }})</li>
+                      <li>{{ qty }}x ({{ size }})</li>
                     </ul></b-col
                   >
                   <b-col cols="7">
@@ -165,6 +165,7 @@
 import axios from 'axios'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Detail',
@@ -185,6 +186,12 @@ export default {
       //     history_id: 1
       //   }
       // ],
+      product_name: '',
+      product_id: '',
+      size: '',
+      payment_method: 'cash',
+      delivery_method: '',
+      subtotal: '',
       id: '',
       time: '',
       selected: '',
@@ -212,15 +219,18 @@ export default {
     console.log('ini apaan =' + this.$route.params.id)
   },
   methods: {
+    ...mapMutations(['setCartData']),
+
     getProductById(id) {
       console.log(id)
       axios
         .get(`http://localhost:4001/product/${id}`)
         .then(response => {
           console.log(response)
+          this.product_name = response.data.data[0].product_name
           this.products = response.data.data[0]
-          this.cart.product_id = response.data.data[0].product_id
-          this.cart.subtotal = response.data.data[0].product_price
+          this.product_id = response.data.data[0].product_id
+          this.subtotal = response.data.data[0].product_price
         })
         .catch(error => {
           console.log(error)
@@ -229,14 +239,23 @@ export default {
     addToCart() {
       console.log(this.cart)
       const setCart = {
-        product_name: this.products.product_name,
-        product_id: this.products.product_id,
-        qty: this.cart.qty,
-        size: this.cart.size,
-        subtotal: this.products.product_price,
-        history_id: 1
+        product_name: this.product_name,
+        product_id: this.product_id,
+        qty: this.qty,
+        size: this.size,
+        payment_method: this.payment_method,
+        delivery_method: this.delivery_method,
+        subtotal: this.subtotal,
+        history_id: 5
+        // product_name: this.products.product_name,
+        // product_id: this.products.product_id,
+        // qty: this.cart.qty,
+        // size: this.cart.size,
+        // subtotal: this.products.product_price,
+        // history_id: 1
       }
       this.cart = [...this.cart, setCart]
+      this.setCartData(this.cart)
       localStorage.setItem('cart', JSON.stringify(this.cart))
     }
     // postDetailHistory() {

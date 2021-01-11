@@ -4,7 +4,7 @@
       <b-row>
         <b-col class="logo">
           <img alt="Coffee Brick logo" src="../../assets/logo copy.png" />
-          <a href="">Coffee Brick</a>
+          <!-- <a href="">Coffee Brick</a> -->
         </b-col>
         <b-col class="menu">
           <Navbar />
@@ -23,7 +23,7 @@
             </li>
             <li><img src="../../assets/chat-icon.png" /></li>
             <li>
-              <a href="http://localhost:8080/profile"
+              <a @click="setProfile(users.users_id)"
                 ><img src="../../assets/lit-profile-pic.png"
               /></a>
             </li>
@@ -36,7 +36,7 @@
 
 <script>
 import Navbar from './Navbar'
-import { mapMutations, mapActions } from 'vuex'
+import { mapMutations, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Header',
@@ -48,14 +48,34 @@ export default {
   components: {
     Navbar
   },
+  computed: {
+    ...mapGetters({ users: 'setUsers' }),
+    ...mapGetters({ data: 'datas' })
+  },
   methods: {
     // search() {
     //   console.log('Proccess Search !')
     //   console.log(this.searchData)
     // },
     ...mapActions(['getProducts']),
+    ...mapActions(['getUsers']),
     ...mapMutations(['searchProduct']),
-
+    ...mapMutations(['getid']),
+    setProfile(id) {
+      this.getid(id)
+      this.getUsers()
+      // console.log(this.users)
+      // console.log(this.data)
+      // console.log(this.users.users_id)
+      // console.log(id)
+      this.$router.push({
+        name: 'Profile',
+        params: { id: id }
+      })
+    },
+    // setProfile(users.id) {
+    // this.$router.push(`/profile/${users.id}`)
+    // },
     searchingProduct(char) {
       console.log(char)
       this.searchProduct(char)

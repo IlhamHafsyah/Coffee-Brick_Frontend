@@ -8,10 +8,11 @@ export default {
     id: '',
     search: '',
     sort: '',
-    upid: '42',
+    upid: '',
     delid: '',
     totalRows: null,
     products: [],
+    productsDetail: [],
     postResult: []
   },
   mutations: {
@@ -19,13 +20,37 @@ export default {
       state.products = payload.data
       state.totalRows = payload.pagination.totalData
     },
+    setProductsDetail(state, payload) {
+      state.productsDetail = payload
+    },
+    setCategoryId(state, payload) {
+      state.productsDetail.category_id = payload
+    },
+    setStock(state, payload) {
+      state.productsDetail.product_stock = payload
+    },
+    setStartHour(state, payload) {
+      state.productsDetail.start_hour = payload
+    },
+    setEndHour(state, payload) {
+      state.productsDetail.end_hour = payload
+    },
+    setBaveragesSize(state, payload) {
+      state.productsDetail.size_r = payload
+      state.productsDetail.size_l = payload
+      state.productsDetail.size_xl = payload
+    },
+    setFoodsSize(state, payload) {
+      state.productsDetail.size_250 = payload
+      state.productsDetail.size_300 = payload
+      state.productsDetail.size_500 = payload
+    },
     //1
     changePage(state, payload) {
       state.page = payload
     },
     searchProduct(state, payload) {
       state.search = payload
-      console.log(payload)
     },
     sortProduct(state, payload) {
       state.sort = payload
@@ -35,6 +60,9 @@ export default {
     },
     delete(state, payload) {
       state.delid = payload
+    },
+    setId(state, payload) {
+      state.id = payload
     }
   },
   actions: {
@@ -120,6 +148,9 @@ export default {
     },
     getSortProduct(state) {
       return state.sort
+    },
+    getProductDetail(state) {
+      return state.productsDetail
     }
   }
 }

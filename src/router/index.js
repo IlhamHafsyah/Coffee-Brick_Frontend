@@ -16,6 +16,7 @@ import store from '../store'
 import Postproduct from '../views/Postproduct.vue'
 import Updateproduct from '../views/Updateproduct.vue'
 import Deleteproduct from '../views/Deleteproduct.vue'
+import Coba from '../views/coba.vue'
 
 Vue.use(VueRouter)
 
@@ -50,7 +51,7 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/profile',
+    path: '/profile/:id',
     name: 'Profile',
     component: Profile,
     meta: { requiresAuth: true }
@@ -107,6 +108,12 @@ const routes = [
     path: '/deleteproduct/:id',
     name: 'Deleteproduct',
     component: Deleteproduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/coba',
+    name: 'coba',
+    component: Coba,
     meta: { requiresAuth: true }
   }
 ]

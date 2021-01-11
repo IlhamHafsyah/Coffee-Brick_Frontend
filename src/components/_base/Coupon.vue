@@ -11,7 +11,14 @@
       >
         <div class="promo-card">
           <b-card>
-            <img src="../../assets/cil.png" alt="" />
+            <img
+              :src="
+                item.promocode_image === ''
+                  ? require('../../assets/cil.png')
+                  : 'http://localhost:4001/' + item.promocode_image
+              "
+              alt="image"
+            />
             <div class="percent">
               <b-card-text> {{ item.promocode_discount }}% OFF </b-card-text>
             </div>

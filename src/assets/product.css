@@ -94,6 +94,9 @@
 }
 
 .Product .listproduct .product-card img {
+  margin-left: 12px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 

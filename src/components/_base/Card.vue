@@ -41,7 +41,11 @@
         <div class="product-card">
           <b-card
             :title="item.product_name"
-            img-src="https://kopicoffindo.files.wordpress.com/2016/11/mengenal-sejarah-cappucino.jpeg?w=2000"
+            :img-src="
+              item.product_image === ''
+                ? require('../../assets/cb.png')
+                : 'http://localhost:4001/' + item.product_image
+            "
             img-alt="Image"
             img-top
             tag="article"

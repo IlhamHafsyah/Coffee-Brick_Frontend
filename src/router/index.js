@@ -15,7 +15,9 @@ import Register from '../views/Register.vue'
 import store from '../store'
 import Postproduct from '../views/Postproduct.vue'
 import Updateproduct from '../views/Updateproduct.vue'
+import Updatepromo from '../views/Updatepromo.vue'
 import Deleteproduct from '../views/Deleteproduct.vue'
+import Deletepromo from '../views/Deletepromo.vue'
 import Coba from '../views/coba.vue'
 
 Vue.use(VueRouter)
@@ -105,9 +107,21 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/updatepromo/:id',
+    name: 'Updatepromo',
+    component: Updatepromo,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/deleteproduct/:id',
     name: 'Deleteproduct',
     component: Deleteproduct,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/deletepromo/:id',
+    name: 'Deletepromo',
+    component: Deletepromo,
     meta: { requiresAuth: true }
   },
   {

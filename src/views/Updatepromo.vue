@@ -7,7 +7,11 @@
         <b-col cols="4">
           <div class="left">
             <div class="picture">
-              <b-card><img src="../assets/camera.png" alt=""/></b-card>
+              <b-card
+                ><img
+                  :src="'http://localhost:4001/' + promoDetail.promocode_image"
+                  alt=""
+              /></b-card>
             </div>
             <b-card>
               <input type="file" @change="handleFile" />
@@ -28,42 +32,42 @@
                   class="m-md-2"
                 >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(5)"
                     >5%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(10)"
                     >10%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(15)"
                     >15%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(20)"
                     >20%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(25)"
                     >25%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(30)"
                     >30%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(35)"
                     >35%</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.promocode_discount"
+                    v-model="promoDetail.promocode_discount"
                     @click="setDiscount(40)"
                     >40%</b-dropdown-item
                   >
@@ -79,17 +83,17 @@
                   class="m-md-2"
                 >
                   <b-dropdown-item
-                    v-model="form.valid_until"
+                    v-model="promoDetail.valid_until"
                     @click="setValidUntil('2021-01-15')"
                     >15-01-2021</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.valid_until"
+                    v-model="promoDetail.valid_until"
                     @click="setValidUntil('2021-01-16')"
                     >16-01-2021</b-dropdown-item
                   >
                   <b-dropdown-item
-                    v-model="form.valid_until"
+                    v-model="promoDetail.valid_until"
                     @click="setValidUntil('2021-01-17')"
                     >17-01-2021</b-dropdown-item
                   >
@@ -134,11 +138,17 @@
           <div class="right">
             <b-card>
               <h4>Name :</h4>
-              <input type="text" v-model="form.promocode_name" /><br /><br />
+              <input
+                type="text"
+                v-model="promoDetail.promocode_name"
+              /><br /><br />
               <h4>Normal Price :</h4>
               <input type="text" /><br /><br />
               <h4>Minimum Purchase :</h4>
-              <input type="text" v-model="form.minimum_purchase" /><br /><br />
+              <input
+                type="text"
+                v-model="promoDetail.minimum_purchase"
+              /><br /><br />
               <h4>Input Product Size :</h4>
               <h5>Click size you want to use for this promo</h5>
               <div class="size">
@@ -158,12 +168,13 @@
                 <b-button>Home Delivery</b-button><br /><b></b>
               </div>
               <br /><br />
-              <b-button @click="addPromo()">Save Promo</b-button><br /><br />
+              <b-button @click="updatePromos()">Update Coupon</b-button
+              ><br /><br />
               <b-button>Cancel</b-button>
             </b-card>
           </div>
         </b-col>
-        <h6>{{ form }}</h6>
+        <h6>{{ promoDetail }}</h6>
       </b-row>
     </b-container>
     <hr />
@@ -172,6 +183,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 import { mapActions } from 'vuex'
@@ -181,6 +193,9 @@ export default {
   components: {
     Header,
     Footer
+  },
+  computed: {
+    ...mapGetters({ promoDetail: 'getPromoDetail' })
   },
   data() {
     return {
@@ -196,18 +211,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['postPromo']),
+    ...mapActions(['updatePromo']),
+    ...mapMutations(['setPromoDetail']),
+    ...mapMutations(['updatesIdPromo']),
     handleFile(event) {
       console.log(event)
-      this.form.promocode_image = event.target.files[0]
+      this.promoDetail.promocode_image = event.target.files[0]
     },
     setDiscount(percent) {
-      this.form.promocode_discount = percent
+      this.promoDetail.promocode_discount = percent
     },
     setValidUntil(date) {
-      this.form.valid_until = date
+      this.promoDetail.valid_until = date
     },
-    addPromo() {
+    updatePromos() {
+      console.log(this.$route.params.id)
       const {
         promocode_name,
         promocode_image,
@@ -215,7 +233,7 @@ export default {
         minimum_purchase,
         valid_until,
         promocode_status
-      } = this.form
+      } = this.promoDetail
       const data = new FormData()
       data.append('promocode_name', promocode_name)
       data.append('promocode_image', promocode_image)
@@ -223,11 +241,12 @@ export default {
       data.append('minimum_purchase', minimum_purchase)
       data.append('valid_until', valid_until)
       data.append('promocode_status', promocode_status)
-
-      this.postPromo(data)
+      this.setPromoDetail(data)
+      this.updatesIdPromo(this.$route.params.id)
+      this.updatePromo(data)
         .then(result => {
           console.log(result)
-          alert('Success Post Coupon')
+          alert('Success Update Coupon')
         })
         .catch(error => {
           alert(error)

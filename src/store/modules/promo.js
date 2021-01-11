@@ -1,7 +1,22 @@
 import axios from 'axios'
 export default {
-  state: {},
-  mutations: {},
+  state: {
+    promoDetail: [],
+    updateIdPromo: '',
+    delpromoid: ''
+  },
+  mutations: {
+    setPromoDetail(state, payload) {
+      state.promoDetail = payload
+    },
+    deleteProm(state, payload) {
+      state.delpromoid = payload
+    },
+    updatesIdPromo(state, payload) {
+      state.updateIdPromo = payload
+      //   console.log(state.updateIdPromo)
+    }
+  },
   actions: {
     postPromo(context, payload) {
       return new Promise((resolve, reject) => {
@@ -17,7 +32,38 @@ export default {
             reject(error)
           })
       })
+    },
+    updatePromo(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://localhost:4001/promocode/${context.state.updateIdPromo}`,
+            payload
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    },
+    deletePromo(context) {
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(`http://localhost:4001/promocode/${context.state.delpromoid}`)
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     }
   },
-  getters: {}
+  getters: {
+    getPromoDetail(state) {
+      return state.promoDetail
+    }
+  }
 }

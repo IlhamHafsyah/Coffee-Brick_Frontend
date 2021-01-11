@@ -52,8 +52,8 @@
               <b-card-text> IDR {{ item.product_price }} </b-card-text>
             </div>
           </b-card>
-          <button @click="updateProduct(item)">update</button>
-          <button @click="deleteProduct(item.product_id)">delete</button>
+          <button @click="updateProduct(item)">Update</button>
+          <button @click="deleteProduct(item.product_id)">Delete</button>
         </div>
       </b-col>
     </b-row>

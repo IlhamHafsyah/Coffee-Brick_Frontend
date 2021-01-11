@@ -26,8 +26,8 @@
             </div>
             <div class="valid-until">
               <b-card-text> Valid until {{ item.valid_until }} </b-card-text>
-              <button @click="editpromo(item)">Edit</button>
-              <button @click="editpromo(item)">Delete</button>
+              <button @click="editPromo(item)">Edit</button>
+              <button @click="deletepromo(item.promocode_id)">Delete</button>
             </div>
           </b-card>
         </div>
@@ -38,6 +38,7 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Coupon',
@@ -67,6 +68,14 @@ export default {
     this.getPromocode()
   },
   methods: {
+    ...mapMutations(['setPromoDetail']),
+    editPromo(item) {
+      this.setPromoDetail(item)
+      this.$router.push({
+        name: 'Updatepromo',
+        params: { id: item.promocode_id }
+      })
+    },
     getPromocode() {
       axios
         .get('http://localhost:4001/promocode')
@@ -77,6 +86,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    deletepromo(id) {
+      this.$router.push({ name: 'Deletepromo', params: { id: id } })
     }
   }
 }

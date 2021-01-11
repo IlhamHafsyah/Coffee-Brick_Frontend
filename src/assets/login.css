@@ -5,16 +5,17 @@
 }
 
 .login .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
-.login .logo a {
+/* .login .logo a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
   font-size: 20px;
-}
+} */
 
 .login .signup {
   text-align: right;

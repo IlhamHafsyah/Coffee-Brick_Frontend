@@ -69,7 +69,6 @@
 <script>
 // import axios from 'axios'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-
 export default {
   name: 'Card',
   computed: {

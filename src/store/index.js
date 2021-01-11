@@ -6,11 +6,12 @@ import Regis from './modules/regis'
 import Dashboard from './modules/dashboard'
 import Product from './modules/product'
 import Payment from './modules/payment'
+import Promo from './modules/promo'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { Auth, Regis, Dashboard, Product, Payment },
+  modules: { Auth, Regis, Dashboard, Product, Payment, Promo },
   state: {
     name: 'Ilham'
   },

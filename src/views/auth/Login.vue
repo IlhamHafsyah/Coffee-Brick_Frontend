@@ -10,7 +10,7 @@
             <b-col cols="6">
               <div class="logo">
                 <img src="../../assets/logo copy.png" />
-                <a href="">Coffee Brick</a>
+                <!-- <a href="">Coffee Brick</a> -->
               </div>
             </b-col>
             <b-col cols="6">
@@ -108,6 +108,7 @@ export default {
     // }
     //2
     // ...mapState(['users']),
+    // ...mapGetters({ users: 'setUsers' })
     // ...mapState({ dataName: 'name' })
   },
   methods: {

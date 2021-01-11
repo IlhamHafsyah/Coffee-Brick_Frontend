@@ -7,16 +7,17 @@
 }
 
 .Product .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
-.Product .logo a {
+/* .Product .logo a {
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   font-weight: 700;
   font-size: 20px;
-}
+} */
 
 .Product .menu .link ul {
   list-style: none;
@@ -98,6 +99,7 @@
 
 .Product .coupon {
   text-align: center;
+  line-height: 15px;
 }
 
 .Product .coupon h4 {

@@ -4,7 +4,7 @@
     <b-container>
       <b-jumbotron>
         <h2>
-          HELLO {{ data.users_name }} <br />
+          HELLO {{ users.users_name }} <br />
           WELLCOME TO LANDING PAGE
         </h2>
       </b-jumbotron>
@@ -100,7 +100,7 @@ export default {
         .reverse()
         .join(' ')
     },
-    ...mapGetters({ data: 'datas' })
+    ...mapGetters({ users: 'setUsers' })
   },
   methods: {
     boom() {

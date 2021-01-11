@@ -32,7 +32,7 @@
 4. Add .env file at root folder project
 
 ```sh
-VUE_APP_ENDPOINT = [Backend API]
+VUE_APP_ENDPOINT = http://localhost:4001/
 ```
 
 5. Type `npm run serve`

@@ -7,7 +7,7 @@
     <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend">Request Feature</a>
   </p>
 
-![Image Banner](https://raw.githubusercontent.com/arkbootcamp/week7-web6-intermediateFrontend/main/image_banner.jpg)
+![Image Banner](https://raw.githubusercontent.com/IlhamHafsyah/Coffee-Brick_Frontend/master/banners.png)
 
 ## About The Project
 

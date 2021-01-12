@@ -18,6 +18,7 @@ import Updateproduct from '../views/Updateproduct.vue'
 import Updatepromo from '../views/Updatepromo.vue'
 import Deleteproduct from '../views/Deleteproduct.vue'
 import Deletepromo from '../views/Deletepromo.vue'
+import Editpassword from '../views/Editpassword.vue'
 import Coba from '../views/coba.vue'
 
 Vue.use(VueRouter)
@@ -69,6 +70,12 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: { requiresVisitor: true }
+  },
+  {
+    path: '/editpassword/:id',
+    name: 'Editpassword',
+    component: Editpassword,
+    meta: { requiresAuth: true }
   },
   {
     path: '/dashboard',

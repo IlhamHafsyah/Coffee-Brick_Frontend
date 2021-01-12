@@ -26,7 +26,9 @@
                       </div>
                       <br /><br />
                       <div class="pass">
-                        <b-button>Edit Password</b-button>
+                        <b-button @click="editPass($route.params.id)"
+                          >Edit Password</b-button
+                        >
                       </div>
                       <h4>Do you want to save the change?</h4>
                       <br />
@@ -176,6 +178,9 @@ export default {
         .catch(error => {
           alert(error)
         })
+    },
+    editPass(id) {
+      this.$router.push({ name: 'Editpassword', params: { id: id } })
     }
   }
 }

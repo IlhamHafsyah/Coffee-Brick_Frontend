@@ -9,7 +9,10 @@
             <div class="picture">
               <b-card
                 ><img
-                  :src="'http://localhost:4001/' + productsDetail.product_image"
+                  :src="
+                    'http://localhost:4001/' +
+                      productData[$route.params.id].product_image
+                  "
                   alt=""
               /></b-card>
             </div>
@@ -359,7 +362,8 @@ export default {
     Footer
   },
   computed: {
-    ...mapGetters({ productsDetail: 'getProductDetail' })
+    ...mapGetters({ productsDetail: 'getProductDetail' }),
+    ...mapGetters({ productData: 'getDataProduct' })
   },
   data() {
     return {
@@ -413,6 +417,7 @@ export default {
   },
   methods: {
     ...mapActions(['updateProducts']),
+    ...mapActions(['getProducts']),
     ...mapMutations(['update']),
     ...mapMutations(['setProductsDetail']),
     ...mapMutations(['setCategoryId']),
@@ -504,6 +509,7 @@ export default {
       data.append('start_hour', start_hour)
       data.append('end_hour', end_hour)
       data.append('product_status', product_status)
+      this.getProducts()
       this.setProductsDetail(data)
       this.update(this.$route.params.id)
       this.updateProducts(data)

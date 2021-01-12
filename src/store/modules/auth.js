@@ -21,7 +21,6 @@ export default {
     },
     setData(state, payload) {
       // console.log('proses mutation setUsers')
-      console.log(payload)
       state.data = payload
       // state.token = payload.token
       // console.log('proses mutation setUsers')
@@ -94,6 +93,22 @@ export default {
         axios
           .patch(
             `http://localhost:4001/users/${context.state.profileid}`,
+            payload
+          )
+          .then(result => {
+            resolve(result)
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
+    },
+    editPassword(context, payload) {
+      console.log(payload)
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `http://localhost:4001/users/editpass/${context.state.profileid}`,
             payload
           )
           .then(result => {

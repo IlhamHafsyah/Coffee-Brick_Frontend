@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import dotenv from 'dotenv'
 
 dotenv.config()
+process.env.VUE_APP_API
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

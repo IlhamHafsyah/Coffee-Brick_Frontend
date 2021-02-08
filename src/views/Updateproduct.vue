@@ -7,14 +7,7 @@
         <b-col cols="4">
           <div class="left">
             <div class="picture">
-              <b-card
-                ><img
-                  :src="
-                    'http://localhost:4001/' +
-                      productData[$route.params.id].product_image
-                  "
-                  alt=""
-              /></b-card>
+              <b-card><img src="../assets/camera.png" alt=""/></b-card>
             </div>
             <b-card>
               <input type="file" @change="handleFile" />
@@ -518,7 +511,8 @@ export default {
           alert('Success Update Product')
         })
         .catch(error => {
-          alert(error)
+          console.log(error)
+          alert('Form cant be empty')
         })
       this.$router.push('/product')
     }

@@ -13,7 +13,8 @@ export default {
     totalRows: null,
     products: [],
     productsDetail: [],
-    postResult: []
+    postResult: [],
+    VUE_APP_API: process.env.VUE_APP_API
   },
   mutations: {
     setProduct(state, payload) {
@@ -70,7 +71,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `http://localhost:4001/product?id=${context.state.id}&page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}&sort=${context.state.sort}`
+            `${context.state.VUE_APP_API}/product?id=${context.state.id}&page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}&sort=${context.state.sort}`
           )
           .then(result => {
             console.log(result)

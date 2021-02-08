@@ -1,40 +1,16 @@
-.Product .Header {
-  padding-top: 30px;
-}
-
-.Product .logo {
-  justify-content: space-between;
-}
-
-.Product .logo img {
-  padding-left: 10px;
-  width: 180px;
-  height: 75px;
-}
-
-/* .Product .logo a {
-  color: #0b132a;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-} */
-
-.Product .menu .link ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 0px;
-}
-
-.Product .menu .link a {
-  color: #0b132a;
-  font-family: 'Rubik', sans-serif;
-  text-align: center;
-  font-weight: 400;
-}
-
 .Product .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.Product .user-menu .search input {
+  width: 150px;
+}
+
+.Product .user-menu .search {
+  padding-left: 80px;
 }
 
 .Product .user-menu ul li {
@@ -55,6 +31,34 @@
 .Product .user-menu ul input {
   width: 120px;
   border-radius: 20px;
+}
+
+.Product .Header {
+  padding-top: 30px;
+}
+
+.Product .logo {
+  justify-content: space-between;
+}
+
+.Product .logo img {
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
+}
+
+.Product .menu .link ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px;
+}
+
+.Product .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-weight: 800;
 }
 
 .Product .category ul {
@@ -98,6 +102,13 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.Product .listproduct .product-card .card button {
+  color: white;
+  font-size: 12px;
+  background-color: #6a4029;
+  border-radius: 20px;
 }
 
 .Product .coupon {
@@ -216,67 +227,3 @@
 .Product .engage ul a {
   color: #0b132a;
 }
-/* .Product .coupon #rec1 {
-  position: relative;
-  width: 284px;
-  height: 472px;
-  background-color: #ffcb65;
-  border-radius: 20px;
-  border-color: rgba(255, 255, 255, 0);
-  z-index: 0;
-  left: 32px;
-}
-
-.Product .coupon .content {
-  position: relative;
-  padding-top: 50px;
-  z-index: 1;
-  top: -470px;
-}
-
-.Product .coupon .content img {
-  border-radius: 50%;
-}
-
-.Product .coupon .content h2 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: #000000;
-  font-size: 22px;
-  padding-top: 15px;
-}
-
-.Product .coupon .content h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  color: #000000;
-  font-size: 14px;
-  padding-top: 10px;
-}
-
-.Product .coupon .content hr {
-  border: none;
-  border-top: 2px dotted black;
-  padding-top: 20px;
-  height: 1px;
-  width: 80%;
-}
-
-.Product .coupon .content .cc {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  padding-top: -30px;
-}
-
-.Product .coupon .content .code {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 33px;
-}
-
-.Product .coupon .content .valid {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-} */

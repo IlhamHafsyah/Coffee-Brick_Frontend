@@ -13,13 +13,6 @@
   height: 75px;
 }
 
-/* .home .logo a {
-  color: #0b132a;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-} */
-
 .home .menu .link ul {
   list-style: none;
   display: flex;
@@ -31,11 +24,27 @@
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   text-align: center;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .home .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.home .user-menu .search input {
+  width: 150px;
+}
+
+.home .user-menu .search {
+  display: none;
+  padding-left: 80px;
+}
+
+.home .user-menu .logout {
+  padding-left: 230px;
 }
 
 .home .user-menu ul li {

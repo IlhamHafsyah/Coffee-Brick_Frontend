@@ -10,7 +10,6 @@
             <b-col cols="6">
               <div class="logo">
                 <img src="../assets/logo copy.png" />
-                <a href="">Coffee Brick</a>
               </div>
             </b-col>
             <b-col cols="6">
@@ -123,32 +122,6 @@ export default {
           alert(error)
         })
       this.$router.push('/login')
-      // const {
-      //   users_name,
-      //   users_email,
-      //   profile_picture,
-      //   users_role,
-      //   users_phone,
-      //   display_name,
-      //   first_name,
-      //   last_name,
-      //   date_of_birth,
-      //   users_gender,
-      //   status,
-      //   users_password
-      // } = this.form
-      // const data = new FormData()
-      // data.append('users_name', users_name)
-      // data.append('users_email', users_email)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
-      // data.append('category_id', category_id)
     }
   }
 }

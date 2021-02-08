@@ -8,8 +8,9 @@
 }
 
 .history .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
 .history .logo a {
@@ -30,11 +31,34 @@
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   text-align: center;
+  font-weight: 800 !important;
+}
+
+.history .menu .link a {
+  color: #0b132a;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
   font-weight: 400;
 }
 
 .history .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.history .user-menu .search input {
+  width: 150px;
+}
+
+.history .user-menu .search {
+  display: none;
+  padding-left: 80px;
+}
+
+.history .user-menu .logout {
+  padding-left: 230px;
 }
 
 .history .user-menu ul li {

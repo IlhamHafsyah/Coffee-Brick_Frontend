@@ -9,11 +9,13 @@
             <h4>Promo for you</h4>
             <p>Coupon will be updated every weeks.<br />Check them out!</p>
             <div class="overflow">
+              <button @click="toAddcoupon()">add coupon</button>
               <Coupon />
             </div>
           </div>
         </b-col>
         <b-col cols="8">
+          <button @click="toAddproduct()">add product</button>
           <Card />
         </b-col>
       </b-row>
@@ -28,24 +30,26 @@ import Header from '../components/_base/Header'
 import Coupon from '../components/_base/Coupon'
 import Card from '../components/_base/Card'
 import Footer from '../components/_base/Footer'
-// import axios from 'axios'
 
 export default {
   name: 'Product',
+  mounted() {
+    console.log(process.env.VUE_APP_API)
+  },
   components: {
     Header,
     Coupon,
     Card,
     Footer
+  },
+  methods: {
+    toAddcoupon() {
+      this.$router.push('/newpromo')
+    },
+    toAddproduct() {
+      this.$router.push('/newproduct')
+    }
   }
-  // created() {
-  //   this.getProductById
-  // },
-  // methods: {
-  //   getProductById() {
-  //     axios.get(`http://localhost:4000/category/1`)
-  //   }
-  // }
 }
 </script>
 

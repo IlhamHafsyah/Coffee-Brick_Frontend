@@ -8,8 +8,9 @@
 }
 
 .cart .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
 .cart .logo a {
@@ -30,11 +31,27 @@
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   text-align: center;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .cart .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.cart .user-menu .search input {
+  width: 150px;
+}
+
+.cart .user-menu .search {
+  display: none;
+  padding-left: 80px;
+}
+
+.cart .user-menu .logout {
+  padding-left: 230px;
 }
 
 .cart .user-menu ul li {

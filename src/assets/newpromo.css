@@ -7,8 +7,9 @@
 }
 
 .newpromo .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
 .newpromo .logo a {
@@ -33,7 +34,23 @@
 }
 
 .newpromo .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.newpromo .user-menu .search input {
+  width: 150px;
+}
+
+.newpromo .user-menu .search {
+  display: none;
+  padding-left: 80px;
+}
+
+.newpromo .user-menu .logout {
+  padding-left: 230px;
 }
 
 .newpromo .user-menu ul li {

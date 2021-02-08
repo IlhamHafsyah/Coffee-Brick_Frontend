@@ -10,24 +10,25 @@
           <Navbar />
         </b-col>
         <b-col class="user-menu">
-          <ul>
-            <li>
-              <div class="search">
-                <input
-                  type="text"
-                  v-model="char"
-                  v-on:keyup.enter="searchingProduct(char)"
-                  placeholder="search"
-                />
-              </div>
-            </li>
-            <li><img src="../../assets/chat-icon.png" /></li>
-            <li>
-              <a @click="setProfile(users.users_id)"
-                ><img src="../../assets/lit-profile-pic.png"
-              /></a>
-            </li>
-          </ul>
+          <div class="search">
+            <input
+              style="border-radius: 20px"
+              type="text"
+              v-model="char"
+              v-on:keyup.enter="searchingProduct(char)"
+              placeholder=" Search..."
+            />
+          </div>
+          <div class="logout">
+            <a @click="handleLogout"
+              ><img style="width: 30px" src="../../assets/logout-icon.png"
+            /></a>
+          </div>
+          <a @click="setProfile(users.users_id)"
+            ><img
+              style="border-radius: 50%"
+              src="../../assets/lit-profile-pic.png"
+          /></a>
         </b-col>
       </b-row>
     </b-container>
@@ -53,10 +54,6 @@ export default {
     ...mapGetters({ data: 'datas' })
   },
   methods: {
-    // search() {
-    //   console.log('Proccess Search !')
-    //   console.log(this.searchData)
-    // },
     ...mapActions(['getProducts']),
     ...mapActions(['getUsers']),
     ...mapMutations(['searchProduct']),
@@ -64,22 +61,20 @@ export default {
     setProfile(id) {
       this.getid(id)
       this.getUsers()
-      // console.log(this.users)
-      // console.log(this.data)
-      // console.log(this.users.users_id)
-      // console.log(id)
       this.$router.push({
         name: 'Profile',
         params: { id: id }
       })
     },
-    // setProfile(users.id) {
-    // this.$router.push(`/profile/${users.id}`)
-    // },
     searchingProduct(char) {
       console.log(char)
       this.searchProduct(char)
       this.getProducts()
+    },
+    ...mapActions(['logout']),
+    handleLogout() {
+      console.log('Success Logout')
+      this.logout()
     }
   }
 }

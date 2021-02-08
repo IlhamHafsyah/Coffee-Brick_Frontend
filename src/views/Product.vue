@@ -8,14 +8,20 @@
           <div class="coupon">
             <h4>Promo for you</h4>
             <p>Coupon will be updated every weeks.<br />Check them out!</p>
+            <div class="addcoupon">
+              <button @click="toAddcoupon()">Add Coupon</button>
+            </div>
             <div class="overflow">
-              <button @click="toAddcoupon()">add coupon</button>
               <Coupon />
             </div>
           </div>
         </b-col>
         <b-col cols="8">
-          <button @click="toAddproduct()">add product</button>
+          <div class="addproduct" style="text-align: right">
+            <button @click="toAddproduct()">
+              Add Product
+            </button>
+          </div>
           <Card />
         </b-col>
       </b-row>

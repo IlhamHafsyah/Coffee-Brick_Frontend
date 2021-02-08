@@ -10,18 +10,13 @@
         <li><a @click="getProductCategory(3)">Foods</a></li>
         <li><a @click="getProductCategory(4)">Add-on</a></li>
       </ul>
-      <div class="filter">
-        <b-dropdown
-          id="dropdown-1"
-          text="Filter"
-          variant="default"
-          class="m-md-2"
-        >
-          <b-dropdown-item @click="byName(pn)">Name (A-Z)</b-dropdown-item>
-          <b-dropdown-item @click="byPrice(pp)">Price</b-dropdown-item>
-          <b-dropdown-item @click="byDate(pc)">Date</b-dropdown-item>
-        </b-dropdown>
-      </div>
+    </div>
+    <div class="filter" style="text-align: right">
+      <b-dropdown text="Sort" variant="outline-none" class="btn-sort">
+        <b-dropdown-item @click="byName(pn)">Name (A-Z)</b-dropdown-item>
+        <b-dropdown-item @click="byPrice(pp)">Price</b-dropdown-item>
+        <b-dropdown-item @click="byDate(pc)">Date</b-dropdown-item>
+      </b-dropdown>
     </div>
     <b-row>
       <b-col

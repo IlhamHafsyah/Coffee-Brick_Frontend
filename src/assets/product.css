@@ -69,6 +69,33 @@
   padding: 0px 0px;
 }
 
+.Product .addproduct {
+  padding-right: 30px;
+  padding-bottom: 5px;
+}
+
+.Product .addproduct button {
+  background-color: #6a4029;
+  color: white;
+  border-radius: 20px;
+}
+
+.Product .addcoupon {
+  padding-bottom: 5px;
+}
+
+.Product .addcoupon button {
+  height: 30px;
+  background-color: #6a4029;
+  color: white;
+  border-radius: 20px;
+}
+
+.Product .filter .dropdown-toggle {
+  color: #6a4029;
+  font-weight: bold;
+}
+
 .Product .category ul li a {
   color: #6a4029;
   font-family: 'Rubik', sans-serif;
@@ -154,6 +181,13 @@
 .Product .coupon .overflow .listpromocode .card img {
   width: 150px;
   border-radius: 50%;
+}
+
+.Product .coupon .overflow .listpromocode .card button {
+  background-color: #6a4029;
+  color: white;
+  border-radius: 20px;
+  height: 30px;
 }
 
 .Product .coupon .overflow .listpromocode .card .percent p {

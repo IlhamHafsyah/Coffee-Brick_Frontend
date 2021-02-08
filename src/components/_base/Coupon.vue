@@ -33,7 +33,7 @@
             </div>
             <div class="valid-until">
               <b-card-text> Valid until {{ item.valid_until }} </b-card-text>
-              <button @click="editPromo(item)">Edit</button>
+              <button @click="editPromo(item)">Update</button>
               <button @click="deletepromo(item.promocode_id)">Delete</button>
             </div>
           </b-card>

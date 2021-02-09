@@ -33,8 +33,15 @@
             </div>
             <div class="valid-until">
               <b-card-text> Valid until {{ item.valid_until }} </b-card-text>
-              <button @click="editPromo(item)">Update</button>
-              <button @click="deletepromo(item.promocode_id)">Delete</button>
+              <button @click="editPromo(item)" v-if="user.users_role === 1">
+                Update
+              </button>
+              <button
+                @click="deletepromo(item.promocode_id)"
+                v-if="user.users_role === 1"
+              >
+                Delete
+              </button>
             </div>
           </b-card>
         </div>
@@ -44,6 +51,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 import { mapMutations } from 'vuex'
 
@@ -75,6 +83,7 @@ export default {
     this.getPromocode()
   },
   methods: {
+    ...mapGetters({ user: 'setUsers' }),
     ...mapMutations(['setPromoDetail']),
     editPromo(item) {
       this.setPromoDetail(item)

@@ -45,8 +45,15 @@
                 IDR {{ item.product_price }}
               </b-card-text>
             </div>
-            <button @click="updateProduct(item)">Update</button>
-            <button @click="deleteProduct(item.product_id)">Delete</button>
+            <button @click="updateProduct(item)" v-if="user.users_role === 1">
+              Update
+            </button>
+            <button
+              @click="deleteProduct(item.product_id)"
+              v-if="user.users_role === 1"
+            >
+              Delete
+            </button>
           </b-card>
         </div>
       </b-col>
@@ -66,6 +73,7 @@ export default {
   name: 'Card',
   computed: {
     ...mapGetters({ products: 'getDataProduct' }),
+    ...mapGetters({ user: 'setUsers' }),
     ...mapGetters({ limit: 'getLimitProduct' }),
     ...mapGetters({ rows: 'getTotalRowsProduct' }),
     ...mapGetters({ id: 'getIdProduct' }),

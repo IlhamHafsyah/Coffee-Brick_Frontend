@@ -9,7 +9,9 @@
             <h4>Promo for you</h4>
             <p>Coupon will be updated every weeks.<br />Check them out!</p>
             <div class="addcoupon">
-              <button @click="toAddcoupon()">Add Coupon</button>
+              <button @click="toAddcoupon()" v-if="user.users_role === 1">
+                Add Coupon
+              </button>
             </div>
             <div class="overflow">
               <Coupon />
@@ -18,7 +20,7 @@
         </b-col>
         <b-col cols="8">
           <div class="addproduct" style="text-align: right">
-            <button @click="toAddproduct()">
+            <button @click="toAddproduct()" v-if="user.users_role === 1">
               Add Product
             </button>
           </div>
@@ -32,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Header from '../components/_base/Header'
 import Coupon from '../components/_base/Coupon'
 import Card from '../components/_base/Card'
@@ -49,6 +52,7 @@ export default {
     Footer
   },
   methods: {
+    ...mapGetters({ user: 'setUsers' }),
     toAddcoupon() {
       this.$router.push('/newpromo')
     },

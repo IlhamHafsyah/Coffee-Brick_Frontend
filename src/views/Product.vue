@@ -51,8 +51,10 @@ export default {
     Card,
     Footer
   },
+  computed: {
+    ...mapGetters({ user: 'setUsers' })
+  },
   methods: {
-    ...mapGetters({ user: 'setUsers' }),
     toAddcoupon() {
       this.$router.push('/newpromo')
     },

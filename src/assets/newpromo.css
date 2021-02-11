@@ -73,6 +73,14 @@
   border-radius: 20px;
 }
 
+.newpromo .cfg input[type='file'] {
+  display: none;
+}
+
+.newpromo .cfg label {
+  padding-top: 6px;
+}
+
 .newpromo .left {
   text-align: center;
 }
@@ -81,9 +89,15 @@
   border-color: rgba(240, 248, 255, 0);
 }
 
-.newpromo .left .picture {
-  padding-left: 80px;
+.newpromo .left .card input {
+  padding-left: 10px;
+  border-radius: 10px;
+  width: 200px;
 }
+
+/* .newpromo .left .picture {
+  padding-left: 80px;
+} */
 
 .newpromo .left .picture .card {
   border-radius: 50%;
@@ -91,6 +105,17 @@
   height: 200px;
   background-color: #cccccc;
   border-color: rgba(240, 248, 255, 0);
+}
+
+.newpromo .left .picture .round-img {
+  padding-top: 10px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+}
+
+.newpromo .left .picture .default {
+  padding-left: 80px;
 }
 
 .newpromo .left .picture .card img {

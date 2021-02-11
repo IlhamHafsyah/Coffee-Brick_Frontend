@@ -73,6 +73,14 @@
   border-radius: 20px;
 }
 
+.newproduct .cfg input[type='file'] {
+  display: none;
+}
+
+.newproduct .cfg label {
+  padding-top: 6px;
+}
+
 .newproduct .left {
   text-align: center;
 }
@@ -81,8 +89,10 @@
   border-color: rgba(240, 248, 255, 0);
 }
 
-.newproduct .left .picture {
-  padding-left: 80px;
+.newproduct .left .card input {
+  padding-left: 10px;
+  border-radius: 10px;
+  width: 200px;
 }
 
 .newproduct .left .picture .card {
@@ -93,9 +103,18 @@
   border-color: rgba(240, 248, 255, 0);
 }
 
-.newproduct .left .picture .card img {
-  padding-top: 50px;
-  width: 60px;
+.newproduct .left .picture .round-img {
+  padding-top: 10px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+}
+
+/* .newproduct .left .picture .default {
+  padding-left: 80px !important;
+} */
+.newproduct .left .picture .default {
+  padding-left: 80px;
 }
 
 .newproduct .left button {
@@ -135,6 +154,7 @@
 }
 
 .newproduct .right input {
+  padding-left: 10px;
   width: 650px;
   height: 40px;
   border-color: #6a402960;
@@ -167,6 +187,10 @@
   border-color: rgba(252, 254, 255, 0);
 }
 
+.newproduct .right .size .size-btn {
+  padding: 10px;
+}
+
 .newproduct .right .delivery button {
   width: 200px;
   height: 50px;
@@ -176,7 +200,7 @@
   color: #6a4029;
   font-weight: bold;
   background-color: #ffba33;
-  border-color: rgb(112, 60, 1);
+  border-color: rgba(112, 60, 1, 0.418);
 }
 
 .newproduct .right button {

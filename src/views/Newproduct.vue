@@ -7,16 +7,30 @@
         <b-col cols="4">
           <div class="left">
             <div class="picture">
-              <b-card><img src="../assets/camera.png" alt=""/></b-card>
+              <img v-if="url" :src="url" class="round-img" />
+              <img
+                v-else-if="form.product_image"
+                class="round-img"
+                :src="'http://localhost:3000/' + form.product_image"
+                alt="photo"
+              />
+              <div v-else>
+                <img
+                  class="default"
+                  style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                />
+              </div>
             </div>
             <b-card>
-              <input type="file" @change="handleFile" />
-              <div class="tap">
+              <!-- <div class="tap">
                 <b-button>Take a Picture</b-button>
-              </div>
-              <br />
+              </div> -->
+              <!-- <br /> -->
               <div class="cfg">
-                <b-button>Choose From Gallery</b-button>
+                <b-button>
+                  <input type="file" id="file" @change="handleFile" />
+                  <label for="file">Choose From Gallery</label>
+                </b-button>
               </div>
               <br /><br /><br />
               <h3>Delivery Hour :</h3>
@@ -69,32 +83,12 @@
                 </b-dropdown>
               </div>
               <br />
-              <br />
               <h3>Input Stock :</h3>
+              <br />
               <div>
-                <b-dropdown
-                  id="dropdown-1"
-                  text="Input stock"
-                  variant="default"
-                  class="m-md-2"
-                >
-                  <b-dropdown-item
-                    v-model="form.product_stock"
-                    @click="setProductStock(100)"
-                    >100</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="form.product_stock"
-                    @click="setProductStock(150)"
-                    >150</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="form.product_stock"
-                    @click="setProductStock(200)"
-                    >200</b-dropdown-item
-                  >
-                </b-dropdown>
+                <input type="number" min="1" v-model="form.product_stock" />
               </div>
+              <br />
               <h3>Category :</h3>
               <div>
                 <!-- <select name="cars" id="cars">
@@ -131,7 +125,6 @@
                   >
                 </b-dropdown>
               </div>
-              <h6>{{ form }}</h6>
             </b-card>
           </div>
         </b-col>
@@ -159,7 +152,7 @@
               <h4>Input Product Size :</h4>
               <h5>Click size you want to use for this product</h5>
               <div class="size">
-                <b-form-checkbox
+                <!-- <b-form-checkbox
                   v-model="form.size_r"
                   id="sizeR"
                   name="check-button"
@@ -224,80 +217,95 @@
                   button-variant="warning"
                 >
                   500 <br />gr
-                </b-form-checkbox>
-                <!-- <input
-                  type="checkbox"
-                  v-model="form.size_r"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.size_l"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.size_xl"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.size_250"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.size_300"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.size_500"
-                  true-value="1"
-                  false-value="0"
-                />
-                <b-button>R</b-button>
-                <b-button>L</b-button>
-                <b-button>XL</b-button>
-                <b-button>250<br />gr</b-button>
-                <b-button>300<br />gr</b-button>
-                <b-button>500<br />gr</b-button><br /> -->
+                </b-form-checkbox> -->
+                <div class="size-btn">
+                  <b-button
+                    v-model="form.size_r"
+                    id="sizeR"
+                    @click="setr"
+                    :class="form.size_r === 1 ? 'size-btn active' : 'size-btn'"
+                    >R</b-button
+                  >
+                  <b-button
+                    v-model="form.size_l"
+                    id="sizeL"
+                    @click="setl"
+                    :class="form.size_l === 1 ? 'size-btn active' : 'size-btn'"
+                    >L</b-button
+                  >
+                  <b-button
+                    v-model="form.size_xl"
+                    id="sizeXL"
+                    @click="setxl"
+                    :class="form.size_xl === 1 ? 'size-btn active' : 'size-btn'"
+                    >XL</b-button
+                  >
+                  <b-button
+                    v-model="form.size_250"
+                    id="size250"
+                    @click="set250gr"
+                    :class="
+                      form.size_250 === 1 ? 'size-btn active' : 'size-btn'
+                    "
+                    >250<br />gr</b-button
+                  >
+                  <b-button
+                    v-model="form.size_300"
+                    id="size300"
+                    @click="set300gr"
+                    :class="
+                      form.size_300 === 1 ? 'size-btn active' : 'size-btn'
+                    "
+                    >300<br />gr</b-button
+                  >
+                  <b-button
+                    v-model="form.size_500"
+                    id="size500"
+                    @click="set500gr"
+                    :class="
+                      form.size_500 === 1 ? 'size-btn active' : 'size-btn'
+                    "
+                    >500<br />gr</b-button
+                  ><br />
+                </div>
               </div>
               <br />
               <h4>Input Delivery Methods :</h4>
               <h5>Click methods you want to use for this product</h5>
               <div class="delivery">
-                <b-form-checkbox
-                  v-model="form.take_away"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Take away
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.dine_in"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Dine in
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.home_delivery"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Home Delivery
-                </b-form-checkbox>
-                <!-- <input
+                <div class="del-btn">
+                  <!-- <b-form-checkbox
+                    v-model="form.take_away"
+                    name="check-button"
+                    value="1"
+                    unchecked-value="0"
+                    button
+                    button-variant="warning"
+                  >
+                    Take away
+                  </b-form-checkbox>
+                  <b-form-checkbox
+                    v-model="form.dine_in"
+                    name="check-button"
+                    value="1"
+                    unchecked-value="0"
+                    button
+                    button-variant="warning"
+                  >
+                    Dine in
+                  </b-form-checkbox>
+                  <b-form-checkbox
+                    v-model="form.home_delivery"
+                    name="check-button"
+                    value="1"
+                    unchecked-value="0"
+                    button
+                    button-variant="warning"
+                  >
+                    Home Delivery
+                  </b-form-checkbox> -->
+                  <!-- 
+                <input
                   type="checkbox"
                   v-model="form.take_away"
                   true-value="1"
@@ -312,10 +320,28 @@
                   v-model="form.home_delivery"
                   true-value="1"
                   false-value="0"
-                />
-                <b-button>take away</b-button>
-                <b-button>Dine in</b-button>
-                <b-button>Home Delivery</b-button><br /><b></b> -->
+                /> -->
+                  <b-button
+                    v-model="form.take_away"
+                    @click="setTakeAway"
+                    :class="form.take_away === 1 ? 'del-btn active' : 'del-btn'"
+                    >take away</b-button
+                  >
+                  <b-button
+                    v-model="form.dine_in"
+                    @click="setDineIn"
+                    :class="form.dine_in === 1 ? 'del-btn active' : 'del-btn'"
+                    >Dine in</b-button
+                  >
+                  <b-button
+                    v-model="form.home_delivery"
+                    @click="setHomeDel"
+                    :class="
+                      form.home_delivery === 1 ? 'del-btn active' : 'del-btn'
+                    "
+                    >Home Delivery</b-button
+                  ><br /><b></b>
+                </div>
               </div>
               <br /><br />
               <b-button @click="postProduct()">Save Product</b-button
@@ -350,22 +376,24 @@ export default {
         product_name: '',
         product_image: '',
         product_price: '',
-        product_stock: '100',
+        product_stock: '',
         product_desc: '',
-        size_r: '0',
-        size_l: '0',
-        size_xl: '0',
-        size_250: '0',
-        size_300: '0',
-        size_500: '0',
-        home_delivery: '0',
-        dine_in: '0',
+        size_r: 0,
+        size_l: 0,
+        size_xl: 0,
+        size_250: 0,
+        size_300: 0,
+        size_500: 0,
+        home_delivery: 0,
+        dine_in: 0,
         take_away: '0',
         start_hour: '00:00:00.0000',
         end_hour: '00:00:00.0000',
         product_created_at: new Date(),
         product_status: '1'
-      }
+      },
+      url: null,
+      stock: 0
     }
   },
   methods: {
@@ -393,9 +421,72 @@ export default {
     setEnd(hour) {
       this.form.end_hour = hour
     },
-    setProductStock(val) {
-      this.form.product_stock = val
+    setHomeDel() {
+      if (this.form.home_delivery === 0) {
+        this.form.home_delivery = 1
+      } else {
+        this.form.home_delivery = 0
+      }
     },
+    setDineIn() {
+      if (this.form.dine_in === 0) {
+        this.form.dine_in = 1
+      } else {
+        this.form.dine_in = 0
+      }
+    },
+    setTakeAway() {
+      if (this.form.take_away === 0) {
+        this.form.take_away = 1
+      } else {
+        this.form.take_away = 0
+      }
+    },
+    setr() {
+      if (this.form.size_r === 0) {
+        this.form.size_r = 1
+      } else {
+        this.form.size_r = 0
+      }
+    },
+    setl() {
+      if (this.form.size_l === 0) {
+        this.form.size_l = 1
+      } else {
+        this.form.size_l = 0
+      }
+    },
+    setxl() {
+      if (this.form.size_xl === 0) {
+        this.form.size_xl = 1
+      } else {
+        this.form.size_xl = 0
+      }
+    },
+    set250gr() {
+      if (this.form.size_250 === 0) {
+        this.form.size_250 = 1
+      } else {
+        this.form.size_250 = 0
+      }
+    },
+    set300gr() {
+      if (this.form.size_300 === 0) {
+        this.form.size_300 = 1
+      } else {
+        this.form.size_300 = 0
+      }
+    },
+    set500gr() {
+      if (this.form.size_500 === 0) {
+        this.form.size_500 = 1
+      } else {
+        this.form.size_500 = 0
+      }
+    },
+    // setProductStock() {
+    //   this.form.product_stock = this.stock
+    // },
     setFoodsCategory(id) {
       this.form.category_id = id
       this.form.size_r = 0
@@ -413,7 +504,14 @@ export default {
     },
     handleFile(event) {
       console.log(event)
-      this.form.product_image = event.target.files[0]
+      // this.form.product_image = event.target.files[0]
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        console.log('oke')
+      } else {
+        const file = (this.form.product_image = event.target.files[0])
+        this.url = URL.createObjectURL(file)
+      }
     },
     postProduct() {
       console.log(this.form)

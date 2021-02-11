@@ -18,6 +18,7 @@
                   : 'http://localhost:4001/' + item.promocode_image
               "
               alt="image"
+              style="width:150px;height:150px"
             />
             <div class="percent">
               <b-card-text> {{ item.promocode_discount }}% OFF </b-card-text>
@@ -29,10 +30,14 @@
             </div>
             <p>COUPON CODE</p>
             <div class="code">
-              <b-card-text> {{ item.promocode_name }} </b-card-text>
+              <b-card-text>
+                {{ item.promocode_name }}
+              </b-card-text>
             </div>
             <div class="valid-until">
-              <b-card-text> Valid until {{ item.valid_until }} </b-card-text>
+              <b-card-text>
+                Valid until {{ item.valid_until.substring(0, 10) }}
+              </b-card-text>
               <button @click="editPromo(item)" v-if="user.users_role === 1">
                 Update
               </button>
@@ -47,6 +52,14 @@
         </div>
       </b-col>
     </b-row>
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="totalRows"
+      :per-page="limit"
+      @change="handlePageChange"
+      pills
+      align="center"
+    ></b-pagination>
   </div>
 </template>
 
@@ -74,17 +87,24 @@ export default {
       isMsg: '',
       promocode_id: '',
       currentPage: 1,
-      totalRows: null,
-      limit: 12,
+      totalRows: 12,
+      limit: 1,
       page: 1
     }
   },
   created() {
     this.getPromocode()
   },
+  computed: {
+    ...mapGetters({ user: 'setUsers' })
+  },
   methods: {
-    ...mapGetters({ user: 'setUsers' }),
     ...mapMutations(['setPromoDetail']),
+    handlePageChange(numberPage) {
+      console.log(numberPage)
+      this.page = numberPage
+      this.getPromocode()
+    },
     editPromo(item) {
       this.setPromoDetail(item)
       this.$router.push({
@@ -94,10 +114,11 @@ export default {
     },
     getPromocode() {
       axios
-        .get('http://localhost:4001/promocode')
+        .get(`http://localhost:4001/promocode?page=${this.page}`)
         .then(response => {
           console.log(response)
           this.promocode = response.data.data
+          this.totalRows = response.data.pagination.totalData
         })
         .catch(error => {
           console.log(error)

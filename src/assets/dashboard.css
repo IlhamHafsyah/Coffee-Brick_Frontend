@@ -7,8 +7,9 @@
 }
 
 .dashboard .logo img {
-  width: 30px;
-  height: 33px;
+  padding-left: 10px;
+  width: 180px;
+  height: 75px;
 }
 
 .dashboard .logo a {
@@ -19,6 +20,7 @@
 }
 
 .dashboard .menu .link ul {
+  font-weight: bold;
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -29,11 +31,27 @@
   color: #0b132a;
   font-family: 'Rubik', sans-serif;
   text-align: center;
-  font-weight: 400;
+  font-weight: 800;
 }
 
 .dashboard .user-menu {
-  text-align: right;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+}
+
+.dashboard .user-menu .search input {
+  width: 150px;
+}
+
+.dashboard .user-menu .search {
+  display: none;
+  padding-left: 80px;
+}
+
+.dashboard .user-menu .logout {
+  padding-left: 230px;
 }
 
 .dashboard .user-menu ul li {

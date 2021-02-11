@@ -63,6 +63,8 @@
       :total-rows="rows"
       :per-page="limit"
       @change="handlePageChange"
+      pills
+      align="center"
     ></b-pagination>
   </div>
 </template>

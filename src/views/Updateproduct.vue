@@ -7,16 +7,30 @@
         <b-col cols="4">
           <div class="left">
             <div class="picture">
-              <b-card><img src="../assets/camera.png" alt=""/></b-card>
+              <img v-if="url" :src="url" class="round-img" />
+              <img
+                v-else-if="productsDetail.product_image"
+                class="round-img"
+                :src="'http://localhost:4001/' + productsDetail.product_image"
+                alt="photo"
+              />
+              <div v-else>
+                <img
+                  class="default"
+                  style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                />
+              </div>
             </div>
             <b-card>
-              <input type="file" @change="handleFile" />
-              <div class="tap">
+              <!-- <div class="tap">
                 <b-button>Take a Picture</b-button>
               </div>
-              <br />
+              <br /> -->
               <div class="cfg">
-                <b-button>Choose From Gallery</b-button>
+                <b-button>
+                  <input type="file" id="file" @change="handleFile" />
+                  <label for="file">Choose From Gallery</label>
+                </b-button>
               </div>
               <br /><br /><br />
               <h3>Delivery Hour :</h3>
@@ -72,7 +86,15 @@
               <br />
               <h3>Input Stock :</h3>
               <div>
-                <b-dropdown
+                <div>
+                  <input
+                    type="number"
+                    min="1"
+                    v-model="productsDetail.product_stock"
+                  />
+                </div>
+                <br />
+                <!-- <b-dropdown
                   id="dropdown-1"
                   text="Input stock"
                   variant="default"
@@ -93,7 +115,7 @@
                     @click="setProductStock(200)"
                     >200</b-dropdown-item
                   >
-                </b-dropdown>
+                </b-dropdown> -->
               </div>
               <h3>Category :</h3>
               <div>
@@ -131,7 +153,7 @@
                   >
                 </b-dropdown>
               </div>
-              <h6>{{ productsDetail }}</h6>
+              <!-- <h6>{{ productsDetail }}</h6> -->
             </b-card>
           </div>
         </b-col>
@@ -192,7 +214,7 @@
                   false-value="0"
                 /> -->
                 <!-- <div> -->
-                <b-form-checkbox
+                <!-- <b-form-checkbox
                   v-model="productsDetail.size_r"
                   id="sizeR"
                   name="check-button"
@@ -257,7 +279,7 @@
                   button-variant="warning"
                 >
                   500 <br />gr
-                </b-form-checkbox>
+                </b-form-checkbox> -->
                 <!-- <b-form-checkbox
                     v-model="productsDetail.size_r"
                     name="check-button"
@@ -274,12 +296,112 @@
                 <b-button id="size250">250<br />gr</b-button>
                 <b-button id="size300">300<br />gr</b-button>
                 <b-button id="size500">500<br />gr</b-button><br /> -->
+                <div class="size-btn">
+                  <b-button
+                    v-model="productsDetail.size_r"
+                    id="sizeR"
+                    @click="setr"
+                    :class="
+                      productsDetail.size_r === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >R</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.size_l"
+                    id="sizeL"
+                    @click="setl"
+                    :class="
+                      productsDetail.size_l === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >L</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.size_xl"
+                    id="sizeXL"
+                    @click="setxl"
+                    :class="
+                      productsDetail.size_xl === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >XL</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.size_250"
+                    id="size250"
+                    @click="set250gr"
+                    :class="
+                      productsDetail.size_250 === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >250<br />gr</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.size_300"
+                    id="size300"
+                    @click="set300gr"
+                    :class="
+                      productsDetail.size_300 === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >300<br />gr</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.size_500"
+                    id="size500"
+                    @click="set500gr"
+                    :class="
+                      productsDetail.size_500 === 1
+                        ? 'size-btn active'
+                        : 'size-btn'
+                    "
+                    >500<br />gr</b-button
+                  ><br />
+                </div>
               </div>
               <br />
               <h4>Input Delivery Methods :</h4>
               <h5>Click methods you want to use for this product</h5>
               <div class="delivery">
-                <b-form-checkbox
+                <div class="del-btn">
+                  <b-button
+                    v-model="productsDetail.take_away"
+                    @click="setTakeAway"
+                    :class="
+                      productsDetail.take_away === 1
+                        ? 'del-btn active'
+                        : 'del-btn'
+                    "
+                    >take away</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.dine_in"
+                    @click="setDineIn"
+                    :class="
+                      productsDetail.dine_in === 1
+                        ? 'del-btn active'
+                        : 'del-btn'
+                    "
+                    >Dine in</b-button
+                  >
+                  <b-button
+                    v-model="productsDetail.home_delivery"
+                    @click="setHomeDel"
+                    :class="
+                      productsDetail.home_delivery === 1
+                        ? 'del-btn active'
+                        : 'del-btn'
+                    "
+                    >Home Delivery</b-button
+                  ><br /><b></b>
+                </div>
+                <!-- <b-form-checkbox
                   v-model="productsDetail.take_away"
                   name="check-button"
                   value="1"
@@ -308,7 +430,7 @@
                   button-variant="warning"
                 >
                   Home Delivery </b-form-checkbox
-                ><br /><br />
+                ><br /><br /> -->
                 <!-- <input
                   type="checkbox"
                   v-model="productsDetail.take_away"
@@ -325,9 +447,9 @@
                   true-value="1"
                   false-value="0"
                 /> -->
-                <b-button>take away</b-button>
+                <!-- <b-button>take away</b-button>
                 <b-button>Dine in</b-button>
-                <b-button>Home Delivery</b-button><br /><b></b>
+                <b-button>Home Delivery</b-button><br /><b></b> -->
               </div>
               <br /><br />
               <b-button @click="updateProduct()">Update Product</b-button
@@ -383,6 +505,7 @@ export default {
       //   product_status: '1'
       // }
       //   id: ''
+      url: null
     }
   },
   created() {
@@ -456,7 +579,77 @@ export default {
     },
     handleFile(event) {
       console.log(event)
-      this.productsDetail.product_image = event.target.files[0]
+      // this.productsDetail.product_image = event.target.files[0]
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        console.log('oke')
+      } else {
+        const file = (this.productsDetail.product_image = event.target.files[0])
+        this.url = URL.createObjectURL(file)
+      }
+    },
+    setr() {
+      if (this.productsDetail.size_r === 0) {
+        this.productsDetail.size_r = 1
+      } else {
+        this.productsDetail.size_r = 0
+      }
+    },
+    setl() {
+      if (this.productsDetail.size_l === 0) {
+        this.productsDetail.size_l = 1
+      } else {
+        this.productsDetail.size_l = 0
+      }
+    },
+    setxl() {
+      if (this.productsDetail.size_xl === 0) {
+        this.productsDetail.size_xl = 1
+      } else {
+        this.productsDetail.size_xl = 0
+      }
+    },
+    set250gr() {
+      if (this.productsDetail.size_250 === 0) {
+        this.productsDetail.size_250 = 1
+      } else {
+        this.productsDetail.size_250 = 0
+      }
+    },
+    set300gr() {
+      if (this.productsDetail.size_300 === 0) {
+        this.productsDetail.size_300 = 1
+      } else {
+        this.productsDetail.size_300 = 0
+      }
+    },
+    set500gr() {
+      if (this.productsDetail.size_500 === 0) {
+        this.productsDetail.size_500 = 1
+      } else {
+        this.productsDetail.size_500 = 0
+      }
+    },
+    setHomeDel() {
+      if (this.productsDetail.home_delivery === 0) {
+        this.productsDetail.home_delivery = 1
+      } else {
+        this.productsDetail.home_delivery = 0
+      }
+    },
+    setDineIn() {
+      if (this.productsDetail.dine_in === 0) {
+        this.productsDetail.dine_in = 1
+      } else {
+        this.productsDetail.dine_in = 0
+      }
+    },
+    setTakeAway() {
+      if (this.productsDetail.take_away === 0) {
+        this.productsDetail.take_away = 1
+      } else {
+        this.productsDetail.take_away = 0
+      }
     },
     updateProduct() {
       console.log('dibawah ini detailnya')

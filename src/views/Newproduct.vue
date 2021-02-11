@@ -11,7 +11,7 @@
               <img
                 v-else-if="form.product_image"
                 class="round-img"
-                :src="'http://localhost:3000/' + form.product_image"
+                :src="'http://localhost:4001/' + form.product_image"
                 alt="photo"
               />
               <div v-else>

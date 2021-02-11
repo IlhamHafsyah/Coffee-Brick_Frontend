@@ -7,25 +7,48 @@
         <b-col cols="4">
           <div class="left">
             <div class="picture">
-              <b-card
+              <img v-if="url" :src="url" class="round-img" />
+              <img
+                v-else-if="promoDetail.promocode_image"
+                class="round-img"
+                :src="'http://localhost:4001/' + promoDetail.promocode_image"
+                alt="photo"
+              />
+              <div v-else>
+                <img
+                  class="default"
+                  style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                />
+              </div>
+              <!-- <b-card
                 ><img
                   :src="'http://localhost:4001/' + promoDetail.promocode_image"
                   alt=""
-              /></b-card>
+              /></b-card> -->
             </div>
             <b-card>
-              <input type="file" @change="handleFile" />
+              <!-- <input type="file" @change="handleFile" />
               <div class="tap">
                 <b-button>Take a Picture</b-button>
               </div>
-              <br />
+              <br /> -->
               <div class="cfg">
-                <b-button>Choose From Gallery</b-button>
+                <b-button>
+                  <input type="file" id="file" @change="handleFile" />
+                  <label for="file">Choose From Gallery</label>
+                </b-button>
               </div>
-              <br /><br /><br />
+              <br /><br />
               <h3>Enter the discount :</h3>
               <div>
-                <b-dropdown
+                <br />
+                <input
+                  type="number"
+                  min="1"
+                  v-model="promoDetail.promocode_discount"
+                />
+
+                <!-- <b-dropdown
                   id="dropdown-1"
                   text="Input discount"
                   variant="default"
@@ -71,12 +94,19 @@
                     @click="setDiscount(40)"
                     >40%</b-dropdown-item
                   >
-                </b-dropdown>
+                </b-dropdown> -->
               </div>
               <br />
               <h3>Expired date :</h3>
               <div>
-                <b-dropdown
+                <br />
+                <input
+                  type="date"
+                  min="0"
+                  max="100"
+                  v-model="promoDetail.valid_until"
+                />
+                <!-- <b-dropdown
                   id="dropdown-1"
                   text="Select end date"
                   variant="default"
@@ -97,7 +127,7 @@
                     @click="setValidUntil('2021-01-17')"
                     >17-01-2021</b-dropdown-item
                   >
-                </b-dropdown>
+                </b-dropdown> -->
               </div>
               <br />
               <br />
@@ -149,7 +179,7 @@
                 type="text"
                 v-model="promoDetail.minimum_purchase"
               /><br /><br />
-              <h4>Input Product Size :</h4>
+              <!-- <h4>Input Product Size :</h4>
               <h5>Click size you want to use for this promo</h5>
               <div class="size">
                 <b-button>R</b-button>
@@ -166,7 +196,7 @@
                 <b-button>take away</b-button>
                 <b-button>Dine in</b-button>
                 <b-button>Home Delivery</b-button><br /><b></b>
-              </div>
+              </div> -->
               <br /><br />
               <b-button @click="updatePromos()">Update Coupon</b-button
               ><br /><br />
@@ -174,7 +204,7 @@
             </b-card>
           </div>
         </b-col>
-        <h6>{{ promoDetail }}</h6>
+        <!-- <h6>{{ promoDetail }}</h6> -->
       </b-row>
     </b-container>
     <hr />
@@ -216,7 +246,14 @@ export default {
     ...mapMutations(['updatesIdPromo']),
     handleFile(event) {
       console.log(event)
-      this.promoDetail.promocode_image = event.target.files[0]
+      // this.promoDetail.promocode_image = event.target.files[0]
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        console.log('oke')
+      } else {
+        const file = (this.promoDetail.promocode_image = event.target.files[0])
+        this.url = URL.createObjectURL(file)
+      }
     },
     setDiscount(percent) {
       this.promoDetail.promocode_discount = percent

@@ -8,7 +8,19 @@
         <b-row>
           <b-col cols="5">
             <div class="img">
-              <img src="../assets/cb.png" alt="" />
+              <!-- <img v-if="url" :src="url" class="round-img" /> -->
+              <img
+                v-if="products.product_image"
+                class="round-img"
+                :src="'http://localhost:4001/' + products.product_image"
+                alt="photo"
+              />
+              <div v-else>
+                <img
+                  class="default"
+                  style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                />
+              </div>
             </div>
             <br />
             <br />
@@ -18,11 +30,20 @@
                 <br />
                 <b-form-group>
                   <div class="btn1">
-                    <b-form-radio-group
+                    <b-button @click="dinein">
+                      Dine in
+                    </b-button>
+                    <b-button>
+                      Door delivery
+                    </b-button>
+                    <b-button>
+                      Pick up
+                    </b-button>
+                    <!-- <b-form-radio-group
                       v-model="delivery_method"
                       :options="option"
                       buttons
-                    ></b-form-radio-group>
+                    ></b-form-radio-group> -->
                   </div>
                   <!-- <span>yang dipilih : {{ selected }}</span> -->
                 </b-form-group>
@@ -30,8 +51,14 @@
                 <div class="now">
                   <b-row>
                     <b-col cols="6">Now</b-col>
-                    <b-col cols="6"
-                      ><b-form-group>
+                    <b-col cols="6">
+                      <b-button>
+                        Yes
+                      </b-button>
+                      <b-button>
+                        No
+                      </b-button>
+                      <!-- <b-form-group>
                         <b-form-radio-group
                           id="btn-radios-2"
                           v-model="selecteds"
@@ -39,21 +66,21 @@
                           name="radios-btn"
                           buttons
                         ></b-form-radio-group>
-                        <!-- <span>pilihan {{ selecteds }}</span> -->
-                      </b-form-group></b-col
-                    >
+                      </b-form-group> -->
+                    </b-col>
                   </b-row>
                 </div>
+                <br />
                 <br />
                 <div class="time">
                   <b-row>
                     <b-col cols="6">Set time</b-col>
                     <b-col cols="6"
                       ><input
-                        type="text"
+                        type="time"
                         v-model="time"
-                        placeholder="Enter time for reservation"
                         v-on:keyup.enter="search()"
+                        style="width: 170px"
                       />
                       <!-- <p>time : {{ time }}</p> -->
                     </b-col>
@@ -65,6 +92,7 @@
           <b-col cols="7">
             <div class="name">
               <b-card>{{ products.product_name }}</b-card>
+              <!-- <p>{{ products }}</p> -->
             </div>
             <div class="desc">
               <b-card>{{ products.product_desc }}</b-card>
@@ -113,7 +141,16 @@
             <div class="sizeOpt">
               <b-card>
                 <p>Choose a size</p>
-                <b-form-group>
+                <b-button @click="setSizeR">
+                  R
+                </b-button>
+                <b-button @click="setSizeL">
+                  L
+                </b-button>
+                <b-button @click="setSizeXl">
+                  XL
+                </b-button>
+                <!-- <b-form-group>
                   <b-form-radio-group
                     id="btn-radios-3"
                     v-model="size"
@@ -123,7 +160,7 @@
                   >
                   </b-form-radio-group>
                   <br
-                /></b-form-group>
+                /></b-form-group> -->
               </b-card>
             </div>
           </b-col>
@@ -131,13 +168,27 @@
             <div class="direct">
               <b-card>
                 <b-row>
-                  <b-col cols="2"><img src="../assets/cb.png" alt=""/></b-col>
+                  <b-col cols="2">
+                    <img
+                      v-if="products.product_image"
+                      class="round-img"
+                      :src="'http://localhost:4001/' + products.product_image"
+                      alt="photo"
+                    />
+                    <div v-else>
+                      <img
+                        class="default"
+                        style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                      />
+                    </div>
+                  </b-col>
                   <b-col cols="3"
                     ><ul>
                       <li>
                         {{ products.product_name }}
                       </li>
-                      <li>{{ qty }}x ({{ size }})</li>
+                      <li v-if="qty === ''"></li>
+                      <li v-else>{{ qty }}x ({{ size }})</li>
                     </ul></b-col
                   >
                   <b-col cols="7">
@@ -220,7 +271,24 @@ export default {
   },
   methods: {
     ...mapMutations(['setCartData']),
-
+    dinein() {
+      this.delivery_method = 'Dine in'
+    },
+    door() {
+      this.delivery_method = 'Door Delivery'
+    },
+    pick() {
+      this.delivery_method = 'Pick Up'
+    },
+    setSizeR() {
+      this.size = 'Reguler'
+    },
+    setSizeL() {
+      this.size = 'Large'
+    },
+    setSizeXl() {
+      this.size = 'X Large'
+    },
     getProductById(id) {
       console.log(id)
       axios

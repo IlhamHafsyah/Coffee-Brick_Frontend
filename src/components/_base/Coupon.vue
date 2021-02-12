@@ -52,6 +52,7 @@
         </div>
       </b-col>
     </b-row>
+    <br />
     <b-pagination
       v-model="currentPage"
       :total-rows="totalRows"
@@ -59,6 +60,7 @@
       @change="handlePageChange"
       pills
       align="center"
+      size="sm"
     ></b-pagination>
   </div>
 </template>

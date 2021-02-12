@@ -4,10 +4,10 @@
     <hr />
     <b-container class="bv-example-row">
       <b-row>
-        <b-col cols="4">
+        <b-col cols="3">
           <div class="coupon">
             <h4>Promo for you</h4>
-            <p>Coupon will be updated every weeks.<br />Check them out!</p>
+            <p>Coupon will be updated every weeks<br />Check them out!</p>
             <div class="addcoupon">
               <button @click="toAddcoupon()" v-if="user.users_role === 1">
                 Add Coupon
@@ -18,7 +18,7 @@
             </div>
           </div>
         </b-col>
-        <b-col cols="8">
+        <b-col cols="9">
           <div class="addproduct" style="text-align: right">
             <button @click="toAddproduct()" v-if="user.users_role === 1">
               Add Product

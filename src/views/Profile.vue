@@ -12,16 +12,34 @@
                 <b-row>
                   <b-col cols="4">
                     <div class="edit">
-                      <img src="../assets/lit-profile-pic.png" alt="" />
-                      <h4>Name</h4>
-                      <h5>example@email.com</h5>
+                      <div class="picture">
+                        <img v-if="url" :src="url" class="round-img" />
+                        <img
+                          v-else-if="data.profile_picture"
+                          class="round-img"
+                          :src="'http://localhost:4001/' + data.profile_picture"
+                          alt="photo"
+                        />
+                        <div v-else>
+                          <img
+                            class="default"
+                            style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                          />
+                        </div>
+                      </div>
+                      <!-- <img src="../assets/lit-profile-pic.png" alt="" /> -->
+                      <h4>{{ data.users_name }}</h4>
+                      <h5>{{ data.users_email }}</h5>
                       <br />
                       <div class="photo">
                         <div class="btn1">
-                          <b-button>Choose Photo</b-button><br /><br />
+                          <b-button>
+                            <input type="file" id="file" @change="handleFile" />
+                            <label for="file">Choose Photo</label> </b-button
+                          ><br /><br />
                         </div>
                         <div class="btn2">
-                          <b-button>Remove Photo</b-button>
+                          <b-button @click="removePhoto">Remove Photo</b-button>
                         </div>
                       </div>
                       <br /><br />
@@ -71,6 +89,7 @@
                         </b-row>
                         <br /><br /><br />
                         <h4>Details</h4>
+                        <!-- <h6>{{ data }}</h6> -->
                         <br />
                         <b-row>
                           <b-col cols="6">
@@ -82,10 +101,11 @@
                             <br /><br />
                             <p>Last name :</p>
                             <input v-model="data.last_name" type="text" />
+                            <!-- <h6 style="color:white">{{ users }}</h6> -->
                           </b-col>
                           <b-col cols="6"
                             ><p>DD/MM/YY :</p>
-                            <input type="text"
+                            <input v-model="data.date_of_birth" type="date"
                           /></b-col>
                         </b-row>
                         <br /><br />
@@ -94,11 +114,12 @@
                             <b-col
                               ><b-form-group>
                                 <b-form-radio-group
-                                  v-model="selected"
+                                  v-model="data.users_gender"
                                   :options="options"
                                   name="radio-inline"
-                                ></b-form-radio-group> </b-form-group
-                            ></b-col>
+                                ></b-form-radio-group>
+                              </b-form-group>
+                            </b-col>
                           </div>
                         </b-row>
                       </b-card>
@@ -127,10 +148,9 @@ export default {
   },
   data() {
     return {
-      selected: 'first',
       options: [
-        { text: 'Male', value: 'first' },
-        { text: 'Female', value: 'second' }
+        { text: 'Male', value: 1 },
+        { text: 'Female', value: 0 }
       ]
     }
   },
@@ -141,12 +161,27 @@ export default {
   methods: {
     ...mapActions(['editProfile']),
     ...mapMutations(['setData']),
+    handleFile(event) {
+      console.log(event)
+      // this.productsDetail.product_image = event.target.files[0]
+      const type = event.target.files[0].type
+      if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
+        console.log('oke')
+      } else {
+        const file = (this.data.profile_picture = event.target.files[0])
+        this.url = URL.createObjectURL(file)
+      }
+    },
+    removePhoto() {
+      this.data.profile_picture = ''
+    },
     editProfileData() {
       const {
         users_name,
         users_email,
         users_password,
         users_phone,
+        profile_picture,
         delivery_address,
         display_name,
         first_name,
@@ -161,6 +196,7 @@ export default {
       newData.append('users_email', users_email)
       newData.append('users_password', users_password)
       newData.append('users_phone', users_phone)
+      newData.append('profile_picture', profile_picture)
       newData.append('delivery_address', delivery_address)
       newData.append('display_name', display_name)
       newData.append('first_name', first_name)

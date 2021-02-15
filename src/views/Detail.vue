@@ -141,15 +141,33 @@
             <div class="sizeOpt">
               <b-card>
                 <p>Choose a size</p>
-                <b-button @click="setSizeR">
-                  R
-                </b-button>
-                <b-button @click="setSizeL">
-                  L
-                </b-button>
-                <b-button @click="setSizeXl">
-                  XL
-                </b-button>
+                <div
+                  class="bav"
+                  v-if="
+                    products.category_id === 1 || products.category_id === 2
+                  "
+                >
+                  <b-button @click="setSizeR">
+                    R
+                  </b-button>
+                  <b-button @click="setSizeL">
+                    L
+                  </b-button>
+                  <b-button @click="setSizeXl">
+                    XL
+                  </b-button>
+                </div>
+                <div class="food" v-else>
+                  <b-button style="font-size:12px" @click="setSize250">
+                    250gr
+                  </b-button>
+                  <b-button style="font-size:12px" @click="setSize300">
+                    300gr
+                  </b-button>
+                  <b-button style="font-size:12px" @click="setSize500">
+                    500gr
+                  </b-button>
+                </div>
                 <!-- <b-form-group>
                   <b-form-radio-group
                     id="btn-radios-3"
@@ -200,6 +218,7 @@
                     </div></b-col
                   >
                 </b-row>
+                <h4>{{ getCart }}</h4>
               </b-card>
             </div>
           </b-col>
@@ -216,7 +235,7 @@
 import axios from 'axios'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'Detail',
@@ -240,7 +259,7 @@ export default {
       product_name: '',
       product_id: '',
       size: '',
-      payment_method: 'cash',
+      product_image: '',
       delivery_method: '',
       subtotal: '',
       id: '',
@@ -267,7 +286,16 @@ export default {
   },
   created() {
     this.getProductById(this.$route.params.id)
-    console.log('ini apaan =' + this.$route.params.id)
+    let getCart = localStorage.getItem('cart')
+    getCart = JSON.parse(getCart)
+    if (getCart) {
+      this.cart = getCart
+    } else {
+      this.cart = []
+    }
+  },
+  computed: {
+    ...mapGetters(['getCart'])
   },
   methods: {
     ...mapMutations(['setCartData']),
@@ -279,6 +307,15 @@ export default {
     },
     pick() {
       this.delivery_method = 'Pick Up'
+    },
+    setSize250() {
+      this.size = '250 gr'
+    },
+    setSize300() {
+      this.size = '300 gr'
+    },
+    setSize500() {
+      this.size = '500 gr'
     },
     setSizeR() {
       this.size = 'Reguler'
@@ -299,6 +336,7 @@ export default {
           this.products = response.data.data[0]
           this.product_id = response.data.data[0].product_id
           this.subtotal = response.data.data[0].product_price
+          this.product_image = response.data.data[0].product_image
         })
         .catch(error => {
           console.log(error)
@@ -311,10 +349,10 @@ export default {
         product_id: this.product_id,
         qty: this.qty,
         size: this.size,
-        payment_method: this.payment_method,
+        product_image: this.product_image,
         delivery_method: this.delivery_method,
         subtotal: this.subtotal,
-        history_id: 5
+        history_id: ''
         // product_name: this.products.product_name,
         // product_id: this.products.product_id,
         // qty: this.cart.qty,
@@ -323,7 +361,11 @@ export default {
         // history_id: 1
       }
       this.cart = [...this.cart, setCart]
+      // const add = [...this.cart, setCart]
+      // console.log(add)
+      // this.setCartData(add)
       this.setCartData(this.cart)
+      this.$router.push('/product')
       localStorage.setItem('cart', JSON.stringify(this.cart))
     }
     // postDetailHistory() {

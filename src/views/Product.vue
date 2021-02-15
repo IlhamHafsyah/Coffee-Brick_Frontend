@@ -13,7 +13,7 @@
                 Add Coupon
               </button>
             </div>
-            <div class="overflow">
+            <div class="overflows">
               <Coupon />
             </div>
           </div>

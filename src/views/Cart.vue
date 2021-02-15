@@ -9,29 +9,34 @@
           <div class="sum">
             <b-col cols="6"
               ><b-card>
-                <br />
                 <h3>Order Summary</h3>
                 <b-row>
-                  <b-col cols="12" v-for="(item, index) in cart" :key="index">
-                    <div class="product-sum">
-                      <b-row>
-                        <b-col cols="4">
-                          <img src="../assets/cb.png" alt="" />
-                        </b-col>
-                        <b-col cols="4">
-                          <b-card-text>
-                            {{ item.product_name }}<br />x {{ item.qty }}
-                            <br />{{ item.size }}
-                          </b-card-text>
-                        </b-col>
-                        <b-col cols="4">
-                          <b-card-text>
-                            IDR {{ item.subtotal * item.qty }}
-                          </b-card-text>
-                        </b-col>
-                      </b-row>
-                    </div>
-                  </b-col>
+                  <div class="overflow">
+                    <b-col cols="12" v-for="(item, index) in cart" :key="index">
+                      <div class="product-sum">
+                        <b-row>
+                          <b-col cols="4">
+                            <img
+                              :src="
+                                'http://localhost:4001/' + item.product_image
+                              "
+                            />
+                          </b-col>
+                          <b-col cols="4">
+                            <b-card-text>
+                              {{ item.product_name }}<br />x {{ item.qty }}
+                              <br />{{ item.size }}
+                            </b-card-text>
+                          </b-col>
+                          <b-col cols="4">
+                            <b-card-text>
+                              IDR {{ item.subtotal * item.qty }}
+                            </b-card-text>
+                          </b-col>
+                        </b-row>
+                      </div>
+                    </b-col>
+                  </div>
                   <div class="count">
                     <b-row>
                       <div class="count-text">
@@ -76,7 +81,7 @@
               <h3>Address details</h3>
               <input
                 type="text"
-                v-model="address"
+                v-model="data.delivery_address"
                 v-on:keyup.enter="search()"
                 placeholder=" delivered to"
               />
@@ -89,7 +94,6 @@
                   <b-form-radio-group
                     v-model="paymentMethod"
                     :options="method"
-                    :aria-describedby="ariaDescribedby"
                     name="radios-stacked"
                     stacked
                     ><div class="pmet">
@@ -113,8 +117,11 @@
             <br /><br /><br />
             <div class="button">
               <b-button @click="removeItem()">Confirm and Pay</b-button>
-            </div></b-col
-          >
+            </div>
+            <p>{{ getCart }}</p>
+            <p>{{ data }}</p>
+            <p>{{ paymentMethod }}</p>
+          </b-col>
         </b-row>
       </b-container>
     </b-jumbotron>
@@ -123,6 +130,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 
@@ -135,7 +143,8 @@ export default {
   data() {
     return {
       cart: [],
-      subtotal: '',
+      detailHistory: [],
+      subtotal: 0,
       tax: '',
       shipping: 5000,
       total: '',
@@ -149,6 +158,7 @@ export default {
     }
   },
   created() {
+    // this.getAddress()
     let getCart = localStorage.getItem('cart')
     getCart = JSON.parse(getCart)
     if (getCart) {
@@ -156,34 +166,80 @@ export default {
     } else {
       this.cart = []
     }
-    console.log(getCart.length)
-    // console.log(getCart[0].product_id)
+    for (let i = 0; i < this.cart.length; i++) {
+      this.subtotal += this.cart[i].subtotal * this.cart[i].qty
+      let tax = 0.1 * this.subtotal
+      this.tax = tax
 
-    // let subtotal = ''
-    // for (let i = 0; i <= getCart.length; i++) {
-    //   subtotal = getCart[i].subtotal * getCart[i].qty
-    // }
-    // console.log(subtotal)
-    let subtotal =
-      getCart[0].subtotal * getCart[0].qty +
-      getCart[1].subtotal * getCart[1].qty
-    // if (getCart[1] === undefined) {
-    //   subtotal = getCart[0].subtotal * getCart[0].qty
-    // } else {
-    //   getCart[0].subtotal * getCart[0].qty +
-    //     getCart[1].subtotal * getCart[1].qty
-    // }
-    this.subtotal = subtotal
-
-    let tax = 0.1 * this.subtotal
-    this.tax = tax
-
-    let total = this.subtotal + this.tax + this.shipping
-    this.total = total
+      let total = this.subtotal + this.tax + this.shipping
+      this.total = total
+    }
+  },
+  computed: {
+    ...mapGetters(['getCart']),
+    ...mapGetters({ data: 'datas' })
   },
   methods: {
+    ...mapMutations(['setpaymet']),
+    ...mapMutations(['setCartData']),
+    ...mapActions(['postDetailHistory']),
+    // getAddress() {
+    //   console.log(this.data)
+    //   this.address = this.data.delivery_address
+    //   console.log(this.address)
+    // },
     removeItem() {
+      // console.log(this.cart)
+      // console.log(this.cart)
+      // console.log(this.cart.length)
+      let detail = []
+      for (let a = 0; a < this.cart.length; a++) {
+        console.log(a)
+        let prodId = this.cart[a].product_id
+        let qtys = this.cart[a].qty
+        let sizes = this.cart[a].size
+        let deliv = this.cart[a].delivery_method
+        let sub = this.cart[a].subtotal
+        let det = {
+          product_id: prodId,
+          qty: qtys,
+          size: sizes,
+          delivery_method: deliv,
+          subtotal: sub,
+          payment_method: this.paymentMethod,
+          tax: this.tax,
+          shipping: this.shipping
+        }
+        // console.log(det)
+        detail.push(det)
+        console.log(detail)
+      }
+      this.postDetailHistory(detail)
+        .then(result => {
+          console.log(result)
+          // this.detailHistory = []
+          alert('payment success')
+        })
+        .catch(error => {
+          console.log(error)
+          alert('failed!')
+        })
+      // const detail = {
+      //   product_id: this.cart.product_id,
+      //   qty: this.cart.qty,
+      //   size: this.cart.size,
+      //   delivery_method: this.cart.delivery_method,
+      //   subtotal: this.cart.subtotal,
+      //   payment_method: this.paymentMethod,
+      //   tax: this.tax,
+      //   shipping: this.shipping
+      // }
+      // this.detailHistory.push(detail)
+
+      // let mycart = []
+      // this.setCartData(mycart)
       localStorage.removeItem('cart')
+      this.setpaymet(this.paymentMethod)
     }
   }
 }

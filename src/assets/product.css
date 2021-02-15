@@ -111,6 +111,7 @@
 }
 
 .Product .listproduct .product-card .card {
+  margin-bottom: 20px;
   width: 200px;
   font-family: 'Poppins', sans-serif;
   font-size: 22px;
@@ -121,11 +122,14 @@
 }
 
 .Product .listproduct .product-card .card .card-title {
-  height: 80px;
+  height: 70px;
 }
 
-.mb-2,
+/* .Product .listproduct .product-card .card .mb-2,
 .my-2 {
+  margin-bottom: 1.5rem !important;
+} */
+article.card.mb-2 {
   margin-bottom: 1.5rem !important;
 }
 
@@ -174,11 +178,11 @@
   padding-top: 30px;
 }
 
-.Product .coupon .overflow .listpromocode {
+.Product .coupon .overflows .listpromocode {
   text-align: center;
 }
 
-.Product .coupon .overflow .listpromocode .card {
+.Product .coupon .overflows .listpromocode .card {
   width: 260px;
   border-radius: 30px;
   box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
@@ -186,55 +190,55 @@
   background-color: #ffcb65;
 }
 
-.Product .coupon .overflow .listpromocode .card img {
+.Product .coupon .overflows .listpromocode .card img {
   width: 150px;
   border-radius: 50%;
 }
 
-.Product .coupon .overflow .listpromocode .card button {
+.Product .coupon .overflows .listpromocode .card button {
   background-color: #6a4029;
   color: white;
   border-radius: 20px;
   height: 30px;
 }
 
-.Product .coupon .overflow .listpromocode .card .percent p {
+.Product .coupon .overflows .listpromocode .card .percent p {
   font-family: 'Poppins', sans-serif;
   color: #000000;
   font-weight: bolder;
   font-size: 22px;
 }
 
-.Product .coupon .overflow .listpromocode .card .percent .card-text {
+.Product .coupon .overflows .listpromocode .card .percent .card-text {
   padding: 15px 0;
 }
 
-.Product .coupon .overflow .listpromocode .card .term p {
+.Product .coupon .overflows .listpromocode .card .term p {
   font-family: 'Poppins', sans-serif;
   color: #000000;
   font-size: 15px;
 }
 
-.Product .coupon .overflow .listpromocode .card .card-text {
+.Product .coupon .overflows .listpromocode .card .card-text {
   padding: 0px;
 }
 
-.Product .coupon .overflow .listpromocode .card p {
+.Product .coupon .overflows .listpromocode .card p {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
 }
 
-.Product .coupon .overflow .listpromocode .card .code p {
+.Product .coupon .overflows .listpromocode .card .code p {
   font-family: 'Poppins', sans-serif;
   font-weight: bolder;
   font-size: 30px;
 }
 
-.Product .coupon .overflow .listpromocode .card .code .card-text {
+.Product .coupon .overflows .listpromocode .card .code .card-text {
   padding: 20px 0;
 }
 
-.Product .coupon .overflow .listpromocode .card .valid-until p {
+.Product .coupon .overflows .listpromocode .card .valid-until p {
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
 }

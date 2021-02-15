@@ -77,10 +77,17 @@
                             <input v-model="data.users_email" type="text" />
                             <br /><br />
                             <p>Delivery address :</p>
-                            <input
+                            <!-- <input
                               v-model="data.delivery_address"
                               type="text"
-                            />
+                            /> -->
+                            <textarea
+                              v-model="data.delivery_address"
+                              name=""
+                              id=""
+                              cols="23"
+                              rows="2"
+                            ></textarea>
                           </b-col>
                           <b-col cols="6"
                             ><p>Mobile number :</p>

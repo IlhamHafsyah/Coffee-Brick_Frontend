@@ -5,20 +5,25 @@ export default {
   state: {
     today_income: '',
     total_order: '',
-    this_year_income: ''
+    this_year_income: '',
+    perMonthData: []
   },
   mutations: {
+    setPerMonth(state, payload) {
+      state.perMonthData = payload
+      console.log(state.perMonthData)
+    },
     setTodayIncome(state, payload) {
       state.today_income = payload
-      console.log(state.today_income)
+      // console.log(state.today_income)
     },
     setOrderPerWeek(state, payload) {
       state.total_order = payload
-      console.log(state.total_order)
+      // console.log(state.total_order)
     },
     setYearIncome(state, payload) {
       state.this_year_income = payload
-      console.log(state.this_year_income)
+      // console.log(state.this_year_income)
     }
   },
   actions: {
@@ -27,7 +32,7 @@ export default {
         axios
           .get('http://localhost:4001/dashboard/ti')
           .then(result => {
-            console.log(result)
+            // console.log(result)
             context.commit('setTodayIncome', result.data.data[0].today_income)
             resolve(result)
           })
@@ -42,8 +47,13 @@ export default {
         axios
           .get('http://localhost:4001/dashboard/pw')
           .then(result => {
-            console.log(result)
-            context.commit('setOrderPerWeek', result.data.data[1].total_order)
+            // console.log(result)
+            const lgth = result.data.data.length - 1
+            // console.log(lgth)
+            context.commit(
+              'setOrderPerWeek',
+              result.data.data[lgth].total_order
+            )
             resolve(result)
           })
           .catch(error => {
@@ -57,7 +67,7 @@ export default {
         axios
           .get('http://localhost:4001/dashboard/yi')
           .then(result => {
-            console.log(result)
+            // console.log(result)
             context.commit(
               'setYearIncome',
               result.data.data[0].this_year_income
@@ -69,9 +79,27 @@ export default {
             reject(error)
           })
       })
+    },
+    perMonthIncome(context) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get('http://localhost:4001/dashboard/pm')
+          .then(result => {
+            console.log(result)
+            context.commit('setPerMonth', result.data.data)
+            resolve(result)
+          })
+          .catch(error => {
+            console.log(error)
+            reject(error)
+          })
+      })
     }
   },
   getters: {
+    getPerMonth(state) {
+      return state.perMonthData
+    },
     getTodayIncome(state) {
       return state.today_income
     },

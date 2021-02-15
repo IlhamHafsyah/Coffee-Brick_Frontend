@@ -45,8 +45,9 @@
                   <b-dropdown-item>Month</b-dropdown-item>
                   <b-dropdown-item>Year</b-dropdown-item>
                 </b-dropdown>
-              </div></b-card
-            >
+              </div>
+              <Chart />
+            </b-card>
           </div>
         </b-col>
       </b-row>
@@ -62,12 +63,14 @@ import { mapGetters, mapActions } from 'vuex'
 
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
+import Chart from '../components/_base/Chart'
 
 export default {
   name: 'Dashboard',
   components: {
     Header,
-    Footer
+    Footer,
+    Chart
   },
   data() {
     return {}
@@ -78,12 +81,10 @@ export default {
     this.yearIncome()
   },
   computed: {
-    // ...mapState(['today_income']),
-    // ...mapState(['name']),
-    // ...mapMutations(['setTodayIncome']),
     ...mapGetters({ today_income: 'getTodayIncome' }),
     ...mapGetters({ total_order: 'getOrderPerWeek' }),
-    ...mapGetters({ this_year_income: 'getYearIncome' })
+    ...mapGetters({ this_year_income: 'getYearIncome' }),
+    ...mapGetters(['getPerWeek'])
   },
   methods: {
     ...mapActions(['todayIncome']),

@@ -4,7 +4,8 @@
 }
 
 .history .logo {
-  justify-content: space-between;
+  padding-left: 50px;
+  /* justify-content: space-between; */
 }
 
 .history .logo img {
@@ -24,7 +25,7 @@
   list-style: none;
   display: flex;
   justify-content: space-between;
-  padding: 0px 0px;
+  padding: 20px 0px;
 }
 
 .history .menu .link a {
@@ -45,6 +46,7 @@
   justify-content: space-around;
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
   padding-right: 10px;
 }
 
@@ -112,7 +114,53 @@
 }
 
 .history .history-card .card-body {
-  height: 90px;
+  height: 135px;
+}
+
+.modal-header {
+  display: none;
+}
+
+.modal-body {
+  background-image: url('../assets/pork.jpeg');
+  background-size: cover;
+}
+
+.modal-footer .btn-secondary {
+  display: none;
+}
+
+.modal-content .card {
+  border-radius: 20px;
+  padding: 12px 0;
+  background-color: #0b132a00;
+  border: none;
+}
+
+.modal-content .card-body {
+  background-color: white;
+  color: #6a4029;
+  border-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+}
+
+.history .history-card .card-body button {
+  font-size: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  color: black;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.history .history-card .card-body h4 {
+  font-size: 15px;
+}
+
+.history .history-card .card-body p {
+  color: black;
+  font-size: 15px;
+  text-shadow: none;
+  margin: 0 0 0;
 }
 
 .history .desc {

@@ -24,6 +24,7 @@
             <br />
             <h5>Email Adrress :</h5>
             <input
+              v-focus
               type="email"
               v-model="form.users_email"
               placeholder="  Input Your Email ..."
@@ -78,9 +79,11 @@
 <script>
 import Footer from '../components/_base/Footer'
 import { mapActions, mapMutations } from 'vuex'
+import alert from '../mixin/alert'
 
 export default {
   name: 'Register',
+  mixins: [alert],
   components: {
     Footer
   },
@@ -115,13 +118,18 @@ export default {
       this.setData(this.form)
       this.register(this.form)
         .then(result => {
-          console.log(result)
-          alert('Success Register')
+          this.makeToast(
+            `${result.data.msg}`,
+            `Congratulations!, Your account are registered`,
+            'success'
+          )
+          setTimeout(() => {
+            this.$router.push('/login')
+          }, 2000)
         })
         .catch(error => {
-          alert(error)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
-      this.$router.push('/login')
     }
   }
 }

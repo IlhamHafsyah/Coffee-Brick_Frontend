@@ -74,7 +74,11 @@
                         <b-row>
                           <b-col cols="6">
                             <p>Email address :</p>
-                            <input v-model="data.users_email" type="text" />
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.users_email"
+                              type="text"
+                            />
                             <br /><br />
                             <p>Delivery address :</p>
                             <!-- <input
@@ -82,6 +86,7 @@
                               type="text"
                             /> -->
                             <textarea
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
                               v-model="data.delivery_address"
                               name=""
                               id=""
@@ -91,7 +96,10 @@
                           </b-col>
                           <b-col cols="6"
                             ><p>Mobile number :</p>
-                            <input v-model="data.users_phone" type="text"
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.users_phone"
+                              type="text"
                           /></b-col>
                         </b-row>
                         <br /><br /><br />
@@ -101,18 +109,33 @@
                         <b-row>
                           <b-col cols="6">
                             <p>Display name :</p>
-                            <input v-model="data.users_name" type="text" />
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.users_name"
+                              type="text"
+                            />
                             <br /><br />
                             <p>First name :</p>
-                            <input v-model="data.first_name" type="text" />
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.first_name"
+                              type="text"
+                            />
                             <br /><br />
                             <p>Last name :</p>
-                            <input v-model="data.last_name" type="text" />
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.last_name"
+                              type="text"
+                            />
                             <!-- <h6 style="color:white">{{ users }}</h6> -->
                           </b-col>
                           <b-col cols="6"
                             ><p>DD/MM/YY :</p>
-                            <input v-model="data.date_of_birth" type="date"
+                            <input
+                              style="border-radius: 10px; border-color: #6a4029; padding-left: 5px"
+                              v-model="data.date_of_birth"
+                              type="date"
                           /></b-col>
                         </b-row>
                         <br /><br />
@@ -146,9 +169,11 @@
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
+import alert from '../mixin/alert'
 import Footer from '../components/_base/Footer'
 export default {
   nama: 'Product',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -172,11 +197,20 @@ export default {
       console.log(event)
       // this.productsDetail.product_image = event.target.files[0]
       const type = event.target.files[0].type
+      const size = event.target.files[0].size
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-        console.log('oke')
+        this.makeToast(
+          'Failed',
+          `Type of file must be JPEG, JPG, or PNG !`,
+          'danger'
+        )
       } else {
-        const file = (this.data.profile_picture = event.target.files[0])
-        this.url = URL.createObjectURL(file)
+        if (size > 2000000) {
+          this.makeToast('Failed', `File too large (max 2 MB)`, 'danger')
+        } else {
+          const file = (this.data.profile_picture = event.target.files[0])
+          this.url = URL.createObjectURL(file)
+        }
       }
     },
     removePhoto() {
@@ -215,11 +249,14 @@ export default {
       this.setData(newData)
       this.editProfile(newData)
         .then(result => {
-          console.log(result)
-          alert('Success Update Profile')
+          this.makeToast(
+            `${result.data.msg}`,
+            `Success update profile`,
+            'success'
+          )
         })
         .catch(error => {
-          alert(error)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
     },
     editPass(id) {

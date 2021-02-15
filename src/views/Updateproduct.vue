@@ -467,11 +467,13 @@
 
 <script>
 import { mapActions, mapMutations, mapGetters } from 'vuex'
+import alert from '../mixin/alert'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 
 export default {
   name: 'Newproduct',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -580,12 +582,22 @@ export default {
     handleFile(event) {
       console.log(event)
       // this.productsDetail.product_image = event.target.files[0]
+      const size = event.target.files[0].size
       const type = event.target.files[0].type
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-        console.log('oke')
+        this.makeToast(
+          'Failed',
+          `Type of file must be JPEG, JPG, or PNG !`,
+          'danger'
+        )
       } else {
-        const file = (this.productsDetail.product_image = event.target.files[0])
-        this.url = URL.createObjectURL(file)
+        if (size > 2000000) {
+          this.makeToast('Failed', `File too large (max 2 MB)`, 'danger')
+        } else {
+          const file = (this.productsDetail.product_image =
+            event.target.files[0])
+          this.url = URL.createObjectURL(file)
+        }
       }
     },
     setr() {
@@ -700,14 +712,18 @@ export default {
       this.update(this.$route.params.id)
       this.updateProducts(data)
         .then(result => {
-          console.log(result)
-          alert('Success Update Product')
+          this.makeToast(
+            `${result.data.msg}`,
+            `Success Update product`,
+            'success'
+          )
+          setTimeout(() => {
+            this.$router.push('/product')
+          }, 2000)
         })
         .catch(error => {
-          console.log(error)
-          alert('Form cant be empty')
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
-      this.$router.push('/product')
     }
   }
 }

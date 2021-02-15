@@ -200,11 +200,13 @@
 
 <script>
 import Header from '../components/_base/Header'
+import alert from '../mixin/alert'
 import Footer from '../components/_base/Footer'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'Newpromo',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -227,12 +229,21 @@ export default {
     handleFile(event) {
       console.log(event)
       // this.form.promocode_image = event.target.files[0]
+      const size = event.target.files[0].size
       const type = event.target.files[0].type
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-        console.log('oke')
+        this.makeToast(
+          'Failed',
+          `Type of file must be JPEG, JPG, or PNG !`,
+          'danger'
+        )
       } else {
-        const file = (this.form.promocode_image = event.target.files[0])
-        this.url = URL.createObjectURL(file)
+        if (size > 2000000) {
+          this.makeToast('Failed', `File too large (max 2 MB)`, 'danger')
+        } else {
+          const file = (this.form.promocode_image = event.target.files[0])
+          this.url = URL.createObjectURL(file)
+        }
       }
     },
     setDiscount(percent) {
@@ -260,13 +271,14 @@ export default {
 
       this.postPromo(data)
         .then(result => {
-          console.log(result)
-          alert('Success Post Coupon')
+          this.makeToast(`${result.data.msg}`, `Success add promo`, 'success')
+          setTimeout(() => {
+            this.$router.push('/product')
+          }, 2000)
         })
         .catch(error => {
-          alert(error)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
-      this.$router.push('/product')
     }
   }
 }

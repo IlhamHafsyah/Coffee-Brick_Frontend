@@ -14,6 +14,11 @@ process.env.VUE_APP_API
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
+Vue.directive('focus', {
+  inserted: function(el) {
+    el.focus()
+  }
+})
 
 new Vue({
   router,

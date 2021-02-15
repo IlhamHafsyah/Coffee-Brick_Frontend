@@ -3,7 +3,8 @@
 }
 
 .detail .logo {
-  justify-content: space-between;
+  padding-left: 50px;
+  /* justify-content: space-between; */
 }
 
 .detail .logo img {
@@ -23,7 +24,7 @@
   list-style: none;
   display: flex;
   justify-content: space-between;
-  padding: 0px 0px;
+  padding: 20px 0px;
 }
 
 .detail .menu .link a {
@@ -37,6 +38,7 @@
   justify-content: space-around;
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
   padding-right: 10px;
 }
 

@@ -26,8 +26,8 @@
           </div>
           <a @click="setProfile(users.users_id)"
             ><img
-              style="border-radius: 50%"
-              src="../../assets/lit-profile-pic.png"
+              style="border-radius: 50%; width: 33px; height: 33px"
+              :src="'http://localhost:4001/' + data.profile_picture"
           /></a>
         </b-col>
       </b-row>

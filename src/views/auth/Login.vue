@@ -10,7 +10,6 @@
             <b-col cols="6">
               <div class="logo">
                 <img src="../../assets/logo copy.png" />
-                <!-- <a href="">Coffee Brick</a> -->
               </div>
             </b-col>
             <b-col cols="6">
@@ -26,6 +25,7 @@
             <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
               <h5>Email Adrress :</h5>
               <input
+                v-focus
                 type="email"
                 v-model="form.users_email"
                 placeholder="  Input Your Email ..."
@@ -87,8 +87,10 @@
 <script>
 import { mapActions } from 'vuex'
 import Footer from '../../components/_base/Footer'
+import alert from '../../mixin/alert'
 export default {
   name: 'Login',
+  mixins: [alert],
   components: {
     Footer
   },
@@ -121,12 +123,17 @@ export default {
     onSubmit() {
       this.login(this.form)
         .then(result => {
-          this.$router.push('/')
-          console.log(result)
-          // alert('Success Login')
+          this.makeToast(
+            `${result.data.msg}`,
+            `Congratulations, ${this.form.users_email}`,
+            'success'
+          )
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 2000)
         })
         .catch(error => {
-          alert(error.data.msg)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
     },
     onReset() {

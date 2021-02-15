@@ -44,10 +44,6 @@
   padding-top: 30px;
 }
 
-.Product .logo {
-  justify-content: space-between;
-}
-
 .Product .logo img {
   padding-left: 10px;
   width: 180px;
@@ -108,6 +104,10 @@
   font-family: 'Rubik', sans-serif;
   font-size: 20px;
   font-weight: 400;
+}
+
+.Product .category {
+  cursor: pointer;
 }
 
 .Product .listproduct .product-card .card {

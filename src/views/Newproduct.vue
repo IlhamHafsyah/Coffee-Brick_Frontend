@@ -359,12 +359,13 @@
 
 <script>
 import { mapActions } from 'vuex'
-// import axios from 'axios'
+import alert from '../mixin/alert'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
 
 export default {
   name: 'Newproduct',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -506,11 +507,20 @@ export default {
       console.log(event)
       // this.form.product_image = event.target.files[0]
       const type = event.target.files[0].type
+      const size = event.target.files[0].size
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
-        console.log('oke')
+        this.makeToast(
+          'Failed',
+          `Type of file must be JPEG, JPG, or PNG !`,
+          'danger'
+        )
       } else {
-        const file = (this.form.product_image = event.target.files[0])
-        this.url = URL.createObjectURL(file)
+        if (size > 2000000) {
+          this.makeToast('Failed', `File too large (max 2 MB)`, 'danger')
+        } else {
+          const file = (this.form.product_image = event.target.files[0])
+          this.url = URL.createObjectURL(file)
+        }
       }
     },
     postProduct() {
@@ -557,13 +567,14 @@ export default {
 
       this.postProducts(data)
         .then(result => {
-          console.log(result)
-          alert('Success Post Product')
+          this.makeToast(`${result.data.msg}`, `Success add product`, 'success')
+          setTimeout(() => {
+            this.$router.push('/product')
+          }, 2000)
         })
         .catch(error => {
-          alert(error)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
-      this.$router.push('/product')
     }
   }
 }

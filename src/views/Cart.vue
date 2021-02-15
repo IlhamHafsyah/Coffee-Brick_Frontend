@@ -118,8 +118,7 @@
             <div class="button">
               <b-button @click="removeItem()">Confirm and Pay</b-button>
             </div>
-            <p>{{ getCart }}</p>
-            <p>{{ data }}</p>
+            <p>{{ getHisId }}</p>
             <p>{{ paymentMethod }}</p>
           </b-col>
         </b-row>
@@ -133,9 +132,11 @@
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
+import alert from '../mixin/alert'
 
 export default {
   nama: 'Cart',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -143,6 +144,7 @@ export default {
   data() {
     return {
       cart: [],
+      user: [],
       detailHistory: [],
       subtotal: 0,
       tax: '',
@@ -177,21 +179,20 @@ export default {
   },
   computed: {
     ...mapGetters(['getCart']),
-    ...mapGetters({ data: 'datas' })
+    ...mapGetters({ data: 'datas' }),
+    ...mapGetters(['setUsers']),
+    ...mapGetters(['getHisId'])
   },
   methods: {
     ...mapMutations(['setpaymet']),
     ...mapMutations(['setCartData']),
-    ...mapActions(['postDetailHistory']),
+    ...mapActions(['postDetailHistory', 'postHistory']),
     // getAddress() {
     //   console.log(this.data)
     //   this.address = this.data.delivery_address
     //   console.log(this.address)
     // },
     removeItem() {
-      // console.log(this.cart)
-      // console.log(this.cart)
-      // console.log(this.cart.length)
       let detail = []
       for (let a = 0; a < this.cart.length; a++) {
         console.log(a)
@@ -210,19 +211,32 @@ export default {
           tax: this.tax,
           shipping: this.shipping
         }
-        // console.log(det)
         detail.push(det)
         console.log(detail)
       }
       this.postDetailHistory(detail)
         .then(result => {
           console.log(result)
-          // this.detailHistory = []
-          alert('payment success')
+          this.makeToast(`${result.data.msg}`, `Payment Success`, 'success')
         })
         .catch(error => {
           console.log(error)
-          alert('failed!')
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
+        })
+      this.user = this.setUsers
+      const setHistory = {
+        history_id: this.getHisId + 1,
+        payment_method: this.paymentMethod,
+        subtotal: this.total,
+        user_id: this.setUsers.users_id,
+        status: 0
+      }
+      this.postHistory(setHistory)
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => {
+          console.log(error)
         })
       // const detail = {
       //   product_id: this.cart.product_id,

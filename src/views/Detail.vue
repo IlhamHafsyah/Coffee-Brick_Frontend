@@ -235,10 +235,12 @@
 import axios from 'axios'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
+import alert from '../mixin/alert'
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'Detail',
+  mixins: [alert],
   components: {
     Header,
     Footer
@@ -365,7 +367,11 @@ export default {
       // console.log(add)
       // this.setCartData(add)
       this.setCartData(this.cart)
-      this.$router.push('/product')
+      this.makeToast(`Yeay!`, `Product added to cart`, 'success')
+      setTimeout(() => {
+        this.$router.push('/product')
+      }, 2000)
+
       localStorage.setItem('cart', JSON.stringify(this.cart))
     }
     // postDetailHistory() {

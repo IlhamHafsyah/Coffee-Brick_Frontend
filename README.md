@@ -1,6 +1,6 @@
 <h1 align='center'>Vue JS - #CoffeeBrick-Frontend</h1>
   <p align="center">
-    <a href="link_deploy">View Demo</a>
+    <a href="https://coffeebrick.netlify.app/register">View Demo</a>
     ·
     <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend">Report Bug</a>
     ·

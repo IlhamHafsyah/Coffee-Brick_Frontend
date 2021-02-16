@@ -26,9 +26,18 @@
           </div>
           <a @click="setProfile(users.users_id)"
             ><img
+              v-if="data.profile_picture"
               style="border-radius: 50%; width: 33px; height: 33px"
               :src="'http://localhost:4001/' + data.profile_picture"
-          /></a>
+            />
+            <div v-else>
+              <img
+                class="default"
+                src="../../assets/default-profile.png"
+                style="border-radius:50%;width:230px;height:230px"
+              />
+            </div>
+          </a>
         </b-col>
       </b-row>
     </b-container>
@@ -45,6 +54,9 @@ export default {
     return {
       char: ''
     }
+  },
+  created() {
+    this.getUsers()
   },
   components: {
     Navbar

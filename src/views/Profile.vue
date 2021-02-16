@@ -23,7 +23,8 @@
                         <div v-else>
                           <img
                             class="default"
-                            style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
+                            src="../assets/default-profile.png"
+                            style="border-radius:50%;width:230px;height:230px"
                           />
                         </div>
                       </div>

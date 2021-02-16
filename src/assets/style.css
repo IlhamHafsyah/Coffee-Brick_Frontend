@@ -71,18 +71,42 @@
 
 .home .jumbotron {
   text-align: center;
-  background-image: url(../assets/jt-history.png);
+  background-image: url(../assets/home-jt.png);
   background-size: cover;
   background-position: 0;
-  height: 800px;
+  height: 500px;
 }
 
 .home .jumbotron h2 {
   color: white;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 400;
-  font-size: 70px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.home .jumbotron h3 {
+  text-align: left;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+}
+
+.home .jumbotron p {
+  text-align: left;
+  color: white;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.home .row {
+  padding-top: 15px;
+}
+
+.home .image img {
+  padding-top: 100px;
 }
 
 .home .desc {

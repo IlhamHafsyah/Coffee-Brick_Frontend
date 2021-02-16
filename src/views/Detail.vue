@@ -8,11 +8,10 @@
         <b-row>
           <b-col cols="5">
             <div class="img">
-              <!-- <img v-if="url" :src="url" class="round-img" /> -->
               <img
                 v-if="products.product_image"
                 class="round-img"
-                :src="'http://localhost:4001/' + products.product_image"
+                :src="`${URL}/` + products.product_image"
                 alt="photo"
               />
               <div v-else>
@@ -39,13 +38,7 @@
                     <b-button>
                       Pick up
                     </b-button>
-                    <!-- <b-form-radio-group
-                      v-model="delivery_method"
-                      :options="option"
-                      buttons
-                    ></b-form-radio-group> -->
                   </div>
-                  <!-- <span>yang dipilih : {{ selected }}</span> -->
                 </b-form-group>
                 <br />
                 <div class="now">
@@ -58,15 +51,6 @@
                       <b-button>
                         No
                       </b-button>
-                      <!-- <b-form-group>
-                        <b-form-radio-group
-                          id="btn-radios-2"
-                          v-model="selecteds"
-                          :options="options"
-                          name="radios-btn"
-                          buttons
-                        ></b-form-radio-group>
-                      </b-form-group> -->
                     </b-col>
                   </b-row>
                 </div>
@@ -82,7 +66,6 @@
                         v-on:keyup.enter="search()"
                         style="width: 170px"
                       />
-                      <!-- <p>time : {{ time }}</p> -->
                     </b-col>
                   </b-row>
                 </div>
@@ -168,17 +151,6 @@
                     500gr
                   </b-button>
                 </div>
-                <!-- <b-form-group>
-                  <b-form-radio-group
-                    id="btn-radios-3"
-                    v-model="size"
-                    :options="sizeOption"
-                    name="radios-btn"
-                    buttons
-                  >
-                  </b-form-radio-group>
-                  <br
-                /></b-form-group> -->
               </b-card>
             </div>
           </b-col>
@@ -190,7 +162,7 @@
                     <img
                       v-if="products.product_image"
                       class="round-img"
-                      :src="'http://localhost:4001/' + products.product_image"
+                      :src="`${URL}/` + products.product_image"
                       alt="photo"
                     />
                     <div v-else>
@@ -213,12 +185,17 @@
                     <div class="checkout">
                       <b-row>
                         <b-col cols="9"><p>Checkout</p></b-col>
-                        <b-col cols="3"><b-button>-></b-button></b-col>
-                      </b-row>
-                    </div></b-col
-                  >
+                        <b-col cols="3"
+                          ><b-button
+                            style="width: 60px; height: 60px; margin-top: -10px; margin-right: 20px"
+                            ><img
+                              style="width: 30px; height: 30px"
+                              src="../assets/arrow.png"
+                              alt=""/></b-button
+                        ></b-col>
+                      </b-row></div
+                  ></b-col>
                 </b-row>
-                <h4>{{ getCart }}</h4>
               </b-card>
             </div>
           </b-col>
@@ -270,6 +247,7 @@ export default {
       selecteds: '',
       selectedSize: '',
       qty: '',
+      URL: process.env.VUE_APP_API,
       option: [
         { text: 'Dine in', value: 'Dine in' },
         { text: 'Door Delivery', value: 'Door Delivery' },

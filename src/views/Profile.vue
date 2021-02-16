@@ -17,7 +17,7 @@
                         <img
                           v-else-if="data.profile_picture"
                           class="round-img"
-                          :src="'http://localhost:4001/' + data.profile_picture"
+                          :src="`${URL}/` + data.profile_picture"
                           alt="photo"
                         />
                         <div v-else>
@@ -184,7 +184,8 @@ export default {
       options: [
         { text: 'Male', value: 1 },
         { text: 'Female', value: 0 }
-      ]
+      ],
+      URL: process.env.VUE_APP_API
     }
   },
   computed: {

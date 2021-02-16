@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import router from '../../router'
 
 export default {
   state: {
@@ -77,10 +76,6 @@ export default {
             console.log(result)
             context.commit('setProduct', result.data)
             resolve(result)
-            //   state.totalRows = response.data.pagination.totalData
-            //   state.products = response.data.data
-            //   state.id = id
-            //   console.log(state.sort)
           })
           .catch(error => {
             console.log(error)
@@ -92,7 +87,7 @@ export default {
       return new Promise((resolve, reject) => {
         console.log(payload)
         axios
-          .post('http://localhost:4001/product', payload)
+          .post(`${context.state.VUE_APP_API}/product`, payload)
           .then(result => {
             console.log(result)
             resolve(result)
@@ -106,7 +101,10 @@ export default {
     updateProducts(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .patch(`http://localhost:4001/product/${context.state.upid}`, payload)
+          .patch(
+            `${context.state.VUE_APP_API}/product/${context.state.upid}`,
+            payload
+          )
           .then(result => {
             resolve(result)
           })
@@ -118,7 +116,7 @@ export default {
     deleteProducts(context) {
       return new Promise((resolve, reject) => {
         axios
-          .delete(`http://localhost:4001/product/${context.state.delid}`)
+          .delete(`${context.state.VUE_APP_API}/product/${context.state.delid}`)
           .then(result => {
             resolve(result)
           })

@@ -7,10 +7,12 @@
 </template>
 
 <script>
+import alert from '../mixin/alert'
 import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Deleteproduct',
+  mixins: [alert],
   data() {
     return {}
   },
@@ -25,12 +27,18 @@ export default {
       this.deleteProducts()
         .then(result => {
           console.log(result)
-          alert(`Success Delete Product`)
+          this.makeToast(
+            `${result.data.msg}`,
+            `Success Delete Product`,
+            'success'
+          )
+          setTimeout(() => {
+            this.$router.push('/product')
+          }, 2000)
         })
         .catch(error => {
-          alert(error)
+          this.makeToast('Failed', `${error.data.msg}`, 'danger')
         })
-      this.$router.push('/product')
     },
     cancelDeleting() {
       this.$router.push('/product')

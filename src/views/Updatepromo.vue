@@ -11,7 +11,7 @@
               <img
                 v-else-if="promoDetail.promocode_image"
                 class="round-img"
-                :src="'http://localhost:4001/' + promoDetail.promocode_image"
+                :src="`${URL}/` + promoDetail.promocode_image"
                 alt="photo"
               />
               <div v-else>
@@ -20,18 +20,8 @@
                   style="background-color:#d2d2d2;border-radius:50%;width:230px;height:230px"
                 />
               </div>
-              <!-- <b-card
-                ><img
-                  :src="'http://localhost:4001/' + promoDetail.promocode_image"
-                  alt=""
-              /></b-card> -->
             </div>
             <b-card>
-              <!-- <input type="file" @change="handleFile" />
-              <div class="tap">
-                <b-button>Take a Picture</b-button>
-              </div>
-              <br /> -->
               <div class="cfg">
                 <b-button>
                   <input type="file" id="file" @change="handleFile" />
@@ -47,54 +37,6 @@
                   min="1"
                   v-model="promoDetail.promocode_discount"
                 />
-
-                <!-- <b-dropdown
-                  id="dropdown-1"
-                  text="Input discount"
-                  variant="default"
-                  class="m-md-2"
-                >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(5)"
-                    >5%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(10)"
-                    >10%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(15)"
-                    >15%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(20)"
-                    >20%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(25)"
-                    >25%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(30)"
-                    >30%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(35)"
-                    >35%</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.promocode_discount"
-                    @click="setDiscount(40)"
-                    >40%</b-dropdown-item
-                  >
-                </b-dropdown> -->
               </div>
               <br />
               <h3>Expired date :</h3>
@@ -106,61 +48,9 @@
                   max="100"
                   v-model="promoDetail.valid_until"
                 />
-                <!-- <b-dropdown
-                  id="dropdown-1"
-                  text="Select end date"
-                  variant="default"
-                  class="m-md-2"
-                >
-                  <b-dropdown-item
-                    v-model="promoDetail.valid_until"
-                    @click="setValidUntil('2021-01-15')"
-                    >15-01-2021</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.valid_until"
-                    @click="setValidUntil('2021-01-16')"
-                    >16-01-2021</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="promoDetail.valid_until"
-                    @click="setValidUntil('2021-01-17')"
-                    >17-01-2021</b-dropdown-item
-                  >
-                </b-dropdown> -->
               </div>
               <br />
               <br />
-              <!-- <h3>Input coupon date :</h3>
-              <div>
-                <b-dropdown
-                  id="dropdown-1"
-                  text="Input code"
-                  variant="default"
-                  class="m-md-2"
-                >
-                  <b-dropdown-item
-                    v-model="form.promocode_name"
-                    @click="setCode('CODE1')"
-                    >CODE1</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="form.promocode_name"
-                    @click="setCode('CODE2')"
-                    >CODE2</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="form.promocode_name"
-                    @click="setCode('CODE3')"
-                    >CODE3</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="form.promocode_name"
-                    @click="setCode('CODE4')"
-                    >CODE4</b-dropdown-item
-                  >
-                </b-dropdown>
-              </div> -->
             </b-card>
           </div>
         </b-col>
@@ -179,24 +69,7 @@
                 type="text"
                 v-model="promoDetail.minimum_purchase"
               /><br /><br />
-              <!-- <h4>Input Product Size :</h4>
-              <h5>Click size you want to use for this promo</h5>
-              <div class="size">
-                <b-button>R</b-button>
-                <b-button>L</b-button>
-                <b-button>XL</b-button>
-                <b-button>250<br />gr</b-button>
-                <b-button>300<br />gr</b-button>
-                <b-button>500<br />gr</b-button><br />
-              </div>
-              <br />
-              <h4>Input Delivery Methods :</h4>
-              <h5>Click methods you want to use for this promo</h5>
-              <div class="delivery">
-                <b-button>take away</b-button>
-                <b-button>Dine in</b-button>
-                <b-button>Home Delivery</b-button><br /><b></b>
-              </div> -->
+
               <br /><br />
               <b-button @click="updatePromos()">Update Coupon</b-button
               ><br /><br />
@@ -204,7 +77,6 @@
             </b-card>
           </div>
         </b-col>
-        <!-- <h6>{{ promoDetail }}</h6> -->
       </b-row>
     </b-container>
     <hr />
@@ -239,7 +111,8 @@ export default {
         valid_until: '',
         promocode_created_at: new Date(),
         promocode_status: 1
-      }
+      },
+      URL: process.env.VUE_APP_API
     }
   },
   methods: {

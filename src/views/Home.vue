@@ -16,66 +16,8 @@
           meals made by love just for you. Start your day with us <br />
           for a bigger smile!
         </p>
-        <div class="det">
-          <b-card
-            style="border-radius: 20px; height: 150px; z-index: 1; position: relative; top: 85px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8)"
-          >
-            <b-row>
-              <b-col cols="4">
-                <b-row>
-                  <b-col style="text-align: right">
-                    <img src="../assets/user.png" alt="" />
-                  </b-col>
-                  <b-col style="text-align: left">
-                    <h5
-                      style="font-weight: bold; font-family: 'Rubik', sans-serif"
-                    >
-                      90+ <br />
-                      Staff
-                    </h5>
-                  </b-col>
-                </b-row>
-              </b-col>
-              <b-col cols="4">
-                <b-row>
-                  <b-col style="text-align: right">
-                    <img src="../assets/location.png" alt="" />
-                  </b-col>
-                  <b-col style="text-align: left">
-                    <h5
-                      style="font-weight: bold; font-family: 'Rubik', sans-serif"
-                    >
-                      30+ <br />
-                      Store
-                    </h5>
-                  </b-col>
-                </b-row>
-              </b-col>
-              <b-col cols="4">
-                <b-row>
-                  <b-col style="text-align: right">
-                    <img src="../assets/Server.png" alt="" />
-                  </b-col>
-                  <b-col style="text-align: left">
-                    <h5
-                      style="font-weight: bold; font-family: 'Rubik', sans-serif"
-                    >
-                      800+ <br />
-                      Customer
-                    </h5>
-                  </b-col>
-                </b-row>
-              </b-col>
-            </b-row>
-          </b-card>
-        </div>
-        <div class="image">
-          <b-row>
-            <b-col>
-              <img src="../assets/pic-homew.png" alt="" />
-            </b-col>
-          </b-row>
-        </div>
+        <HomeCard />
+        <DetailHome />
       </b-jumbotron>
     </b-container>
     <Footer />
@@ -83,16 +25,18 @@
 </template>
 
 <script>
-//1
 import { mapGetters } from 'vuex'
 import Header from '../components/_base/Header'
 import Footer from '../components/_base/Footer'
+import DetailHome from '../components/_base/DetailHome'
+import HomeCard from '../components/_base/HomeCard'
 export default {
   name: 'Home',
-  //2
   components: {
     Header,
-    Footer
+    Footer,
+    DetailHome,
+    HomeCard
   },
   data() {
     return {
@@ -105,7 +49,8 @@ export default {
         { product_name: 'Kursi', product_price: 40000 }
       ],
       urlGoogle: 'http://google.com',
-      urlYoutube: 'http://youtube.com'
+      urlYoutube: 'http://youtube.com',
+      URL: process.env.VUE_APP_API
     }
   },
   computed: {

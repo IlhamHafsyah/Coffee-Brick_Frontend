@@ -28,13 +28,13 @@
             ><img
               v-if="data.profile_picture"
               style="border-radius: 50%; width: 33px; height: 33px"
-              :src="'http://localhost:4001/' + data.profile_picture"
+              :src="`${URL}/` + data.profile_picture"
             />
             <div v-else>
               <img
                 class="default"
                 src="../../assets/default-profile.png"
-                style="border-radius:50%;width:230px;height:230px"
+                style="border-radius: 50%; width: 33px; height: 33px"
               />
             </div>
           </a>
@@ -52,7 +52,8 @@ export default {
   name: 'Header',
   data() {
     return {
-      char: ''
+      char: '',
+      URL: process.env.VUE_APP_API
     }
   },
   created() {

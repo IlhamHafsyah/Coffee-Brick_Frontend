@@ -30,7 +30,7 @@ export default {
     postDetailHistory(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://localhost:4001/history/detail', payload)
+          .post(`${process.env.VUE_APP_API}/history/detail`, payload)
           .then(result => {
             context.commit('setHistoryId', result.data.data.history_id)
             console.log(result)
@@ -45,7 +45,7 @@ export default {
     postHistory(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post('http://localhost:4001/history', payload)
+          .post(`${process.env.VUE_APP_API}/history`, payload)
           .then(result => {
             console.log(result)
             resolve(result)
@@ -59,7 +59,7 @@ export default {
     getHistory(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://localhost:4001/history/${payload}`)
+          .get(`${process.env.VUE_APP_API}/history/${payload}`)
           .then(result => {
             context.commit('setHistoryData', result.data.data)
             console.log(result)
@@ -74,7 +74,7 @@ export default {
     getDetailHistory(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`http://localhost:4001/history/dh/${payload}`)
+          .get(`${process.env.VUE_APP_API}/history/dh/${payload}`)
           .then(result => {
             context.commit('setDetail', result.data.data)
             console.log(result)

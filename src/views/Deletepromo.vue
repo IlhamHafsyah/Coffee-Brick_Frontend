@@ -8,9 +8,11 @@
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
+import alert from '../mixin/alert'
 
 export default {
   name: 'Deleteproduct',
+  mixins: [alert],
   data() {
     return {}
   },
@@ -25,12 +27,15 @@ export default {
       this.deletePromo()
         .then(result => {
           console.log(result)
-          alert(`Success Delete Coupon`)
+          this.makeToast(`Success`, `Success Delete Promo`, 'success')
+          setTimeout(() => {
+            this.$router.push('/product')
+          }, 2000)
         })
         .catch(error => {
-          alert(error)
+          console.log(error)
+          this.makeToast('Failed', `Fail Deleting`, 'danger')
         })
-      this.$router.push('/product')
     },
     cancelDeletingCoupon() {
       this.$router.push('/product')

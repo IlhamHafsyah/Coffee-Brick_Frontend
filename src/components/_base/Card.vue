@@ -33,7 +33,7 @@
             :img-src="
               item.product_image === ''
                 ? require('../../assets/cb.png')
-                : 'http://localhost:4001/' + item.product_image
+                : `${URL}/` + item.product_image
             "
             img-alt="Image"
             img-top
@@ -90,7 +90,8 @@ export default {
       pn: 'product_name',
       pp: 'product_price',
       pc: 'product_created_at',
-      allProduct: ''
+      allProduct: '',
+      URL: process.env.VUE_APP_API
     }
   },
   created() {

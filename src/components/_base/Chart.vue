@@ -23,7 +23,7 @@ export default {
         {
           label: 'Income (Rupiah)',
           backgroundColor: '#ffbb33',
-          data: ''
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }
       ]
     },
@@ -36,7 +36,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.renderChart(this.chartdata, this.options)
-    }, 2000)
+    }, 3000)
   },
   created() {
     this.perMonthIncome()
@@ -46,14 +46,19 @@ export default {
       index.push(this.getPerMonth[i].per_month_income)
       income.push(index.slice(0))
     }
-    income[this.getPerMonth.length - 1].splice(0, 1)
-    console.log(income[this.getPerMonth.length - 1])
-    this.chartdata.datasets[0].data = income[this.getPerMonth.length - 1]
-    // let chartData = [
-    //   this.getPerMonth[1].per_month_income,
-    //   this.getPerMonth[2].per_month_income
-    // ]
-    // this.chartdata.datasets[0].data = chartData
+    console.log(income[0][0])
+    this.chartdata.datasets[0].data[0] = 40000
+    this.chartdata.datasets[0].data[1] = income[0][0]
+    this.chartdata.datasets[0].data[2] = income[0][1]
+    this.chartdata.datasets[0].data[3] = income[0][2]
+    this.chartdata.datasets[0].data[4] = income[0][3]
+    this.chartdata.datasets[0].data[5] = income[0][4]
+    this.chartdata.datasets[0].data[6] = income[0][5]
+    this.chartdata.datasets[0].data[7] = income[0][6]
+    this.chartdata.datasets[0].data[8] = income[0][7]
+    this.chartdata.datasets[0].data[9] = income[0][8]
+    this.chartdata.datasets[0].data[10] = income[0][9]
+    this.chartdata.datasets[0].data[11] = income[0][10]
   },
   methods: {
     ...mapActions(['perMonthIncome'])

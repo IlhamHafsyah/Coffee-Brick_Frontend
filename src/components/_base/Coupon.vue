@@ -15,7 +15,7 @@
               :src="
                 item.promocode_image === ''
                   ? require('../../assets/cil.png')
-                  : 'http://localhost:4001/' + item.promocode_image
+                  : `${URL}/` + item.promocode_image
               "
               alt="image"
               style="width:150px;height:150px"
@@ -91,7 +91,8 @@ export default {
       currentPage: 1,
       totalRows: 12,
       limit: 1,
-      page: 1
+      page: 1,
+      URL: process.env.VUE_APP_API
     }
   },
   created() {
@@ -116,7 +117,7 @@ export default {
     },
     getPromocode() {
       axios
-        .get(`http://localhost:4001/promocode?page=${this.page}`)
+        .get(`${process.env.VUE_APP_API}/promocode?page=${this.page}`)
         .then(response => {
           console.log(response)
           this.promocode = response.data.data

@@ -48,7 +48,7 @@
           >
             <b-card
               v-bind:title="item.product_name"
-              :img-src="'http://localhost:4001/' + item.product_image"
+              :img-src="`${URL}/` + item.product_image"
               img-alt="Image"
               img-top
               tag="article"
@@ -127,7 +127,8 @@ export default {
       // totalRows: null,
       // limit: 3,
       // page: 1,
-      cart: []
+      cart: [],
+      URL: process.env.VUE_APP_API
     }
   },
   created() {
@@ -143,20 +144,6 @@ export default {
   methods: {
     ...mapActions(['getProducts']), // tambahkan
     ...mapMutations(['changePage', 'resetPages']),
-    // getProduct() {
-    // axios
-    //   .get(
-    //     `http://localhost:3000/product?page=${this.page}&limit=${this.limit}`
-    //   )
-    //   .then(response => {
-    //     console.log(response)
-    //     this.totalRows = response.data.pagination.totalData
-    //     this.products = response.data.data
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response)
-    //   })
-    // },
     postProduct() {
       console.log(this.form)
       const {
@@ -176,26 +163,9 @@ export default {
       for (var pair of data.entries()) {
         console.log(pair[0] + ', ' + pair[1])
       }
-      // axios
-      //   .post('http://localhost:3000/product', data)
-      //   .then(response => {
-      //     console.log(response)
-      //     this.alert = true
-      //     this.isMsg = response.data.msg
-      //     // this.getProduct()
-      //   })
-      //   .catch(error => {
-      //     console.log(error.response)
-      //   })
     },
     setProduct(data) {
       console.log(data)
-      // this.form = {
-      //   product_name: data.product_name,
-      //   category_id: data.category_id,
-      //   product_price: data.product_price,
-      //   product_status: data.product_status
-      // }
       this.form = data
       this.product_id = data.product_id
     },

@@ -130,8 +130,7 @@ export default {
     getProduct() {
       axios
         .get(
-          `http://localhost:4001/product?id=&page=${this.page}&limit=${this.limit}&search=&sort=`
-          // `http://localhost:4001/product?page=${this.page}&limit=${this.limit}`
+          `${process.env.VUE_APP_API}/product?id=&page=${this.page}&limit=${this.limit}&search=&sort=`
         )
         .then(response => {
           console.log(response)
@@ -162,7 +161,7 @@ export default {
       }
 
       axios
-        .post('http://localhost:4001/product', data)
+        .post(`${process.env.VUE_APP_API}/product`, data)
         .then(response => {
           console.log(response)
           this.alert = true
@@ -175,12 +174,6 @@ export default {
     },
     setProduct(data) {
       console.log(data)
-      // this.form = {
-      //   product_name: data.product_name,
-      //   category_id: data.category_id,
-      //   product_price: data.product_price,
-      //   product_status: data.product_status
-      // }
       this.form = data
       this.product_id = data.product_id
     },
@@ -191,7 +184,7 @@ export default {
     deleteProduct(product_id) {
       console.log(product_id)
       axios
-        .patch(`http://localhost:4001/product/deleteProduct/${product_id}`)
+        .patch(`${process.env.VUE_APP_API}/product/deleteProduct/${product_id}`)
         .then(response => {
           console.log(response)
         })

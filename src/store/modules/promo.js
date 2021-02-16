@@ -22,7 +22,7 @@ export default {
       return new Promise((resolve, reject) => {
         console.log(payload)
         axios
-          .post('http://localhost:4001/promocode', payload)
+          .post(`${process.env.VUE_APP_API}/promocode`, payload)
           .then(result => {
             console.log(result)
             resolve(result)
@@ -37,7 +37,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `http://localhost:4001/promocode/${context.state.updateIdPromo}`,
+            `${process.env.VUE_APP_API}/promocode/${context.state.updateIdPromo}`,
             payload
           )
           .then(result => {
@@ -51,7 +51,9 @@ export default {
     deletePromo(context) {
       return new Promise((resolve, reject) => {
         axios
-          .delete(`http://localhost:4001/promocode/${context.state.delpromoid}`)
+          .delete(
+            `${process.env.VUE_APP_API}/promocode/${context.state.delpromoid}`
+          )
           .then(result => {
             resolve(result)
           })

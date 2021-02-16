@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import router from '../../router'
 
 export default {
   state: {
@@ -30,7 +29,7 @@ export default {
     todayIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get('http://localhost:4001/dashboard/ti')
+          .get(`${process.env.VUE_APP_API}/dashboard/ti`)
           .then(result => {
             // console.log(result)
             context.commit('setTodayIncome', result.data.data[0].today_income)
@@ -45,7 +44,7 @@ export default {
     weeklyOrder(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get('http://localhost:4001/dashboard/pw')
+          .get(`${process.env.VUE_APP_API}/dashboard/pw`)
           .then(result => {
             // console.log(result)
             const lgth = result.data.data.length - 1
@@ -65,7 +64,7 @@ export default {
     yearIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get('http://localhost:4001/dashboard/yi')
+          .get(`${process.env.VUE_APP_API}/dashboard/yi`)
           .then(result => {
             // console.log(result)
             context.commit(
@@ -83,7 +82,7 @@ export default {
     perMonthIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get('http://localhost:4001/dashboard/pm')
+          .get(`${process.env.VUE_APP_API}/dashboard/pm`)
           .then(result => {
             console.log(result)
             context.commit('setPerMonth', result.data.data)

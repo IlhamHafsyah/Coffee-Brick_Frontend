@@ -11,7 +11,7 @@
               <img
                 v-else-if="form.product_image"
                 class="round-img"
-                :src="'http://localhost:4001/' + form.product_image"
+                :src="`${URL}/` + form.product_image"
                 alt="photo"
               />
               <div v-else>
@@ -22,10 +22,6 @@
               </div>
             </div>
             <b-card>
-              <!-- <div class="tap">
-                <b-button>Take a Picture</b-button>
-              </div> -->
-              <!-- <br /> -->
               <div class="cfg">
                 <b-button>
                   <input type="file" id="file" @change="handleFile" />
@@ -91,12 +87,6 @@
               <br />
               <h3>Category :</h3>
               <div>
-                <!-- <select name="cars" id="cars">
-                  <option @click="setCategory('1')">Coffee</option>
-                  <option @click="setCategory('2')">Non-Coffee</option>
-                  <option @click="setCategory('3')">Foods</option>
-                  <option @click="setCategory(p)">Add-on</option>
-                </select> -->
                 <b-dropdown
                   id="dropdown-1"
                   text="Category"
@@ -152,72 +142,6 @@
               <h4>Input Product Size :</h4>
               <h5>Click size you want to use for this product</h5>
               <div class="size">
-                <!-- <b-form-checkbox
-                  v-model="form.size_r"
-                  id="sizeR"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  R
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.size_l"
-                  id="sizeL"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  L
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.size_xl"
-                  id="sizeXL"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  XL
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.size_250"
-                  id="size250"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  250 <br />gr
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.size_300"
-                  id="size300"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  300 <br />gr
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="form.size_500"
-                  id="size500"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  500 <br />gr
-                </b-form-checkbox> -->
                 <div class="size-btn">
                   <b-button
                     v-model="form.size_r"
@@ -274,53 +198,6 @@
               <h5>Click methods you want to use for this product</h5>
               <div class="delivery">
                 <div class="del-btn">
-                  <!-- <b-form-checkbox
-                    v-model="form.take_away"
-                    name="check-button"
-                    value="1"
-                    unchecked-value="0"
-                    button
-                    button-variant="warning"
-                  >
-                    Take away
-                  </b-form-checkbox>
-                  <b-form-checkbox
-                    v-model="form.dine_in"
-                    name="check-button"
-                    value="1"
-                    unchecked-value="0"
-                    button
-                    button-variant="warning"
-                  >
-                    Dine in
-                  </b-form-checkbox>
-                  <b-form-checkbox
-                    v-model="form.home_delivery"
-                    name="check-button"
-                    value="1"
-                    unchecked-value="0"
-                    button
-                    button-variant="warning"
-                  >
-                    Home Delivery
-                  </b-form-checkbox> -->
-                  <!-- 
-                <input
-                  type="checkbox"
-                  v-model="form.take_away"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.dine_in"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="form.home_delivery"
-                  true-value="1"
-                  false-value="0"
-                /> -->
                   <b-button
                     v-model="form.take_away"
                     @click="setTakeAway"
@@ -394,13 +271,12 @@ export default {
         product_status: '1'
       },
       url: null,
-      stock: 0
+      stock: 0,
+      URL: process.env.VUE_APP_API
     }
   },
   methods: {
     ...mapActions(['postProducts']),
-    // ...mapMutations(['setBaveragesSize']),
-    // ...mapMutations(['setFoodsSize']),
     setBavCategory(id) {
       this.form.category_id = id
       this.form.size_r = 1
@@ -485,9 +361,6 @@ export default {
         this.form.size_500 = 0
       }
     },
-    // setProductStock() {
-    //   this.form.product_stock = this.stock
-    // },
     setFoodsCategory(id) {
       this.form.category_id = id
       this.form.size_r = 0
@@ -505,7 +378,6 @@ export default {
     },
     handleFile(event) {
       console.log(event)
-      // this.form.product_image = event.target.files[0]
       const type = event.target.files[0].type
       const size = event.target.files[0].size
       if (type != 'image/jpeg' && type != 'image/png' && type != 'image/jpg') {
@@ -567,13 +439,15 @@ export default {
 
       this.postProducts(data)
         .then(result => {
-          this.makeToast(`${result.data.msg}`, `Success add product`, 'success')
+          console.log(result)
+          this.makeToast(`Success`, `Success add product`, 'success')
           setTimeout(() => {
             this.$router.push('/product')
           }, 2000)
         })
         .catch(error => {
-          this.makeToast('Failed', `${error.data.msg}`, 'danger')
+          console.log(error)
+          this.makeToast('Failed', `Fail add product`, 'danger')
         })
     }
   }

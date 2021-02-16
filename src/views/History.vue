@@ -10,8 +10,10 @@
           <b-col cols="4" v-for="(item, index) in getHistoryData" :key="index">
             <b-card class="history-card">
               <h4>Invoice : CB-{{ item.invoice }}</h4>
-              <!-- <h5>Payment Method : {{ item.payment_method }}</h5> -->
               <h6>Total : RP. {{ item.subtotal }}</h6>
+              <h5 style="font-size: 15px">
+                Payment Method : {{ item.payment_method }}
+              </h5>
               <p>{{ item.history_created_at.substring(0, 10) }}</p>
               <b-button
                 @click="detailHistory(item.history_id)"
@@ -19,7 +21,6 @@
                 >See Details</b-button
               >
             </b-card>
-            <!-- <p>{{ getHistoryData }}</p> -->
           </b-col>
         </b-row>
         <b-modal id="my-modal">

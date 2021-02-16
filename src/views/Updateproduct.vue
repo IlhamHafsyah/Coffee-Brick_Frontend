@@ -11,7 +11,7 @@
               <img
                 v-else-if="productsDetail.product_image"
                 class="round-img"
-                :src="'http://localhost:4001/' + productsDetail.product_image"
+                :src="`${URL}/` + productsDetail.product_image"
                 alt="photo"
               />
               <div v-else>
@@ -22,10 +22,6 @@
               </div>
             </div>
             <b-card>
-              <!-- <div class="tap">
-                <b-button>Take a Picture</b-button>
-              </div>
-              <br /> -->
               <div class="cfg">
                 <b-button>
                   <input type="file" id="file" @change="handleFile" />
@@ -94,37 +90,9 @@
                   />
                 </div>
                 <br />
-                <!-- <b-dropdown
-                  id="dropdown-1"
-                  text="Input stock"
-                  variant="default"
-                  class="m-md-2"
-                >
-                  <b-dropdown-item
-                    v-model="productsDetail.product_stock"
-                    @click="setProductStock(100)"
-                    >100</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="productsDetail.product_stock"
-                    @click="setProductStock(150)"
-                    >150</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    v-model="productsDetail.product_stock"
-                    @click="setProductStock(200)"
-                    >200</b-dropdown-item
-                  >
-                </b-dropdown> -->
               </div>
               <h3>Category :</h3>
               <div>
-                <!-- <select name="cars" id="cars">
-                  <option @click="setCategory('1')">Coffee</option>
-                  <option @click="setCategory('2')">Non-Coffee</option>
-                  <option @click="setCategory('3')">Foods</option>
-                  <option @click="setCategory(p)">Add-on</option>
-                </select> -->
                 <b-dropdown
                   id="dropdown-1"
                   text="Category"
@@ -153,7 +121,6 @@
                   >
                 </b-dropdown>
               </div>
-              <!-- <h6>{{ productsDetail }}</h6> -->
             </b-card>
           </div>
         </b-col>
@@ -181,121 +148,6 @@
               <h4>Input Product Size :</h4>
               <h5>Click size you want to use for this product</h5>
               <div class="size">
-                <!-- <input
-                  type="checkbox"
-                  v-model="productsDetail.size_r"
-                  true-value="1"
-                  false-value="0"
-                /> -->
-                <!-- <input
-                  type="checkbox"
-                  v-model="productsDetail.size_l"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.size_xl"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.size_250"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.size_300"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.size_500"
-                  true-value="1"
-                  false-value="0"
-                /> -->
-                <!-- <div> -->
-                <!-- <b-form-checkbox
-                  v-model="productsDetail.size_r"
-                  id="sizeR"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  R
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.size_l"
-                  id="sizeL"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  L
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.size_xl"
-                  id="sizeXL"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  XL
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.size_250"
-                  id="size250"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  250 <br />gr
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.size_300"
-                  id="size300"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  300 <br />gr
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.size_500"
-                  id="size500"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  500 <br />gr
-                </b-form-checkbox> -->
-                <!-- <b-form-checkbox
-                    v-model="productsDetail.size_r"
-                    name="check-button"
-                    button
-                    @click="set()"
-                  >
-                    Button Checkbox
-                    <b>(Checked: {{ productsDetail.size_r }})</b>
-                  </b-form-checkbox> -->
-                <!-- </div> -->
-                <!-- <b-button id="sizeR">R</b-button> -->
-                <!-- <b-button id="sizeL">L</b-button>
-                <b-button id="sizeXL">XL</b-button>
-                <b-button id="size250">250<br />gr</b-button>
-                <b-button id="size300">300<br />gr</b-button>
-                <b-button id="size500">500<br />gr</b-button><br /> -->
                 <div class="size-btn">
                   <b-button
                     v-model="productsDetail.size_r"
@@ -401,55 +253,6 @@
                     >Home Delivery</b-button
                   ><br /><b></b>
                 </div>
-                <!-- <b-form-checkbox
-                  v-model="productsDetail.take_away"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Take away
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.dine_in"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Dine in
-                </b-form-checkbox>
-                <b-form-checkbox
-                  v-model="productsDetail.home_delivery"
-                  name="check-button"
-                  value="1"
-                  unchecked-value="0"
-                  button
-                  button-variant="warning"
-                >
-                  Home Delivery </b-form-checkbox
-                ><br /><br /> -->
-                <!-- <input
-                  type="checkbox"
-                  v-model="productsDetail.take_away"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.dine_in"
-                  true-value="1"
-                  false-value="0"
-                /><input
-                  type="checkbox"
-                  v-model="productsDetail.home_delivery"
-                  true-value="1"
-                  false-value="0"
-                /> -->
-                <!-- <b-button>take away</b-button>
-                <b-button>Dine in</b-button>
-                <b-button>Home Delivery</b-button><br /><b></b> -->
               </div>
               <br /><br />
               <b-button @click="updateProduct()">Update Product</b-button
@@ -484,54 +287,12 @@ export default {
   },
   data() {
     return {
-      // p: ''
-      // form: {
-      //   category_id: '1',
-      //   product_name: '',
-      //   product_image: '',
-      //   product_price: '',
-      //   product_stock: '100',
-      //   product_desc: '',
-      //   size_r: '0',
-      //   size_l: '0',
-      //   size_xl: '0',
-      //   size_250: '0',
-      //   size_300: '0',
-      //   size_500: '0',
-      //   home_delivery: '0',
-      //   dine_in: '0',
-      //   take_away: '0',
-      //   start_hour: '00:00:00.0000',
-      //   end_hour: '00:00:00.0000',
-      //   product_created_at: new Date(),
-      //   product_status: '1'
-      // }
-      //   id: ''
-      url: null
+      url: null,
+      URL: process.env.VUE_APP_API
     }
   },
   created() {
     this.update(this.$route.params.id)
-    // if (
-    //   this.productsDetail.category_id !== 1 ||
-    //   this.productsDetail.category_id !== 2
-    // ) {
-    //   console.log(this.productsDetail.category_id)
-    //   document.getElementById('size250').disabled = true
-    //   document.getElementById('size300').disabled = true
-    //   document.getElementById('size500').disabled = true
-    //   document.getElementById('sizeR').disabled = false
-    //   document.getElementById('sizeL').disabled = false
-    //   document.getElementById('sizeXL').disabled = false
-    // } else {
-    //   console.log(this.productsDetail.category_id)
-    //   document.getElementById('sizeR').disabled = true
-    //   document.getElementById('sizeL').disabled = true
-    //   document.getElementById('sizeXL').disabled = true
-    //   document.getElementById('size250').disabled = false
-    //   document.getElementById('size300').disabled = false
-    //   document.getElementById('size500').disabled = false
-    // }
   },
   methods: {
     ...mapActions(['updateProducts']),

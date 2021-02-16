@@ -16,11 +16,7 @@
                       <div class="product-sum">
                         <b-row>
                           <b-col cols="4">
-                            <img
-                              :src="
-                                'http://localhost:4001/' + item.product_image
-                              "
-                            />
+                            <img :src="`${URL}/` + item.product_image" />
                           </b-col>
                           <b-col cols="4">
                             <b-card-text>
@@ -118,8 +114,6 @@
             <div class="button">
               <b-button @click="removeItem()">Confirm and Pay</b-button>
             </div>
-            <p>{{ getHisId }}</p>
-            <p>{{ paymentMethod }}</p>
           </b-col>
         </b-row>
       </b-container>
@@ -152,6 +146,7 @@ export default {
       total: '',
       address: '',
       paymentMethod: '',
+      URL: process.env.VUE_APP_API,
       method: [
         { text: '', value: 'Card' },
         { text: '', value: 'bank account' },
@@ -187,11 +182,6 @@ export default {
     ...mapMutations(['setpaymet']),
     ...mapMutations(['setCartData']),
     ...mapActions(['postDetailHistory', 'postHistory']),
-    // getAddress() {
-    //   console.log(this.data)
-    //   this.address = this.data.delivery_address
-    //   console.log(this.address)
-    // },
     removeItem() {
       let detail = []
       for (let a = 0; a < this.cart.length; a++) {
@@ -217,7 +207,7 @@ export default {
       this.postDetailHistory(detail)
         .then(result => {
           console.log(result)
-          this.makeToast(`${result.data.msg}`, `Payment Success`, 'success')
+          this.makeToast(`Yeay!`, `Payment Success`, 'success')
         })
         .catch(error => {
           console.log(error)
@@ -231,27 +221,28 @@ export default {
         user_id: this.setUsers.users_id,
         status: 0
       }
-      this.postHistory(setHistory)
-        .then(result => {
-          console.log(result)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      // const detail = {
-      //   product_id: this.cart.product_id,
-      //   qty: this.cart.qty,
-      //   size: this.cart.size,
-      //   delivery_method: this.cart.delivery_method,
-      //   subtotal: this.cart.subtotal,
-      //   payment_method: this.paymentMethod,
-      //   tax: this.tax,
-      //   shipping: this.shipping
-      // }
-      // this.detailHistory.push(detail)
-
-      // let mycart = []
-      // this.setCartData(mycart)
+      setTimeout(() => {
+        this.postHistory(setHistory)
+          .then(result => {
+            console.log(result)
+          })
+          .catch(error => {
+            console.log(error)
+          }, 2000)
+        // const setHistory = {
+        //   history_id: this.getHisId + 1,
+        //   payment_method: this.paymentMethod,
+        //   subtotal: this.total,
+        //   user_id: this.setUsers.users_id,
+        //   status: 0
+        // }
+        // this.postHistory(setHistory)
+        //   .then(result => {
+        //     console.log(result)
+        //   })
+        //   .catch(error => {
+        //     console.log(error)
+      })
       localStorage.removeItem('cart')
       this.setpaymet(this.paymentMethod)
     }

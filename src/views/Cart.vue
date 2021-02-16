@@ -228,20 +228,7 @@ export default {
           })
           .catch(error => {
             console.log(error)
-          }, 2000)
-        // const setHistory = {
-        //   history_id: this.getHisId + 1,
-        //   payment_method: this.paymentMethod,
-        //   subtotal: this.total,
-        //   user_id: this.setUsers.users_id,
-        //   status: 0
-        // }
-        // this.postHistory(setHistory)
-        //   .then(result => {
-        //     console.log(result)
-        //   })
-        //   .catch(error => {
-        //     console.log(error)
+          }, 5000)
       })
       localStorage.removeItem('cart')
       this.setpaymet(this.paymentMethod)

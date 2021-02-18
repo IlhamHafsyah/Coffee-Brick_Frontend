@@ -11,7 +11,7 @@
 
 ## About The Project
 
-#background_projek.
+This project was built as a form of response to technological developments, especially in the field of marketing. cafe is very much in demand by various groups at the moment, that's why I built this project.
 
 ## Built With
 

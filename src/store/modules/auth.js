@@ -40,7 +40,7 @@ export default {
     login(context, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`${process.env.VUE_APP_API}/users/login`, payload)
+          .post(`http://${process.env.VUE_APP_API}/users/login`, payload)
           .then(result => {
             // console.log(result)
             context.commit('setUsers', result.data.data)
@@ -62,7 +62,9 @@ export default {
     getUsers(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${process.env.VUE_APP_API}/users/${context.state.profileid}`)
+          .get(
+            `http://${process.env.VUE_APP_API}/users/${context.state.profileid}`
+          )
           .then(result => {
             context.commit('setData', result.data.data[0])
             resolve(result)
@@ -76,7 +78,7 @@ export default {
       return new Promise((resolve, reject) => {
         console.log(payload)
         axios
-          .post(`${process.env.VUE_APP_API}/users/register`, payload)
+          .post(`http://${process.env.VUE_APP_API}/users/register`, payload)
           .then(result => {
             context.commit('setData', result.data.data)
             console.log(result)
@@ -92,7 +94,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `${process.env.VUE_APP_API}/users/${context.state.profileid}`,
+            `http://${process.env.VUE_APP_API}/users/${context.state.profileid}`,
             payload
           )
           .then(result => {
@@ -108,7 +110,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `${process.env.VUE_APP_API}/users/editpass/${context.state.profileid}`,
+            `http://${process.env.VUE_APP_API}/users/editpass/${context.state.profileid}`,
             payload
           )
           .then(result => {

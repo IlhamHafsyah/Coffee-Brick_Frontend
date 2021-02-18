@@ -28,7 +28,7 @@
             ><img
               v-if="data.profile_picture"
               style="border-radius: 50%; width: 33px; height: 33px"
-              :src="`${URL}/` + data.profile_picture"
+              :src="`http://${URL}/` + data.profile_picture"
             />
             <div v-else>
               <img

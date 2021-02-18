@@ -1,13 +1,13 @@
-<h1 align='center'>Vue JS - #CoffeeBrick-Frontend</h1>
+<h1 align='center'>Vue JS - CoffeeBrick</h1>
   <p align="center">
     <a href="https://coffeebrick.netlify.app">View Demo</a>
     ·
-    <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend">Report Bug</a>
+    <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend/issues">Report Bug</a>
     ·
-    <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend">Request Feature</a>
+    <a href="https://github.com/IlhamHafsyah/Coffee-Brick_Frontend/issues">Request Feature</a>
   </p>
 
-![Image Banner](https://raw.githubusercontent.com/IlhamHafsyah/Coffee-Brick_Frontend/master/banner-cb.png)
+![Image Banner](https://raw.githubusercontent.com/IlhamHafsyah/Coffee-Brick_Frontend/master/smartmockups_klalt5z2.jpg)
 
 ## About The Project
 
@@ -22,7 +22,7 @@
 
 1. <a href="https://nodejs.org/en/download/">Node Js</a>
 2. Node_modules `npm install` or `yarn install`
-3. Backend API #nama_projek [`here`](https://github.com/arkbootcamp/week4-web3-express)
+3. Backend API CoffeeBrick [`here`](https://github.com/IlhamHafsyah/Coffee-Brick_Intermediate-Backend)
 
 ## Getting Started
 

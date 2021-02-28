@@ -29,7 +29,7 @@ export default {
     todayIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${process.env.VUE_APP_API}/dashboard/ti`)
+          .get(`https://${process.env.VUE_APP_API}/dashboard/ti`)
           .then(result => {
             // console.log(result)
             context.commit('setTodayIncome', result.data.data[0].today_income)
@@ -44,7 +44,7 @@ export default {
     weeklyOrder(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${process.env.VUE_APP_API}/dashboard/pw`)
+          .get(`https://${process.env.VUE_APP_API}/dashboard/pw`)
           .then(result => {
             // console.log(result)
             const lgth = result.data.data.length - 1
@@ -64,7 +64,7 @@ export default {
     yearIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${process.env.VUE_APP_API}/dashboard/yi`)
+          .get(`https://${process.env.VUE_APP_API}/dashboard/yi`)
           .then(result => {
             // console.log(result)
             context.commit(
@@ -82,7 +82,7 @@ export default {
     perMonthIncome(context) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`${process.env.VUE_APP_API}/dashboard/pm`)
+          .get(`https://${process.env.VUE_APP_API}/dashboard/pm`)
           .then(result => {
             console.log(result)
             context.commit('setPerMonth', result.data.data)

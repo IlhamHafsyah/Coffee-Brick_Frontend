@@ -70,7 +70,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .get(
-            `${context.state.VUE_APP_API}/product?id=${context.state.id}&page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}&sort=${context.state.sort}`
+            `https://${context.state.VUE_APP_API}/product?id=${context.state.id}&page=${context.state.page}&limit=${context.state.limit}&search=${context.state.search}&sort=${context.state.sort}`
           )
           .then(result => {
             console.log(result)
@@ -87,7 +87,7 @@ export default {
       return new Promise((resolve, reject) => {
         console.log(payload)
         axios
-          .post(`${context.state.VUE_APP_API}/product`, payload)
+          .post(`https://${context.state.VUE_APP_API}/product`, payload)
           .then(result => {
             console.log(result)
             resolve(result)
@@ -102,7 +102,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `${context.state.VUE_APP_API}/product/${context.state.upid}`,
+            `https://${context.state.VUE_APP_API}/product/${context.state.upid}`,
             payload
           )
           .then(result => {
@@ -116,7 +116,9 @@ export default {
     deleteProducts(context) {
       return new Promise((resolve, reject) => {
         axios
-          .delete(`${context.state.VUE_APP_API}/product/${context.state.delid}`)
+          .delete(
+            `https://${context.state.VUE_APP_API}/product/${context.state.delid}`
+          )
           .then(result => {
             resolve(result)
           })

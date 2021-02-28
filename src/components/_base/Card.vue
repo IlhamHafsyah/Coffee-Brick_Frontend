@@ -33,7 +33,7 @@
             :img-src="
               item.product_image === ''
                 ? require('../../assets/cb.png')
-                : `${URL}/` + item.product_image
+                : `https://${URL}/fileUploadsApi1/` + item.product_image
             "
             img-alt="Image"
             img-top

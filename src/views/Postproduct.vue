@@ -130,7 +130,7 @@ export default {
     getProduct() {
       axios
         .get(
-          `${process.env.VUE_APP_API}/product?id=&page=${this.page}&limit=${this.limit}&search=&sort=`
+          `https://${process.env.VUE_APP_API}/product?id=&page=${this.page}&limit=${this.limit}&search=&sort=`
         )
         .then(response => {
           console.log(response)
@@ -161,7 +161,7 @@ export default {
       }
 
       axios
-        .post(`${process.env.VUE_APP_API}/product`, data)
+        .post(`https://${process.env.VUE_APP_API}/product`, data)
         .then(response => {
           console.log(response)
           this.alert = true
@@ -184,7 +184,9 @@ export default {
     deleteProduct(product_id) {
       console.log(product_id)
       axios
-        .patch(`${process.env.VUE_APP_API}/product/deleteProduct/${product_id}`)
+        .patch(
+          `https://${process.env.VUE_APP_API}/product/deleteProduct/${product_id}`
+        )
         .then(response => {
           console.log(response)
         })

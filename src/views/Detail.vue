@@ -11,7 +11,9 @@
               <img
                 v-if="products.product_image"
                 class="round-img"
-                :src="`${URL}/` + products.product_image"
+                :src="
+                  `https://${URL}/fileUploadsApi1/` + products.product_image
+                "
                 alt="photo"
               />
               <div v-else>
@@ -162,7 +164,10 @@
                     <img
                       v-if="products.product_image"
                       class="round-img"
-                      :src="`${URL}/` + products.product_image"
+                      :src="
+                        `https://${URL}/fileUploadsApi1/` +
+                          products.product_image
+                      "
                       alt="photo"
                     />
                     <div v-else>
@@ -309,7 +314,7 @@ export default {
     getProductById(id) {
       console.log(id)
       axios
-        .get(`http://localhost:4001/product/${id}`)
+        .get(`https://${process.env.VUE_APP_API}/product/${id}`)
         .then(response => {
           console.log(response)
           this.product_name = response.data.data[0].product_name

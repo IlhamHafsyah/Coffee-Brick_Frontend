@@ -22,7 +22,7 @@ export default {
       return new Promise((resolve, reject) => {
         console.log(payload)
         axios
-          .post(`${process.env.VUE_APP_API}/promocode`, payload)
+          .post(`https://${process.env.VUE_APP_API}/promocode`, payload)
           .then(result => {
             console.log(result)
             resolve(result)
@@ -37,7 +37,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .patch(
-            `${process.env.VUE_APP_API}/promocode/${context.state.updateIdPromo}`,
+            `https://${process.env.VUE_APP_API}/promocode/${context.state.updateIdPromo}`,
             payload
           )
           .then(result => {
@@ -52,7 +52,7 @@ export default {
       return new Promise((resolve, reject) => {
         axios
           .delete(
-            `${process.env.VUE_APP_API}/promocode/${context.state.delpromoid}`
+            `https://${process.env.VUE_APP_API}/promocode/${context.state.delpromoid}`
           )
           .then(result => {
             resolve(result)

@@ -11,7 +11,7 @@
               <img
                 v-else-if="form.product_image"
                 class="round-img"
-                :src="`${URL}/` + form.product_image"
+                :src="`https://${URL}/fileUploadsApi1/` + form.product_image"
                 alt="photo"
               />
               <div v-else>

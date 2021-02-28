@@ -48,7 +48,7 @@
           >
             <b-card
               v-bind:title="item.product_name"
-              :img-src="`${URL}/` + item.product_image"
+              :img-src="`https://${URL}/fileUploadsApi1/` + item.product_image"
               img-alt="Image"
               img-top
               tag="article"

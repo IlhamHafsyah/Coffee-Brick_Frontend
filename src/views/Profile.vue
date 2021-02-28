@@ -17,7 +17,10 @@
                         <img
                           v-else-if="data.profile_picture"
                           class="round-img"
-                          :src="`${URL}/` + data.profile_picture"
+                          :src="
+                            `https://${URL}/fileUploadsApi1/` +
+                              data.profile_picture
+                          "
                           alt="photo"
                         />
                         <div v-else>

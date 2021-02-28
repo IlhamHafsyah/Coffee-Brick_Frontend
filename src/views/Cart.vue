@@ -16,7 +16,12 @@
                       <div class="product-sum">
                         <b-row>
                           <b-col cols="4">
-                            <img :src="`${URL}/` + item.product_image" />
+                            <img
+                              :src="
+                                `https://${URL}/fileUploadsApi1/` +
+                                  item.product_image
+                              "
+                            />
                           </b-col>
                           <b-col cols="4">
                             <b-card-text>
